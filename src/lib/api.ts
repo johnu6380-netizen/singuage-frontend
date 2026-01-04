@@ -2,12 +2,12 @@
 import axios, { AxiosError } from 'axios';
 
 // Default API URL points to backend at port 3000 (backend default). If VITE_API_URL is provided, use it.
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
-console.debug('Using API_BASE_URL =', API_BASE_URL);
+const API_ORIGIN = 
+	import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 // Create axios instance
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: `${API_ORIGIN}/api`,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true,
 });
@@ -32,7 +32,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const refreshToken = localStorage.getItem('refreshToken');
-        const response = await axios.post(`${API_BASE_URL}/auth/refresh`, { refreshToken });
+        const response = await api.post('/auth/refresh', { refreshToken });
         const { accessToken } = response.data;
         localStorage.setItem('accessToken', accessToken);
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;

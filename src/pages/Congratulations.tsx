@@ -1,7 +1,7 @@
 // frontend/src/pages/Congratulations.tsx
 // Shown when user completes a learning session
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Trophy, CheckCircle, Clock, Target } from 'lucide-react';
 import { motion } from 'framer-motion';

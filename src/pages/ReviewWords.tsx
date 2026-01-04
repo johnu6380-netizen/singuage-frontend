@@ -1,10 +1,9 @@
 // frontend/src/pages/ReviewWords.tsx
 // Review Words quiz page
 
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Trophy, Target, Flame, Clock, TrendingUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { vocabularyApi, progressApi } from '@/lib/api';
@@ -29,7 +28,6 @@ interface ReviewSession {
 }
 
 export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }) => {
-  const navigate = useNavigate();
   const { user, updateUser } = useAuthStore();
   const [hasStarted, setHasStarted] = useState(false);
   const [session, setSession] = useState<ReviewSession | null>(null);

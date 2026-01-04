@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { 
   BookOpen, Music2, TrendingUp, Target, Trophy, Settings as SettingsIcon,
-  UserCircle, Calendar, Flame, CheckCircle, Languages, Volume2
+  UserCircle, Calendar, CheckCircle, Languages, Volume2
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 

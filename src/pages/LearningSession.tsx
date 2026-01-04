@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, Play, Pause, RotateCcw, Keyboard } from 'lucide-react';
+import { ArrowLeft, RotateCcw, Keyboard } from 'lucide-react';
 import YouTube, { YouTubePlayer } from 'react-youtube';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
@@ -33,7 +33,7 @@ export const LearningSession = () => {
   const [currentLine, setCurrentLine] = useState(0);
   const [currentInput, setCurrentInput] = useState('');
   const [showDifficultyModal, setShowDifficultyModal] = useState(true);
-  const [selectedTranslation, setSelectedTranslation] = useState<{ word: string | null; context: string; difficulty?: DifficultyMode; isFirstLine?: boolean } | null>(null);
+  const [selectedTranslation, setSelectedTranslation] = useState<{ word: string | null; context: string } | null>(null);
   const [completedLines, setCompletedLines] = useState(0);
   const [lineAccuracies, setLineAccuracies] = useState<number[]>([]);
   const [sessionStartTime] = useState(Date.now());
@@ -41,7 +41,6 @@ export const LearningSession = () => {
   const [showKeyboardHelp, setShowKeyboardHelp] = useState(false);
   const [isGrammarOpen, setIsGrammarOpen] = useState(false);
   const [showDifficultyConfirm, setShowDifficultyConfirm] = useState(false);
-  const [pendingDifficulty, setPendingDifficulty] = useState<DifficultyMode | null>(null);
 
   // Load song from backend if not in state
   useEffect(() => {
@@ -402,18 +401,18 @@ export const LearningSession = () => {
   const handleWordClick = (word: string) => {
     if (difficulty === 'easy') {
       // Easy mode: show current line with word
-      setSelectedTranslation({ word, context: currentLyricLine.text, difficulty });
+      setSelectedTranslation({ word, context: currentLyricLine.text });
     } else if (difficulty === 'medium') {
       // Medium mode: show current line as it appears (with vowels hidden)
-      setSelectedTranslation({ word, context: currentLyricLine.text, difficulty });
+      setSelectedTranslation({ word, context: currentLyricLine.text });
     } else {
       // Hard mode: show previous line
       if (currentLine === 0) {
         // First line - show empty context
-        setSelectedTranslation({ word, context: '', difficulty, isFirstLine: true });
+        setSelectedTranslation({ word, context: '' });
       } else {
         const previousLine = lines[currentLine - 1];
-        setSelectedTranslation({ word, context: previousLine.text, difficulty });
+        setSelectedTranslation({ word, context: previousLine.text });
       }
     }
   };
@@ -425,7 +424,6 @@ export const LearningSession = () => {
   // FIXED: Proper character-by-character comparison that INCLUDES SPACES
   const renderLine = (line: LyricLine) => {
     const text = line.text;
-    const targetNormalized = normalizeText(text);
     const typedNormalized = normalizeText(currentInput);
     
     // Split into words but preserve spaces for clicking
@@ -463,7 +461,6 @@ export const LearningSession = () => {
 
           // Handle words
           const wordStart = charsSoFar;
-          const wordEnd = charsSoFar + word.length;
           charsSoFar += word.length;
           
           return (
@@ -801,8 +798,6 @@ export const LearningSession = () => {
             sourceLanguage={song.language} 
             targetLanguage={user?.nativeLanguage || 'en'} 
             context={selectedTranslation.context} 
-            difficulty={selectedTranslation.difficulty}
-            isFirstLine={selectedTranslation.isFirstLine}
             onClose={() => setSelectedTranslation(null)} 
           />
         )}

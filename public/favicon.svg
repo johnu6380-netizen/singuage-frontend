@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0284c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Circular gradient background -->
+  <circle cx="50" cy="50" r="48" fill="url(#grad)"/>
+  
+  <!-- Single eighth note -->
+  <!-- Note stem (vertical line) -->
+  <line x1="55" y1="68" x2="55" y2="32" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Note head (filled circle) -->
+  <ellipse cx="48" cy="68" rx="8" ry="6" fill="white"/>
+  <!-- Flag at top (curved) -->
+  <path d="M 55 32 Q 65 35, 65 42 Q 65 37, 55 35" fill="white"/>
+</svg>

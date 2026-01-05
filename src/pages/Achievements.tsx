@@ -1,10 +1,11 @@
 // src/pages/Achievements.tsx
-// Achievements and badges page - FEATURE 4
+// Achievements and badges page - FULLY FUNCTIONAL with real user data
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Trophy, Star, Zap, Target, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { achievementsApi } from '@/lib/api';
 import { UserDropdown } from '@/components/UserDropdown';
 
 interface Achievement {
@@ -19,79 +20,67 @@ interface Achievement {
   unlockedAt?: string;
 }
 
-// Mock achievements data
-const ACHIEVEMENTS: Achievement[] = [
-  {
-    id: '1',
-    name: 'First Steps',
-    description: 'Complete your first song',
-    icon: '🎵',
-    category: 'Learning',
-    unlocked: true,
-    unlockedAt: '2024-01-15',
-  },
-  {
-    id: '2',
-    name: 'Week Warrior',
-    description: 'Maintain a 7-day streak',
-    icon: '🔥',
-    category: 'Streak',
-    unlocked: false,
-    progress: 3,
-    maxProgress: 7,
-  },
-  {
-    id: '3',
-    name: 'XP Master',
-    description: 'Earn 1000 total XP',
-    icon: '⭐',
-    category: 'XP',
-    unlocked: false,
-    progress: 450,
-    maxProgress: 1000,
-  },
-  {
-    id: '4',
-    name: 'Polyglot',
-    description: 'Learn songs in 3 different languages',
-    icon: '🌍',
-    category: 'Languages',
-    unlocked: false,
-    progress: 1,
-    maxProgress: 3,
-  },
-  {
-    id: '5',
-    name: 'Perfect Score',
-    description: 'Complete a song with 100% accuracy',
-    icon: '💯',
-    category: 'Mastery',
-    unlocked: false,
-    progress: 94,
-    maxProgress: 100,
-  },
-  {
-    id: '6',
-    name: 'Speed Demon',
-    description: 'Complete a song in hard mode',
-    icon: '⚡',
-    category: 'Challenge',
-    unlocked: false,
-  },
-];
-
 export const Achievements = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchAchievements();
+  }, []);
+
+  const fetchAchievements = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const response = await achievementsApi.getAchievements();
+      setAchievements(response.achievements || []);
+    } catch (err: any) {
+      console.error('Failed to fetch achievements:', err);
+      setError('Failed to load achievements. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const categories = ['All', 'Learning', 'Streak', 'XP', 'Languages', 'Mastery', 'Challenge'];
 
   const filteredAchievements = selectedCategory === 'All'
-    ? ACHIEVEMENTS
-    : ACHIEVEMENTS.filter(a => a.category === selectedCategory);
+    ? achievements
+    : achievements.filter(a => a.category === selectedCategory);
 
-  const unlockedCount = ACHIEVEMENTS.filter(a => a.unlocked).length;
-  const totalCount = ACHIEVEMENTS.length;
+  const unlockedCount = achievements.filter(a => a.unlocked).length;
+  const totalCount = achievements.length;
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center">
+          <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-primary-600 dark:border-gray-700 dark:border-t-primary-400"></div>
+          <p className="text-gray-600 dark:text-gray-400">Loading achievements...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center">
+          <p className="mb-4 text-red-600 dark:text-red-400">{error}</p>
+          <button
+            onClick={fetchAchievements}
+            className="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -142,7 +131,7 @@ export const Achievements = () => {
                 <Star className="h-8 w-8 text-primary-500" />
               </div>
               <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                {Math.round((unlockedCount / totalCount) * 100)}%
+                {totalCount > 0 ? Math.round((unlockedCount / totalCount) * 100) : 0}%
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Completion</p>
             </div>

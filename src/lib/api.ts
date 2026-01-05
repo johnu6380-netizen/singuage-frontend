@@ -3,11 +3,11 @@ import axios, { AxiosError } from 'axios';
 
 // Default API URL points to backend at port 3000 (backend default). If VITE_API_URL is provided, use it.
 const API_ORIGIN = 
-	import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+	import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 // Create axios instance
 const api = axios.create({
-  baseURL: `${API_ORIGIN}/api`,
+  baseURL: `${API_ORIGIN}`,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true,
 });
@@ -61,6 +61,7 @@ export const authApi = {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
   },
+  deleteAccount: async () => (await api.delete('/auth/delete')).data,
 };
 
 // ==================== SONGS API ====================
@@ -133,6 +134,11 @@ export const vocabularyApi = {
 
   deleteWord: async (wordId: string) => 
     (await api.delete(`/vocabulary/${wordId}`)).data,
+};
+
+// ==================== ACHIEVEMENTS API ====================
+export const achievementsApi = {
+  getAchievements: async () => (await api.get('/achievements')).data,
 };
 
 // ==================== ERROR HANDLER ====================

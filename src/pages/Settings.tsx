@@ -8,35 +8,70 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { useAuthStore, usePreferencesStore } from '@/store/useStore';
 import { UserDropdown } from '@/components/UserDropdown';
+import { authApi } from '@/lib/api';
+
+type NotificationPrefs = {
+  email: boolean;
+  push: boolean;
+  streakReminders: boolean;
+};
 
 export const Settings = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
   const { theme, setTheme } = usePreferencesStore();
   
-  const [notifications, setNotifications] = useState({
-    email: true,
-    push: false,
-    streakReminders: true,
+  // Load notification preferences from localStorage so toggles persist
+  const [notifications, setNotifications] = useState<NotificationPrefs>(() => {
+    try {
+      const raw = localStorage.getItem('notificationPreferences');
+      if (raw) return JSON.parse(raw) as NotificationPrefs;
+    } catch (e) {
+      // ignore parse errors
+    }
+    return { email: true, push: false, streakReminders: true };
   });
+
+  const saveNotifications = (next: NotificationPrefs) => {
+    try {
+      localStorage.setItem('notificationPreferences', JSON.stringify(next));
+    } catch (e) {
+      // ignore
+    }
+  };
 
   const handleThemeToggle = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  const handleLogout = () => {
-    if (confirm('Are you sure you want to log out?')) {
-      logout();
-      navigate('/login');
+  const handleLogout = async () => {
+    if (!confirm('Are you sure you want to log out?')) return;
+
+    try {
+      // Inform backend so refresh tokens are invalidated
+      await authApi.logout();
+    } catch (e) {
+      // Even if backend logout fails, proceed to clear local auth state
+      console.warn('Logout API failed:', e);
     }
+
+    logout();
+    navigate('/login');
   };
 
-  const handleDeleteAccount = () => {
-    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-      if (confirm('This will permanently delete all your data. Are you absolutely sure?')) {
-        // Implement account deletion
-        alert('Account deletion would be implemented here');
-      }
+  const handleDeleteAccount = async () => {
+    if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) return;
+    if (!confirm('This will permanently delete all your data. Are you absolutely sure?')) return;
+
+    try {
+      await authApi.deleteAccount();
+      // Clear local auth state and any stored prefs
+      logout();
+      localStorage.removeItem('notificationPreferences');
+      navigate('/login');
+    } catch (e: any) {
+      console.error('Account deletion failed:', e);
+      alert(e?.response?.data?.error || 'Failed to delete account. Please try again.');
     }
   };
 
@@ -135,7 +170,13 @@ export const Settings = () => {
                 </div>
                 
                 <button
-                  onClick={() => setNotifications(prev => ({ ...prev, email: !prev.email }))}
+                  onClick={() => {
+                    setNotifications((prev: NotificationPrefs) => {
+                      const next = { ...prev, email: !prev.email };
+                      saveNotifications(next);
+                      return next;
+                    });
+                  }}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     notifications.email ? 'bg-primary-600' : 'bg-gray-300 dark:bg-gray-700'
                   }`}
@@ -162,7 +203,13 @@ export const Settings = () => {
                 </div>
                 
                 <button
-                  onClick={() => setNotifications(prev => ({ ...prev, push: !prev.push }))}
+                  onClick={() => {
+                    setNotifications((prev: NotificationPrefs) => {
+                      const next = { ...prev, push: !prev.push };
+                      saveNotifications(next);
+                      return next;
+                    });
+                  }}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     notifications.push ? 'bg-primary-600' : 'bg-gray-300 dark:bg-gray-700'
                   }`}
@@ -189,7 +236,13 @@ export const Settings = () => {
                 </div>
                 
                 <button
-                  onClick={() => setNotifications(prev => ({ ...prev, streakReminders: !prev.streakReminders }))}
+                  onClick={() => {
+                    setNotifications((prev: NotificationPrefs) => {
+                      const next = { ...prev, streakReminders: !prev.streakReminders };
+                      saveNotifications(next);
+                      return next;
+                    });
+                  }}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
                     notifications.streakReminders ? 'bg-primary-600' : 'bg-gray-300 dark:bg-gray-700'
                   }`}

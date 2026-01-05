@@ -1,5 +1,5 @@
 // frontend/src/pages/LearningSession.tsx
-// COMPLETELY FIXED: Proper space handling + video hiding + button visibility
+// Learning session - restored original logic; minor visual change: use textarea that auto-resizes
 
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
@@ -23,7 +23,8 @@ export const LearningSession = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, updateUser } = useAuthStore();
-  const inputRef = useRef<HTMLInputElement>(null);
+  // Use textarea ref so the caret can wrap visually
+  const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
   const songFromState = location.state?.song;
   const [song, setSong] = useState<Song | null>(songFromState);
@@ -47,17 +48,13 @@ export const LearningSession = () => {
     const loadSong = async () => {
       if (!songFromState && songId) {
         try {
-          console.log('🔵 Loading song from backend:', songId);
           const response = await songApi.getByVideoId(songId);
-          console.log('✅ Song loaded:', response.song);
           if (response.song) {
             setSong(response.song);
           }
         } catch (error) {
-          console.error('❌ Error loading song:', error);
+          console.error('Error loading song:', error);
         }
-      } else if (songFromState) {
-        console.log('✅ Song loaded from state:', songFromState);
       }
     };
     loadSong();
@@ -136,14 +133,29 @@ export const LearningSession = () => {
     analyzeSongGrammar();
   }, [song]);
 
+  // Auto-resize helper for textarea so caret wraps and textarea grows downward
+  const adjustTextareaHeight = () => {
+    const ta = inputRef.current;
+    if (!ta) return;
+    ta.style.height = 'auto';
+    // use scrollHeight to set an appropriate height (min 40px)
+    const newHeight = Math.max(40, ta.scrollHeight);
+    ta.style.height = `${newHeight}px`;
+  };
+
+  useEffect(() => {
+    // Ensure correct initial height when line changes or input changes
+    adjustTextareaHeight();
+  }, [currentLine, currentInput]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!inputRef.current || selectedTranslation || showDifficultyModal || !song) return;
-      
+
       const lines = song.lyricsParsed?.lines || [];
       const currentLyricLine = lines[currentLine] || lines[0];
-      
-      // Allow Down Arrow to work even in input field for line restart
+
+      // Allow Down Arrow to restart current line
       if (e.key === 'ArrowDown') {
         e.preventDefault();
         if (player && currentLyricLine?.startTimeMs !== undefined) {
@@ -175,11 +187,8 @@ export const LearningSession = () => {
         case 'ArrowUp':
           e.preventDefault();
           if (player) {
-            if (isPlaying) {
-              player.pauseVideo();
-            } else {
-              player.playVideo();
-            }
+            if (isPlaying) player.pauseVideo();
+            else player.playVideo();
           }
           break;
         case 'r':
@@ -187,6 +196,7 @@ export const LearningSession = () => {
           if (e.target !== inputRef.current) {
             e.preventDefault();
             if (player) {
+              const currentLyricLine = (song.lyricsParsed?.lines || [])[currentLine] || { startTimeMs: 0 } as any;
               player.seekTo(Math.max(0, currentLyricLine.startTimeMs / 1000 - 2), true);
             }
           }
@@ -208,32 +218,25 @@ export const LearningSession = () => {
 
     const lines = song.lyricsParsed?.lines || [];
     const currentLyricLine = lines[currentLine] || lines[0];
-    
+
     if (!currentLyricLine) return;
-    
-    // Only enable auto-pause if line has valid timing data (endTimeMs > 0)
-    // This prevents pausing on songs where users just pasted plain text lyrics
     if (!currentLyricLine.endTimeMs || currentLyricLine.endTimeMs <= 0) return;
 
     const checkTime = setInterval(() => {
       const currentTime = player.getCurrentTime();
       const lineStartTime = currentLyricLine.startTimeMs / 1000;
       const lineEndTime = currentLyricLine.endTimeMs / 1000;
-
-      // Only pause if we're past the start AND reached the end
-      // This prevents false positives when line timing is 0
       if (currentTime > lineStartTime && currentTime >= lineEndTime) {
         player.pauseVideo();
         setIsPlaying(false);
       }
-    }, 100); // Check every 100ms
+    }, 100);
 
     return () => clearInterval(checkTime);
   }, [player, isPlaying, song, currentLine]);
 
   const handleTakeBreak = () => {
     if (!song) return;
-    
     const progressData = {
       songId: song.id,
       youtubeVideoId: song.youtubeVideoId,
@@ -243,10 +246,7 @@ export const LearningSession = () => {
       lineAccuracies,
       savedAt: new Date().toISOString(),
     };
-    
     localStorage.setItem(`session_progress_${song.youtubeVideoId}`, JSON.stringify(progressData));
-    console.log('✅ Progress saved:', progressData);
-    
     navigate('/dashboard');
   };
 
@@ -272,40 +272,33 @@ export const LearningSession = () => {
 
   const currentLyricLine = lines[currentLine] || lines[0];
 
-  const onPlayerReady = (event: { target: YouTubePlayer }) => {
-    setPlayer(event.target);
-  };
+  const onPlayerReady = (event: { target: YouTubePlayer }) => setPlayer(event.target);
+  const onPlayerStateChange = (event: { data: number }) => setIsPlaying(event.data === 1);
 
-  const onPlayerStateChange = (event: { data: number }) => {
-    // YouTube player states: 1 = playing, 2 = paused
-    setIsPlaying(event.data === 1);
-  };
-
-  // FIXED: Normalize text for comparison (keeps spaces!)
-  const normalizeText = (text: string) => {
-    return text
+  // Normalize text for comparison
+  const normalizeText = (text: string) =>
+    text
       .trim()
       .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '') // Remove accents
-      .replace(/\s+/g, ' '); // Normalize multiple spaces to single space
-  };
+      // Remove combining diacritical marks only (preserve letters)
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, ' ');
 
-  const handleTyping = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTyping = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const input = e.target.value;
     setCurrentInput(input);
+
+    // purely visual: expand textarea so caret wraps to next visual line
+    requestAnimationFrame(adjustTextareaHeight);
 
     const targetNormalized = normalizeText(currentLyricLine.text);
     const typedNormalized = normalizeText(input);
 
-    // If user has typed at least the same number of normalized characters as the target,
-    // treat the line as complete and advance. Compute accuracy based on matching chars.
     const targetLen = targetNormalized.length;
     const typedLen = typedNormalized.length;
 
-    console.log('🔍 Comparing lengths:', { typedLen, targetLen });
-
-    if (targetLen === 0) return; // nothing to type
+    if (targetLen === 0) return;
 
     if (typedLen >= targetLen) {
       // Compare only up to target length
@@ -318,139 +311,107 @@ export const LearningSession = () => {
       const accuracy = Math.round((matchCount / targetLen) * 100);
       const newLineAccuracies = [...lineAccuracies, accuracy];
       const newCompletedLines = completedLines + 1;
-      
+
       setLineAccuracies(newLineAccuracies);
       setCompletedLines(newCompletedLines);
 
       if (currentLine < lines.length - 1) {
         setCurrentLine(currentLine + 1);
         setCurrentInput('');
+        if (inputRef.current) {
+          inputRef.current.style.height = '40px';
+          inputRef.current.focus();
+          inputRef.current.selectionStart = 0;
+          inputRef.current.selectionEnd = 0;
+        }
       } else {
-        // Last line completed - call with updated values
-        completeSession(newCompletedLines, newLineAccuracies);
+        // Last line completed
+        const avgAccuracy = newLineAccuracies.length > 0 ? Math.round(newLineAccuracies.reduce((a, b) => a + b, 0) / newLineAccuracies.length) : 0;
+        const timeSpentMs = Date.now() - sessionStartTime;
+        (async () => {
+          try {
+            const sessionResponse = await progressApi.recordSession({
+              songId: song.id,
+              difficulty,
+              accuracy: avgAccuracy,
+              completedLines: newCompletedLines,
+              totalLines: lines.length,
+              timeSpentMs,
+            });
+            const xpEarned = sessionResponse.xpEarned || sessionResponse.xp || (newCompletedLines * XP_REWARDS[difficulty]);
+            const progressResponse = await progressApi.getProgress();
+            updateUser({
+              totalXp: progressResponse.totalXp,
+              currentStreak: progressResponse.currentStreak,
+              longestStreak: progressResponse.longestStreak,
+            });
+            localStorage.removeItem(`session_progress_${song.youtubeVideoId}`);
+            navigate('/congratulations', {
+              state: {
+                stats: {
+                  accuracy: avgAccuracy,
+                  linesCompleted: newCompletedLines,
+                  totalLines: lines.length,
+                  durationSeconds: Math.floor(timeSpentMs / 1000),
+                  songTitle: song.title,
+                  difficulty,
+                  xpEarned,
+                },
+              },
+            });
+          } catch (error) {
+            console.error('Failed to record session:', error);
+            const fallbackXp = newCompletedLines * XP_REWARDS[difficulty];
+            navigate('/congratulations', {
+              state: {
+                stats: {
+                  accuracy: avgAccuracy,
+                  linesCompleted: newCompletedLines,
+                  totalLines: lines.length,
+                  durationSeconds: Math.floor((Date.now() - sessionStartTime) / 1000),
+                  songTitle: song.title,
+                  difficulty,
+                  xpEarned: fallbackXp,
+                },
+              },
+            });
+          }
+        })();
       }
-      return;
-    }
-  };
-
-  const completeSession = async (finalCompletedLines: number, finalLineAccuracies: number[]) => {
-    const avgAccuracy = finalLineAccuracies.length > 0 
-      ? Math.round(finalLineAccuracies.reduce((a, b) => a + b, 0) / finalLineAccuracies.length)
-      : 0;
-    const durationSeconds = Math.floor((Date.now() - sessionStartTime) / 1000);
-    const timeSpentMs = Date.now() - sessionStartTime;
-
-    try {
-      // Record session and get response from backend
-      const sessionResponse = await progressApi.recordSession({
-        songId: song.id,
-        difficulty,
-        accuracy: avgAccuracy,
-        completedLines: finalCompletedLines,
-        totalLines: lines.length,
-        timeSpentMs: timeSpentMs,
-      });
-
-      // Use backend's XP calculation (authoritative)
-      const xpEarned = sessionResponse.xpEarned || sessionResponse.xp || (finalCompletedLines * XP_REWARDS[difficulty]);
-
-      // Reload user progress from backend to get updated XP and streak
-      const progressResponse = await progressApi.getProgress();
-      updateUser({
-        totalXp: progressResponse.totalXp,
-        currentStreak: progressResponse.currentStreak,
-        longestStreak: progressResponse.longestStreak,
-      });
-
-      localStorage.removeItem(`session_progress_${song.youtubeVideoId}`);
-
-      // Navigate to Congratulations page with stats
-      navigate('/congratulations', {
-        state: {
-          stats: {
-            accuracy: avgAccuracy,
-            linesCompleted: finalCompletedLines,
-            totalLines: lines.length,
-            durationSeconds,
-            songTitle: song.title,
-            difficulty,
-            xpEarned,
-          },
-        },
-      });
-    } catch (error) {
-      console.error('Failed to record session:', error);
-      // On error, still show congratulations with calculated values
-      const fallbackXp = finalCompletedLines * XP_REWARDS[difficulty];
-      navigate('/congratulations', {
-        state: {
-          stats: {
-            accuracy: avgAccuracy,
-            linesCompleted: finalCompletedLines,
-            totalLines: lines.length,
-            durationSeconds,
-            songTitle: song.title,
-            difficulty,
-            xpEarned: fallbackXp,
-          },
-        },
-      });
     }
   };
 
   const handleWordClick = (word: string) => {
-    if (difficulty === 'easy') {
-      // Easy mode: show current line with word
-      setSelectedTranslation({ word, context: currentLyricLine.text });
-    } else if (difficulty === 'medium') {
-      // Medium mode: show current line as it appears (with vowels hidden)
-      setSelectedTranslation({ word, context: currentLyricLine.text });
-    } else {
-      // Hard mode: show previous line
-      if (currentLine === 0) {
-        // First line - show empty context
-        setSelectedTranslation({ word, context: '' });
-      } else {
-        const previousLine = lines[currentLine - 1];
-        setSelectedTranslation({ word, context: previousLine.text });
-      }
+    if (difficulty === 'easy') setSelectedTranslation({ word, context: currentLyricLine.text });
+    else if (difficulty === 'medium') setSelectedTranslation({ word, context: currentLyricLine.text });
+    else {
+      if (currentLine === 0) setSelectedTranslation({ word, context: '' });
+      else setSelectedTranslation({ word, context: lines[currentLine - 1].text });
     }
   };
 
-  const handleLineClick = (lineText: string) => {
-    setSelectedTranslation({ word: null, context: lineText });
-  };
+  const handleLineClick = (lineText: string) => setSelectedTranslation({ word: null, context: lineText });
 
-  // FIXED: Proper character-by-character comparison that INCLUDES SPACES
   const renderLine = (line: LyricLine) => {
     const text = line.text;
     const typedNormalized = normalizeText(currentInput);
-    
-    // Split into words but preserve spaces for clicking
     const words = text.split(/(\s+)/);
     let charsSoFar = 0;
-    
+
     return (
       <div className="flex flex-wrap items-center justify-center text-3xl font-bold leading-relaxed">
         {words.map((word, wordIdx) => {
-          // Handle spaces
           if (/^\s+$/.test(word)) {
             const spaceStart = charsSoFar;
             charsSoFar += word.length;
-            
             return (
               <span key={wordIdx} className="mx-1">
                 {word.split('').map((char, charIdx) => {
-                  // Normalize and compare
                   const normalizedTargetUpToHere = normalizeText(text.substring(0, spaceStart + charIdx + 1));
                   const isTyped = normalizedTargetUpToHere.length <= typedNormalized.length;
                   const isCorrect = isTyped && typedNormalized[normalizedTargetUpToHere.length - 1] === normalizeText(char)[0];
-                  
                   return (
-                    <span
-                      key={charIdx}
-                      className={isTyped ? (isCorrect ? 'text-green-400' : 'text-red-400') : 'text-gray-400'}
-                    >
+                    <span key={charIdx} className={isTyped ? (isCorrect ? 'text-green-400' : 'text-red-400') : 'text-gray-400'}>
                       {char}
                     </span>
                   );
@@ -459,44 +420,21 @@ export const LearningSession = () => {
             );
           }
 
-          // Handle words
           const wordStart = charsSoFar;
           charsSoFar += word.length;
-          
           return (
-            <span
-              key={wordIdx}
-              className="cursor-pointer hover:opacity-80 transition-opacity whitespace-nowrap"
-              onClick={(e) => {
-                e.stopPropagation();
-                if (word.trim()) handleWordClick(word.trim());
-              }}
-            >
+            <span key={wordIdx} className="cursor-pointer hover:opacity-80 transition-opacity whitespace-nowrap" onClick={(e) => { e.stopPropagation(); if (word.trim()) handleWordClick(word.trim()); }}>
               {word.split('').map((char, charIdx) => {
-                // Get normalized position
                 const originalUpToHere = text.substring(0, wordStart + charIdx + 1);
                 const normalizedUpToHere = normalizeText(originalUpToHere);
                 const normalizedPos = normalizedUpToHere.length - 1;
-                
                 const isTyped = normalizedPos < typedNormalized.length;
                 const isCorrect = isTyped && typedNormalized[normalizedPos] === normalizeText(char)[0];
-
                 let displayChar = char;
-                if (difficulty === 'medium' && !isTyped) {
-                  if (/[aeiouAEIOU]/.test(char)) displayChar = '_';
-                } else if (difficulty === 'hard' && !isTyped) {
-                  if (/[A-Za-zÀ-ÿ]/.test(char)) displayChar = '•';
-                }
-
-                const charClass = isTyped 
-                  ? (isCorrect ? 'text-green-400' : 'text-red-400') 
-                  : 'text-gray-400';
-
-                return (
-                  <span key={charIdx} className={charClass}>
-                    {displayChar}
-                  </span>
-                );
+                if (difficulty === 'medium' && !isTyped) { if (/[aeiouAEIOU]/.test(char)) displayChar = '_'; }
+                else if (difficulty === 'hard' && !isTyped) { if (/[A-Za-zÀ-ÿ]/.test(char)) displayChar = '•'; }
+                const charClass = isTyped ? (isCorrect ? 'text-green-400' : 'text-red-400') : 'text-gray-400';
+                return <span key={charIdx} className={charClass}>{displayChar}</span>;
               })}
             </span>
           );
@@ -511,18 +449,8 @@ export const LearningSession = () => {
 
         <AnimatePresence>
           {showKeyboardHelp && (
-            <motion.div
-              key="keyboard-help"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
-              onClick={() => setShowKeyboardHelp(false)}
-            >
-              <div 
-                className="max-w-md w-full rounded-xl bg-white dark:bg-gray-800 p-6 shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              >
+            <motion.div key="keyboard-help" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }} className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4" onClick={() => setShowKeyboardHelp(false)}>
+              <div className="max-w-md w-full rounded-xl bg-white dark:bg-gray-800 p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center gap-3 mb-6">
                   <Keyboard className="h-6 w-6 text-primary-600 dark:text-primary-400" />
                   <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">Keyboard Shortcuts</h3>
@@ -549,13 +477,7 @@ export const LearningSession = () => {
                     <kbd className="px-3 py-1.5 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded font-mono text-sm shadow-sm">?</kbd>
                   </div>
                 </div>
-                <Button 
-                  variant="primary" 
-                  onClick={() => setShowKeyboardHelp(false)} 
-                  className="w-full"
-                >
-                  Got it!
-                </Button>
+                <Button variant="primary" onClick={() => setShowKeyboardHelp(false)} className="w-full">Got it!</Button>
               </div>
             </motion.div>
           )}
@@ -563,70 +485,32 @@ export const LearningSession = () => {
 
         {/* Take a Break button - Fixed to top left, above everything */}
         <div className="fixed top-4 left-4 z-50">
-          <Button 
-            variant="ghost" 
-            onClick={handleTakeBreak}
-            className="flex items-center gap-2 rounded-lg bg-gray-800/90 backdrop-blur-sm px-4 py-2 text-white transition-all hover:bg-gray-700 shadow-lg"
-          >
+          <Button variant="ghost" onClick={handleTakeBreak} className="flex items-center gap-2 rounded-lg bg-gray-800/90 backdrop-blur-sm px-4 py-2 text-white transition-all hover:bg-gray-700 shadow-lg">
             <ArrowLeft className="h-4 w-4" />
             <span>Take a Break</span>
           </Button>
         </div>
 
         <div className="flex flex-col lg:flex-row items-start justify-center gap-6">
-          {/* Left column: Video + Grammar - Video stays mounted but hidden when grammar is open */}
+          {/* Left column: Video + Grammar */}
           <div className="w-full lg:w-1/2 space-y-4">
-            {/* Video (stays mounted, hidden with CSS when grammar is open) */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className={`relative w-full rounded-xl overflow-hidden bg-black shadow-lg transition-opacity duration-300 ${
-                isGrammarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
-              }`}
-              style={{ paddingBottom: '56.25%' }}
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`relative w-full rounded-xl overflow-hidden bg-black shadow-lg transition-opacity duration-300 ${isGrammarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`} style={{ paddingBottom: '56.25%' }}>
               <div className="absolute inset-0">
-                <YouTube
-                  videoId={song.youtubeVideoId}
-                  onReady={onPlayerReady}
-                  onStateChange={onPlayerStateChange}
-                  opts={{
-                    width: '100%',
-                    height: '100%',
-                    playerVars: { 
-                      autoplay: 0, 
-                      controls: 1, 
-                      modestbranding: 1, 
-                      rel: 0, 
-                      enablejsapi: 1, 
-                      iv_load_policy: 3 
-                    }
-                  }}
-                  className="absolute top-0 left-0 w-full h-full"
-                  iframeClassName="w-full h-full"
-                />
+                <YouTube videoId={song.youtubeVideoId} onReady={onPlayerReady} onStateChange={onPlayerStateChange} opts={{ width: '100%', height: '100%', playerVars: { autoplay: 0, controls: 1, modestbranding: 1, rel: 0, enablejsapi: 1, iv_load_policy: 3 }}} className="absolute top-0 left-0 w-full h-full" iframeClassName="w-full h-full" />
               </div>
             </motion.div>
 
-            {/* Grammar Dropdown */}
             <div className={isGrammarOpen ? 'relative -mt-4 z-10' : ''}>
               {grammarAnalysis.length > 0 ? (
-                <GrammarDropdown 
-                  grammarAnalysis={grammarAnalysis} 
-                  language={song.language} 
-                  onOpenChange={setIsGrammarOpen} 
-                />
+                <GrammarDropdown grammarAnalysis={grammarAnalysis} language={song.language} onOpenChange={setIsGrammarOpen} />
               ) : (
-                <div className="rounded-lg bg-gray-800 p-4 text-sm text-gray-400">
-                  No grammar concepts detected
-                </div>
+                <div className="rounded-lg bg-gray-800 p-4 text-sm text-gray-400">No grammar concepts detected</div>
               )}
             </div>
           </div>
 
           {/* Right column: Lyrics + Input */}
           <div className="w-full lg:w-1/2 space-y-4">
-            {/* Title and info */}
             <div className="text-center">
               <h1 className="text-2xl font-bold text-white mb-2">{song.title}</h1>
               <div className="space-y-1">
@@ -635,78 +519,52 @@ export const LearningSession = () => {
               </div>
             </div>
 
-            {/* Current Line Display */}
             <AnimatePresence mode="wait">
-              <motion.div 
-                key={`line-${currentLine}`} 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }} 
-                exit={{ opacity: 0, y: -20 }} 
-                className="rounded-xl bg-gray-800/50 p-8 min-h-[120px] flex items-center justify-center" 
-                onClick={() => handleLineClick(currentLyricLine.text)}
-              >
+              <motion.div key={`line-${currentLine}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="rounded-xl bg-gray-800/50 p-8 min-h-[120px] flex items-center justify-center" onClick={() => handleLineClick(currentLyricLine.text)}>
                 {renderLine(currentLyricLine)}
               </motion.div>
             </AnimatePresence>
 
-            {/* Input Field */}
+            {/* Input Field: replaced with textarea solely for visual wrapping */}
             <div className="relative">
-              <input
+              <textarea
                 ref={inputRef}
-                type="text"
                 value={currentInput}
                 onChange={handleTyping}
-                className="w-full rounded-lg border-2 border-gray-700 bg-gray-900 px-4 py-3 text-xl text-white placeholder-gray-500 transition-all focus:border-primary-500 focus:outline-none"
+                rows={1}
+                className="w-full rounded-lg border-2 border-gray-700 bg-gray-900 px-4 py-3 text-xl text-white placeholder-gray-500 transition-all focus:border-primary-500 focus:outline-none resize-none overflow-hidden"
                 placeholder="Type the lyrics here..."
                 autoComplete="off"
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                <Button
-                  variant="secondary"
-                  onClick={() => {
-                    setCurrentInput('');
-                    if (player) player.seekTo(0, true);
-                  }}
-                  className="rounded-full p-2 text-gray-400 transition-all hover:bg-gray-800"
-                  title="Restart"
-                >
+                <Button variant="secondary" onClick={() => { setCurrentInput(''); if (player) player.seekTo(0, true); }} className="rounded-full p-2 text-gray-400 transition-all hover:bg-gray-800" title="Restart">
                   <RotateCcw className="h-5 w-5" />
                 </Button>
               </div>
             </div>
 
-            {/* Hint and Progress Display */}
             <div className="flex justify-between items-center">
               <div className="text-sm text-gray-400 flex items-center gap-2">
                 <Keyboard className="h-4 w-4" />
                 <span>Press <kbd className="px-2 py-1 bg-gray-800 rounded border border-gray-700 font-mono text-xs">?</kbd> for shortcuts</span>
               </div>
               <div className="rounded-lg bg-gray-800/60 p-4 text-right text-sm text-gray-200">
-                <div className="font-semibold">
-                  Lines: <span className="text-primary-400">{completedLines}/{lines.length}</span>
-                </div>
-                <div className="font-semibold">
-                  Accuracy: <span className="text-accent-400">
-                    {lineAccuracies.length > 0 ? Math.round(lineAccuracies.reduce((a,b)=>a+b,0)/lineAccuracies.length) : 0}%
-                  </span>
-                </div>
+                <div className="font-semibold">Lines: <span className="text-primary-400">{completedLines}/{lines.length}</span></div>
+                <div className="font-semibold">Accuracy: <span className="text-accent-400">{lineAccuracies.length > 0 ? Math.round(lineAccuracies.reduce((a,b)=>a+b,0)/lineAccuracies.length) : 0}%</span></div>
                 <div className="text-xs text-gray-400 mt-1">Mode: {difficulty}</div>
               </div>
             </div>
 
-            {/* Change Difficulty button */}
             <div className="flex justify-end">
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 onClick={() => {
-                  // If already on first line, just show modal directly
                   if (currentLine === 0 && completedLines === 0) {
                     setShowDifficultyModal(true);
                   } else {
-                    // Otherwise show confirmation
                     setShowDifficultyConfirm(true);
                   }
-                }} 
+                }}
                 className="rounded-lg border-2 border-primary-500 bg-gray-900/80 px-6 py-2.5 text-base font-bold text-primary-300 transition-all hover:bg-primary-500/30 hover:text-primary-200 hover:border-primary-400"
               >
                 Change Difficulty
@@ -718,88 +576,60 @@ export const LearningSession = () => {
         {/* Difficulty Selection Modal */}
         <AnimatePresence>
           {showDifficultyModal && (
-            <motion.div key="difficulty-modal-root" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <Modal isOpen={showDifficultyModal} onClose={() => {}} title="Select Difficulty" showCloseButton={false}>
-                <div className="space-y-3">
-                  {(['easy', 'medium', 'hard'] as DifficultyMode[]).map(mode => (
-                    <button 
-                      key={mode} 
-                      onClick={() => { 
-                        setDifficulty(mode); 
-                        setShowDifficultyModal(false); 
-                        // Reset progress when difficulty changes
-                        setCurrentLine(0);
-                        setCurrentInput('');
-                        setCompletedLines(0);
-                        setLineAccuracies([]);
-                        // Restart video
-                        if (player) {
-                          player.seekTo(0, true);
-                          player.pauseVideo();
-                        }
-                      }} 
-                      className="w-full rounded-lg border-2 border-gray-300 p-4 text-left transition-all hover:border-primary-500 hover:bg-primary-50 dark:border-gray-600 dark:hover:bg-primary-900/20"
-                    >
-                      <div className="mb-1 font-semibold capitalize text-gray-900 dark:text-gray-100">{mode}</div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">+{XP_REWARDS[mode]} XP per line</div>
-                    </button>
-                  ))}
-                </div>
-              </Modal>
-            </motion.div>
+            <Modal isOpen={showDifficultyModal} onClose={() => setShowDifficultyModal(false)} title="Select Difficulty" showCloseButton={false}>
+              <div className="space-y-3">
+                {(['easy', 'medium', 'hard'] as DifficultyMode[]).map((mode) => (
+                  <button
+                    key={mode}
+                    onClick={() => {
+                      setDifficulty(mode);
+                      setShowDifficultyModal(false);
+                      // Reset progress when difficulty changes
+                      setCurrentLine(0);
+                      setCurrentInput('');
+                      setCompletedLines(0);
+                      setLineAccuracies([]);
+                      // Restart video
+                      if (player) {
+                        player.seekTo(0, true);
+                        player.pauseVideo();
+                      }
+                    }}
+                    className="w-full rounded-lg border-2 border-gray-300 p-4 text-left transition-all hover:border-primary-500 hover:bg-primary-50 dark:border-gray-600 dark:hover:bg-primary-900/20"
+                  >
+                    <div className="mb-1 font-semibold capitalize text-gray-900 dark:text-gray-100">{mode}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">+{XP_REWARDS[mode]} XP per line</div>
+                  </button>
+                ))}
+              </div>
+            </Modal>
           )}
         </AnimatePresence>
 
         {/* Difficulty Change Confirmation Modal */}
         <AnimatePresence>
           {showDifficultyConfirm && (
-            <motion.div key="difficulty-confirm-root" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <Modal 
-                isOpen={showDifficultyConfirm} 
-                onClose={() => setShowDifficultyConfirm(false)} 
-                title="Change Difficulty?"
-              >
-                <div className="space-y-4">
-                  <p className="text-gray-700 dark:text-gray-300">
-                    Changing difficulty will restart your progress from the first line. Your current progress will not be saved.
-                  </p>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                    Would you like to continue?
-                  </p>
-                  <div className="flex gap-3">
-                    <Button
-                      variant="secondary"
-                      fullWidth
-                      onClick={() => setShowDifficultyConfirm(false)}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      variant="primary"
-                      fullWidth
-                      onClick={() => {
-                        setShowDifficultyConfirm(false);
-                        setShowDifficultyModal(true);
-                      }}
-                    >
-                      Continue
-                    </Button>
-                  </div>
+            <Modal isOpen={showDifficultyConfirm} onClose={() => setShowDifficultyConfirm(false)} title="Change Difficulty?">
+              <div className="space-y-4">
+                <p className="text-gray-700 dark:text-gray-300">
+                  Changing difficulty will restart your progress from the first line. Your current progress will not be saved.
+                </p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-gray-100">Would you like to continue?</p>
+                <div className="flex gap-3">
+                  <Button variant="secondary" fullWidth onClick={() => setShowDifficultyConfirm(false)}>
+                    Cancel
+                  </Button>
+                  <Button variant="primary" fullWidth onClick={() => { setShowDifficultyConfirm(false); setShowDifficultyModal(true); }}>
+                    Continue
+                  </Button>
                 </div>
-              </Modal>
-            </motion.div>
+              </div>
+            </Modal>
           )}
         </AnimatePresence>
 
-        {/* Word/Line Translation Modal */}
         {selectedTranslation && (
-          <WordTranslationModal 
-            word={selectedTranslation.word} 
-            sourceLanguage={song.language} 
-            targetLanguage={user?.nativeLanguage || 'en'} 
-            context={selectedTranslation.context} 
-            onClose={() => setSelectedTranslation(null)} 
-          />
+          <WordTranslationModal word={selectedTranslation.word} sourceLanguage={song.language} targetLanguage={user?.nativeLanguage || 'en'} context={selectedTranslation.context} onClose={() => setSelectedTranslation(null)} />
         )}
 
       </div>

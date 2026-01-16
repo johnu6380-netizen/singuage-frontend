@@ -8,6 +8,7 @@ import { vocabularyApi } from '@/lib/api';
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
 import { Modal } from './ui/Modal';
+import { useTranslation } from 'react-i18next';
 
 interface VocabularyWord {
   id: string;
@@ -25,6 +26,7 @@ interface Props {
 }
 
 export const VocabularySection = ({ language }: Props) => {
+  const { t } = useTranslation();
   const [learningWords, setLearningWords] = useState<VocabularyWord[]>([]);
   const [learnedWords, setLearnedWords] = useState<VocabularyWord[]>([]);
   const [loading, setLoading] = useState(true);
@@ -101,7 +103,7 @@ export const VocabularySection = ({ language }: Props) => {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading vocabulary...</div>;
+    return <div className="text-center py-8">{t('vocab.loading')}</div>;
   }
 
   return (
@@ -110,13 +112,13 @@ export const VocabularySection = ({ language }: Props) => {
       <div>
         <h3 className="mb-4 flex items-center gap-2 text-xl font-semibold text-gray-900 dark:text-gray-100">
           <BookOpen className="h-5 w-5" />
-          Words to Work on ({learningWords.length})
+          {t('vocab.words_to_work_on', { count: learningWords.length })}
         </h3>
 
         {learningWords.length === 0 ? (
           <div className="rounded-lg bg-gray-50 p-8 text-center dark:bg-gray-800">
             <p className="text-gray-600 dark:text-gray-400">
-              No words yet. Click on words during learning sessions to add them here!
+              {t('vocab.empty_learning')}
             </p>
           </div>
         ) : (
@@ -144,7 +146,7 @@ export const VocabularySection = ({ language }: Props) => {
                         <Input
                           value={editValue}
                           onChange={(e) => setEditValue(e.target.value)}
-                          placeholder="Enter translation"
+                          placeholder={t('vocab.placeholder.enter_translation')}
                           className="flex-1"
                           autoFocus
                         />
@@ -168,7 +170,7 @@ export const VocabularySection = ({ language }: Props) => {
                     ) : (
                       <div className="flex items-center gap-2">
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {word.translation || 'No translation set'}
+                          {word.translation || t('vocab.no_translation')}
                         </p>
                         <button
                           onClick={() => {
@@ -196,7 +198,7 @@ export const VocabularySection = ({ language }: Props) => {
                         variant="primary"
                         onClick={() => setTestingWord(word)}
                       >
-                        Mark as Learned
+                        {t('vocab.actions.mark_learned')}
                       </Button>
                     )}
                     <button
@@ -217,13 +219,13 @@ export const VocabularySection = ({ language }: Props) => {
       <div>
         <h3 className="mb-4 flex items-center gap-2 text-xl font-semibold text-gray-900 dark:text-gray-100">
           <Check className="h-5 w-5 text-green-600" />
-          Learned Words ({learnedWords.length})
+          {t('vocab.learned_words', { count: learnedWords.length })}
         </h3>
 
         {learnedWords.length === 0 ? (
           <div className="rounded-lg bg-gray-50 p-8 text-center dark:bg-gray-800">
             <p className="text-gray-600 dark:text-gray-400">
-              No learned words yet. Keep practicing!
+              {t('vocab.empty_learned')}
             </p>
           </div>
         ) : (
@@ -260,72 +262,66 @@ export const VocabularySection = ({ language }: Props) => {
           setTestAnswer('');
           setTestResult(null);
         }}
-        title="Test Your Knowledge"
+        title={t('vocab.test.title')}
       >
         {testingWord && (
           <div className="space-y-4">
             <div className="rounded-lg bg-primary-50 p-4 dark:bg-primary-900/20">
-              <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">
-                What is the translation of:
-              </p>
-              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                {testingWord.word}
-              </p>
-            </div>
+              <p className="mb-2 text-sm text-gray-600 dark:text-gray-400">{t('vocab.test.prompt')}</p>
+               <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                 {testingWord.word}
+               </p>
+             </div>
 
-            <div>
-              <p className="mb-2 text-sm text-gray-700 dark:text-gray-300">
-                Type your answer in <strong>lowercase</strong>. Accent marks will be ignored.
-              </p>
-              <Input
-                value={testAnswer}
-                onChange={(e) => setTestAnswer(e.target.value)}
-                placeholder="Type translation..."
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter') handleTestWord();
-                }}
-                autoFocus
-              />
-            </div>
+             <div>
+               <p className="mb-2 text-sm text-gray-700 dark:text-gray-300">{t('vocab.test.hint')}</p>
+               <Input
+                 value={testAnswer}
+                 onChange={(e) => setTestAnswer(e.target.value)}
+                 placeholder={t('vocab.placeholder.type_answer')}
+                 onKeyPress={(e) => {
+                   if (e.key === 'Enter') handleTestWord();
+                 }}
+                 autoFocus
+               />
+             </div>
 
-            <AnimatePresence>
-              {testResult && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  className={`rounded-lg p-4 ${
-                    testResult === 'correct'
-                      ? 'bg-green-50 dark:bg-green-900/20'
-                      : 'bg-red-50 dark:bg-red-900/20'
-                  }`}
-                >
-                  <p
-                    className={`text-center font-semibold ${
-                      testResult === 'correct'
-                        ? 'text-green-800 dark:text-green-200'
-                        : 'text-red-800 dark:text-red-200'
-                    }`}
-                  >
-                    {testResult === 'correct'
-                      ? '✅ Correct! Moving to Learned Words...'
-                      : '❌ Not quite — keep practicing!'}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
+             <AnimatePresence>
+               {testResult && (
+                 <motion.div
+                   initial={{ opacity: 0, y: -10 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   exit={{ opacity: 0 }}
+                   className={`rounded-lg p-4 ${
+                     testResult === 'correct'
+                       ? 'bg-green-50 dark:bg-green-900/20'
+                       : 'bg-red-50 dark:bg-red-900/20'
+                   }`}
+                 >
+                   <p
+                     className={`text-center font-semibold ${
+                       testResult === 'correct'
+                         ? 'text-green-800 dark:text-green-200'
+                         : 'text-red-800 dark:text-red-200'
+                     }`}
+                   >
+                     {testResult === 'correct' ? t('vocab.test.correct') : t('vocab.test.incorrect')}
+                   </p>
+                 </motion.div>
+               )}
+             </AnimatePresence>
 
-            <Button
-              variant="primary"
-              fullWidth
-              onClick={handleTestWord}
-              disabled={!testAnswer.trim() || testResult === 'correct'}
-            >
-              Check Answer
-            </Button>
-          </div>
-        )}
-      </Modal>
-    </div>
-  );
-};
+             <Button
+               variant="primary"
+               fullWidth
+               onClick={handleTestWord}
+               disabled={!testAnswer.trim() || testResult === 'correct'}
+             >
+               {t('vocab.test.check')}
+             </Button>
+           </div>
+         )}
+       </Modal>
+     </div>
+   );
+ };

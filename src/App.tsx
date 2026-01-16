@@ -1,10 +1,12 @@
 // src/App.tsx
-// Main application with routing - UPDATED for Features 1-4
+// Main application with routing - UPDATED for Premium Upgrade page stub
+// NOTE: Only change here is adding the /upgrade route.
 
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAuthStore, usePreferencesStore } from './store/useStore';
+import { CookieConsent } from '@/components/CookieConsent';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Dashboard } from './pages/Dashboard';
@@ -13,8 +15,18 @@ import { AddSong } from './pages/AddSong';
 import { AccountInfo } from './pages/AccountInfo';
 import { Achievements } from './pages/Achievements';
 import { Progress } from './pages/Progress';
-import { Settings } from './pages/Settings';
 import { Congratulations } from './pages/Congratulations';
+import { Upgrade } from './pages/Upgrade'; // ✅ NEW
+import { UpgradeSuccess } from './pages/UpgradeSuccess';
+import { UpgradeCancel } from './pages/UpgradeCancel';
+import { Settings } from './pages/Settings';
+import { AdBreak } from './pages/AdBreak';
+import { About } from './pages/About';
+import { Terms } from './pages/Terms';
+import { Privacy } from './pages/Privacy';
+import { CookiePolicy } from './pages/CookiePolicy';
+import { ResetPassword } from './pages/ResetPassword';
+import { ForgotPassword } from './pages/ForgotPassword';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -76,6 +88,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <CookieConsent />
         <Routes>
           {/* Public Routes */}
           <Route
@@ -94,6 +107,24 @@ function App() {
               </PublicRoute>
             }
           />
+          {/* Password reset page (public) */}
+          <Route
+            path="/reset-password"
+            element={
+              <PublicRoute>
+                <ResetPassword />
+              </PublicRoute>
+            }
+          />
+          {/* Forgot password request page (public) */}
+          <Route
+            path="/forgot-password"
+            element={
+              <PublicRoute>
+                <ForgotPassword />
+              </PublicRoute>
+            }
+          />
 
           {/* Protected Routes */}
           <Route
@@ -104,8 +135,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
-          {/* FEATURE 3: Add song with lyrics input */}
+
           <Route
             path="/add-song/:videoId"
             element={
@@ -114,12 +144,21 @@ function App() {
               </ProtectedRoute>
             }
           />
-          
+
           <Route
             path="/learn/:songId"
             element={
               <ProtectedRoute>
                 <LearningSession />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/ad-break"
+            element={
+              <ProtectedRoute>
+                <AdBreak />
               </ProtectedRoute>
             }
           />
@@ -133,7 +172,20 @@ function App() {
             }
           />
 
-          {/* FEATURE 4: User dropdown menu pages */}
+          {/* ✅ NEW: Upgrade page stub */}
+          <Route
+            path="/upgrade"
+            element={
+              <ProtectedRoute>
+                <Upgrade />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Public pages shown after Stripe Checkout redirects */}
+          <Route path="/upgrade/success" element={<UpgradeSuccess />} />
+          <Route path="/upgrade/cancel" element={<UpgradeCancel />} />
+
           <Route
             path="/account"
             element={
@@ -166,6 +218,40 @@ function App() {
             element={
               <ProtectedRoute>
                 <Settings />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Informational pages accessible from dashboard footer */}
+          <Route
+            path="/about"
+            element={
+              <ProtectedRoute>
+                <About />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/terms"
+            element={
+              <ProtectedRoute>
+                <Terms />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/privacy"
+            element={
+              <ProtectedRoute>
+                <Privacy />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cookie-policy"
+            element={
+              <ProtectedRoute>
+                <CookiePolicy />
               </ProtectedRoute>
             }
           />

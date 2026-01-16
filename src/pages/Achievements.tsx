@@ -7,6 +7,7 @@ import { ArrowLeft, Trophy, Star, Zap, Target, Lock } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { achievementsApi } from '@/lib/api';
 import { UserDropdown } from '@/components/UserDropdown';
+import { useTranslation } from 'react-i18next';
 
 interface Achievement {
   id: string;
@@ -22,7 +23,10 @@ interface Achievement {
 
 export const Achievements = () => {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const { t, i18n } = useTranslation();
+  // Derive category identifiers from translation resources so labels are localized
+  const categories = Object.keys(t('achievements.categories', { returnObjects: true }) as Record<string, string>);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0] || 'All');
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -40,13 +44,13 @@ export const Achievements = () => {
       setAchievements(response.achievements || []);
     } catch (err: any) {
       console.error('Failed to fetch achievements:', err);
-      setError('Failed to load achievements. Please try again.');
+      setError(t('achievements.error_loading'));
     } finally {
       setLoading(false);
     }
   };
 
-  const categories = ['All', 'Learning', 'Streak', 'XP', 'Languages', 'Mastery', 'Challenge'];
+  // categories are derived from translations above
 
   const filteredAchievements = selectedCategory === 'All'
     ? achievements
@@ -60,7 +64,7 @@ export const Achievements = () => {
       <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="text-center">
           <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-primary-600 dark:border-gray-700 dark:border-t-primary-400"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading achievements...</p>
+          <p className="text-gray-600 dark:text-gray-400">{t('achievements.loading')}</p>
         </div>
       </div>
     );
@@ -75,7 +79,7 @@ export const Achievements = () => {
             onClick={fetchAchievements}
             className="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700"
           >
-            Retry
+            {t('achievements.retry')}
           </button>
         </div>
       </div>
@@ -97,10 +101,10 @@ export const Achievements = () => {
               </button>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                  Achievements
+                  {t('achievements.title')}
                 </h1>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {unlockedCount} of {totalCount} unlocked
+                  {t('achievements.unlocked_of', { unlocked: unlockedCount, total: totalCount })}
                 </p>
               </div>
             </div>
@@ -124,7 +128,7 @@ export const Achievements = () => {
               <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 {unlockedCount}
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Unlocked</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t('achievements.stats.unlocked')}</p>
             </div>
             <div>
               <div className="mb-2 flex justify-center">
@@ -133,7 +137,7 @@ export const Achievements = () => {
               <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 {totalCount > 0 ? Math.round((unlockedCount / totalCount) * 100) : 0}%
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Completion</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t('achievements.stats.completion')}</p>
             </div>
             <div>
               <div className="mb-2 flex justify-center">
@@ -142,7 +146,7 @@ export const Achievements = () => {
               <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 {totalCount - unlockedCount}
               </p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Remaining</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">{t('achievements.stats.remaining')}</p>
             </div>
           </div>
         </motion.div>
@@ -159,7 +163,7 @@ export const Achievements = () => {
                   : 'bg-white text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
               }`}
             >
-              {category}
+              {t(`achievements.categories.${category}`, { defaultValue: category })}
             </button>
           ))}
         </div>
@@ -206,17 +210,17 @@ export const Achievements = () => {
                     : 'text-gray-500 dark:text-gray-400'
                 }`}
               >
-                {achievement.name}
+                {t(achievement.name as string, { defaultValue: achievement.name as string })}
               </h3>
               <p className="mb-4 text-center text-sm text-gray-600 dark:text-gray-400">
-                {achievement.description}
+                {t(achievement.description as string, { defaultValue: achievement.description as string })}
               </p>
 
               {/* Progress Bar (for locked achievements) */}
               {!achievement.unlocked && achievement.progress !== undefined && achievement.maxProgress && (
                 <div>
                   <div className="mb-2 flex justify-between text-xs text-gray-600 dark:text-gray-400">
-                    <span>Progress</span>
+                    <span>{t('achievements.progress')}</span>
                     <span>
                       {achievement.progress} / {achievement.maxProgress}
                     </span>
@@ -235,13 +239,13 @@ export const Achievements = () => {
               {/* Unlocked Date */}
               {achievement.unlocked && achievement.unlockedAt && (
                 <p className="mt-4 text-center text-xs text-gray-500">
-                  Unlocked on {new Date(achievement.unlockedAt).toLocaleDateString()}
+                  {t('achievements.unlocked_on', { date: new Date(achievement.unlockedAt).toLocaleDateString(i18n.language) })}
                 </p>
               )}
 
               {/* Category Badge */}
               <div className="mt-4 flex justify-center">
-                <span className="badge-secondary text-xs">{achievement.category}</span>
+                <span className="badge-secondary text-xs">{t(`achievements.categories.${achievement.category}`, { defaultValue: achievement.category })}</span>
               </div>
             </motion.div>
           ))}
@@ -252,10 +256,10 @@ export const Achievements = () => {
           <div className="card py-12 text-center">
             <Target className="mx-auto mb-4 h-16 w-16 text-gray-400" />
             <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-gray-100">
-              No achievements in this category
+              {t('achievements.empty.title')}
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
-              Try selecting a different category
+              {t('achievements.empty.message')}
             </p>
           </div>
         )}

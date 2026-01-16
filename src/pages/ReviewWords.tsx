@@ -1,13 +1,15 @@
 // frontend/src/pages/ReviewWords.tsx
 // Review Words quiz page
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Trophy, Target, Flame, Clock, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
+import { PremiumUpgradeModal } from '@/components/PremiumUpgradeModal';
 import { vocabularyApi, progressApi } from '@/lib/api';
 import { useAuthStore } from '@/store/useStore';
+import { useTranslation } from 'react-i18next';
 
 interface VocabularyWord {
   id: string;
@@ -28,6 +30,7 @@ interface ReviewSession {
 }
 
 export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }) => {
+  const { t } = useTranslation();
   const { user, updateUser } = useAuthStore();
   const [hasStarted, setHasStarted] = useState(false);
   const [session, setSession] = useState<ReviewSession | null>(null);
@@ -41,15 +44,78 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
     timeSpent: number;
     xpEarned: number;
   } | null>(null);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [reservedSlot, setReservedSlot] = useState(false);
+
+  // Current word being reviewed
+  const currentWord = session?.words?.[session?.currentIndex || 0];
+
+  // Helper to release local reservation for today's started count
+  const releaseReservation = () => {
+    try {
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth() + 1).padStart(2, '0');
+      const d = String(today.getDate()).padStart(2, '0');
+      const key = `vocab_review_started_${y}-${m}-${d}`;
+      const startedStr = localStorage.getItem(key);
+      const current = startedStr ? Number(startedStr) : 0;
+      const next = Math.max(0, current - 1);
+      localStorage.setItem(key, String(next));
+      setReservedSlot(false);
+    } catch (e) {
+      // ignore
+    }
+  };
 
   const startReview = async () => {
     try {
+      // Enforce 2 review sessions per user per server-day.
+      // Prefer authoritative server-side count when authenticated.
+      let serverCount = 0;
+      if (user) {
+        try {
+          const res = await progressApi.getVocabCount();
+          serverCount = res?.count ?? 0;
+        } catch (e) {
+          serverCount = 0;
+        }
+      }
+
+      // Local started reservations for today (best-effort). Keyed by date.
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth() + 1).padStart(2, '0');
+      const d = String(today.getDate()).padStart(2, '0');
+      const key = `vocab_review_started_${y}-${m}-${d}`;
+      const startedStr = localStorage.getItem(key);
+      const started = startedStr ? Number(startedStr) : 0;
+
+      const effectiveCount = serverCount + started;
+
+      // Treat either hasPremium or isPremium as the premium flag (backend uses hasPremium)
+      const userHasPremium = Boolean((user as any)?.hasPremium || (user as any)?.isPremium);
+      if (!userHasPremium && effectiveCount >= 2) {
+        // Show upgrade modal and prevent starting
+        setShowUpgradeModal(true);
+        return;
+      }
+
+      // Reserve a slot immediately to prevent parallel starts
+      try {
+        const currentStarted = startedStr ? Number(startedStr) : 0;
+        localStorage.setItem(key, String(currentStarted + 1));
+        setReservedSlot(true);
+      } catch (e) {
+        // ignore storage errors
+      }
+
       // Fetch words to work on
       const response = await vocabularyApi.getWords({ status: 'learning' });
       const allWords: VocabularyWord[] = response.words || [];
 
       if (allWords.length === 0) {
-        alert('No words to review! Add some words from learning sessions first.');
+        alert(t('pages.review_words.no_words'));
         return;
       }
 
@@ -68,19 +134,19 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
       setHasStarted(true);
     } catch (error) {
       console.error('Failed to load words:', error);
-      alert('Failed to load words. Please try again.');
+      alert(t('pages.review_words.load_failed'));
     }
   };
 
   const handleSubmitAnswer = () => {
-    if (!session || currentAnswer.trim() === '') return;
+    // Ensure session and current word exist before accessing fields
+    if (!session || !currentWord || currentAnswer.trim() === '') return;
 
-    const currentWord = session.words[session.currentIndex];
     const userAnswerNormalized = currentAnswer.trim().toLowerCase();
-    const correctAnswerNormalized = currentWord.translation.trim().toLowerCase();
-    
+    const correctAnswerNormalized = (currentWord.translation || '').trim().toLowerCase();
+
     const isCorrect = userAnswerNormalized === correctAnswerNormalized;
-    
+
     const newCorrectCount = session.correctCount + (isCorrect ? 1 : 0);
     const newTotalAnswered = session.totalAnswered + 1;
 
@@ -118,19 +184,28 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
           totalLines: session.words.length,
           timeSpentMs: Date.now() - session.startTime,
         });
-      } catch (recordError) {
+      } catch (recordError: any) {
+        // If backend rejects due to daily limit, show upgrade modal and prevent completion.
+        if (recordError?.response?.status === 402) {
+          setShowUpgradeModal(true);
+          // Do not show celebration. Keep localStorage reservation so the daily count remains blocked.
+          setHasStarted(false);
+          setSession(null);
+          setCurrentAnswer('');
+          return;
+        }
         console.warn('Failed to record vocabulary review session, continuing anyway:', recordError);
       }
 
       // Get XP from backend response, fallback to fixed amount
-      const xpEarned = sessionResponse?.xpEarned || sessionResponse?.xp || REVIEW_XP;
+      const xpEarned = sessionResponse?.xpEarned ?? sessionResponse?.xp ?? REVIEW_XP;
 
-      // Reload user progress to get updated streak
+      // Reload user progress to get updated totals (server may already have applied XP)
       const progressResponse = await progressApi.getProgress();
-      
+
       // Calculate new total XP (add review XP to current total)
-      const newTotalXp = (progressResponse.totalXp || user?.totalXp || 0) + xpEarned;
-      
+      const newTotalXp = (progressResponse.totalXp || user?.totalXp || 0);
+
       updateUser({
         totalXp: newTotalXp,
         currentStreak: progressResponse.currentStreak,
@@ -145,15 +220,26 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
         xpEarned,
       });
       setShowCelebration(true);
-    } catch (error) {
+      // release local reservation when finished
+      if (reservedSlot) releaseReservation();
+    } catch (error: any) {
       console.error('Failed to record review session:', error);
-      // Still show celebration even if recording failed
-      // Add XP manually
+      // If we were rejected due to daily limit, show upgrade modal and do not award XP
+      if (error?.response?.status === 402 || error?.statusCode === 402) {
+        setShowUpgradeModal(true);
+        setHasStarted(false);
+        setSession(null);
+        setCurrentAnswer('');
+        // Intentionally do NOT release the local reservation so the client-side count remains consistent.
+        return;
+      }
+
+      // Fallback: still show celebration and award fallback XP when the backend call fails for other reasons
       const newTotalXp = (user?.totalXp || 0) + REVIEW_XP;
       updateUser({
         totalXp: newTotalXp,
       });
-      
+
       setSessionStats({
         correctCount: finalCorrectCount,
         totalWords: finalTotalAnswered,
@@ -162,17 +248,23 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
         xpEarned: REVIEW_XP,
       });
       setShowCelebration(true);
+      if (reservedSlot) releaseReservation();
     }
   };
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    if (mins === 0) return `${secs}s`;
-    return `${mins}m ${secs}s`;
+    if (mins === 0) return t('pages.review_words.time_seconds', { s: secs });
+    return t('pages.review_words.time_minutes_seconds', { m: mins, s: secs });
   };
 
-  const currentWord = session?.words[session.currentIndex];
+  // Cleanup: if user navigates away/unmounts while a slot is reserved, release it
+  useEffect(() => {
+    return () => {
+      if (reservedSlot) releaseReservation();
+    };
+  }, [reservedSlot]);
 
   // Initial state - just the Begin Review button
   if (!hasStarted) {
@@ -183,8 +275,16 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
           onClick={startReview}
           className="px-8 py-4 text-lg font-semibold"
         >
-          Begin Review
+          {t('pages.review_words.begin_review')}
         </Button>
+
+        {showUpgradeModal && (
+          <PremiumUpgradeModal
+            isOpen={showUpgradeModal}
+            onClose={() => setShowUpgradeModal(false)}
+            feature={t('features.unlimited_vocab_reviews')}
+          />
+        )}
       </div>
     );
   }
@@ -219,7 +319,7 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
               className="mb-6 text-center"
             >
               <h1 className="mb-3 text-4xl font-bold text-gray-900 dark:text-gray-100">
-                Good job reviewing! 🎉
+                {t('pages.review_words.good_job_title')}
               </h1>
             </motion.div>
 
@@ -237,7 +337,7 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
                   {sessionStats.correctCount}/{sessionStats.totalWords}
                 </div>
                 <div className="text-xs font-medium text-green-700 dark:text-green-300">
-                  Correct
+                  {t('pages.review_words.correct_label')}
                 </div>
               </div>
 
@@ -248,7 +348,7 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
                   +{sessionStats.xpEarned}
                 </div>
                 <div className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                  XP Earned
+                  {t('pages.review_words.xp_earned')}
                 </div>
               </div>
 
@@ -259,7 +359,7 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
                   {sessionStats.streak}
                 </div>
                 <div className="text-xs font-medium text-orange-700 dark:text-orange-300">
-                  Day Streak
+                  {t('pages.review_words.day_streak')}
                 </div>
               </div>
 
@@ -270,7 +370,7 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
                   {formatTime(sessionStats.timeSpent)}
                 </div>
                 <div className="text-xs font-medium text-purple-700 dark:text-purple-300">
-                  Time
+                  {t('pages.review_words.time_label')}
                 </div>
               </div>
             </motion.div>
@@ -286,7 +386,7 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
                 onClick={onBackToLibrary}
                 className="w-full rounded-xl py-4 text-lg font-semibold"
               >
-                Back to My Library
+                {t('pages.review_words.back_to_library')}
               </Button>
             </motion.div>
           </div>
@@ -303,11 +403,11 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
       {/* Progress Indicator */}
       <div className="mb-8 text-center">
         <div className="text-sm font-medium text-gray-500 dark:text-gray-400">
-          Word {session.currentIndex + 1} of {session.words.length}
+          {t('pages.review_words.progress', { current: session.currentIndex + 1, total: session.words.length })}
         </div>
         {session.totalAnswered > 0 && (
           <div className="mt-2 text-lg font-semibold text-primary-600 dark:text-primary-400">
-            Correct: {session.correctCount}/{session.totalAnswered}
+            {t('pages.review_words.correct_progress', { correct: session.correctCount, total: session.totalAnswered })}
           </div>
         )}
       </div>
@@ -319,7 +419,8 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
             {currentWord.language.toUpperCase()}
           </p>
           <h2 className="mt-2 text-3xl font-bold text-gray-900 dark:text-gray-100">
-            What is the translation of <span className="text-primary-600 dark:text-primary-400">{currentWord.word}</span>?
+            {t('pages.review_words.question_prefix')}
+            <span className="text-primary-600 dark:text-primary-400">{currentWord.word}</span>?
           </h2>
         </div>
 
@@ -333,7 +434,7 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
               handleSubmitAnswer();
             }
           }}
-          placeholder="Type your answer..."
+          placeholder={t('pages.review_words.placeholder_type_answer')}
           className="w-full rounded-lg border-2 border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-3 text-lg text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:border-primary-500 focus:outline-none"
           autoFocus
         />
@@ -344,15 +445,14 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
             onClick={() => setShowHint(true)}
             className="rounded-lg bg-yellow-100 dark:bg-yellow-900/30 px-4 py-2 text-sm font-medium text-yellow-800 dark:text-yellow-300 hover:bg-yellow-200 dark:hover:bg-yellow-900/50 transition-colors border border-yellow-300 dark:border-yellow-800"
           >
-            Hint
+            {t('pages.review_words.hint')}
           </button>
           <Button
             variant="primary"
             onClick={handleSubmitAnswer}
-            disabled={currentAnswer.trim() === ''}
-            className="flex-1"
+            className="mt-4 w-full"
           >
-            Submit
+            {t('pages.review_words.submit')}
           </Button>
         </div>
       </div>
@@ -361,12 +461,12 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
       <Modal
         isOpen={showHint}
         onClose={() => setShowHint(false)}
-        title="Hint"
+        title={t('pages.review_words.hint')}
       >
         <div className="space-y-3">
           <div>
             <p className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-1">
-              ORIGINAL LINE
+              {t('pages.review_words.original_line')}
             </p>
             <p className="text-gray-900 dark:text-gray-100">
               {currentWord.context}
@@ -377,10 +477,21 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
             onClick={() => setShowHint(false)}
             className="w-full"
           >
-            Close
+            {t('common.close')}
           </Button>
         </div>
       </Modal>
+
+      {/* Upgrade modal (shown when limit reached) */}
+      {showUpgradeModal && (
+        <PremiumUpgradeModal
+          isOpen={showUpgradeModal}
+          onClose={() => setShowUpgradeModal(false)}
+          feature={t('features.unlimited_vocab_reviews')}
+        />
+      )}
     </div>
   );
 };
+
+export default ReviewWords;

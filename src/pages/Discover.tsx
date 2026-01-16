@@ -4,17 +4,20 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { YouTubeVideo } from '@/types';
-import { searchMusicVideos, searchMusicByQuery, fetchVideoDetails } from '@/lib/youtubeApi';
+import { discoverApi } from '@/lib/api';
 import { useAuthStore } from '@/store/useStore';
 import { songApi } from '@/lib/api';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   onSongAdded?: () => Promise<void>;
 }
 
 export const Discover = ({ onSongAdded }: Props) => {
+  const { t } = useTranslation();
   // reference onSongAdded so TS doesn't mark it as unused (it's optional)
-  if (onSongAdded) void onSongAdded;
+  // keep a harmless reference to the prop to avoid unused variable warnings
+  void (onSongAdded as any);
   const navigate = useNavigate();
   const { user } = useAuthStore();
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
@@ -31,89 +34,62 @@ export const Discover = ({ onSongAdded }: Props) => {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      let combined: YouTubeVideo[] = [];
+      // Use backend Discover endpoint which assembles and deduplicates videos server-side.
+      const resp = await discoverApi.getDiscover(query || undefined, 24);
+      const serverVideos: any[] = resp?.videos || [];
 
-      if (query && query.trim().length > 0) {
-        const res = await searchMusicByQuery(query, 24);
-        combined = res.videos;
-      } else if (user?.preferredArtists && user.preferredArtists.length > 0) {
-        // PERSONALIZED: User has preferred artists
-        const preferredArtists = user.preferredArtists;
-        
-        // Fetch songs from preferred artists (60% of results)
-        const songsPerArtist = Math.max(2, Math.floor(14 / preferredArtists.length));
-        for (const artist of preferredArtists.slice(0, 7)) {
-          try {
-            const res = await searchMusicByQuery(`${artist} songs`, songsPerArtist);
-            combined = combined.concat(res.videos.map(v => ({ ...v, source: 'preferred' })));
-          } catch (err) {
-            console.warn(`Failed to fetch songs for ${artist}:`, err);
-          }
-        }
-
-        // Fetch similar artists / discovery (40% of results)
-        const discoveryArtist = preferredArtists[0];
-        try {
-          const res = await searchMusicByQuery(`similar to ${discoveryArtist}`, 10);
-          combined = combined.concat(res.videos.map(v => ({ ...v, source: 'discovery' })));
-        } catch (err) {
-          console.warn('Failed to fetch similar artists:', err);
-        }
-
-        // If we don't have enough results, fall back to language-based discovery
-        if (combined.length < 12) {
-          const perLang = Math.max(3, Math.floor((24 - combined.length) / Math.max(1, userTargetLanguages.length)));
-          for (const lang of userTargetLanguages) {
-            const res = await searchMusicVideos(lang, perLang);
-            combined = combined.concat(res.videos.map(v => ({ ...v, language: lang, source: 'fallback' })));
-          }
-        }
-      } else {
-        // FALLBACK: No preferred artists - use original behavior
-        const perLang = Math.max(6, Math.floor(24 / Math.max(1, userTargetLanguages.length)));
-        for (const lang of userTargetLanguages) {
-          const res = await searchMusicVideos(lang, perLang);
-          combined = combined.concat(res.videos.map(v => ({ ...v, language: lang })));
-        }
-      }
-
-      // Remove duplicates by videoId
-      const unique = Object.values(
-        combined.reduce((acc: Record<string, YouTubeVideo>, v) => {
-          acc[v.videoId] = acc[v.videoId] || v;
-          return acc;
-        }, {})
-      );
-
-      // Fetch view counts and sort by popularity
-      const ids = unique.map(v => v.videoId).slice(0, 50);
-      const details = await fetchVideoDetails(ids);
-      unique.forEach(v => {
-        (v as any).viewCount = details[v.videoId]?.viewCount ?? 0;
-      });
-
-      unique.sort((a: any, b: any) => (b.viewCount || 0) - (a.viewCount || 0));
-
-      setVideos(unique);
-
-      // Check which videos are already added by user
-      const checkMap: Record<string, boolean> = {};
-      await Promise.all(unique.map(async (v) => {
-        try {
-          const exists = await songApi.checkExists(v.videoId);
-          checkMap[v.videoId] = exists;
-        } catch {
-          checkMap[v.videoId] = false;
-        }
+      // Map backend shape to frontend expected YouTubeVideo shape. Use channelTitle as artist so AddSong prefill works.
+      const mapped: YouTubeVideo[] = serverVideos.map((v: any) => ({
+        // Provide id and language fields expected by the front-end types.
+        id: v.id || v.videoId || String(v.videoId || ''),
+        videoId: v.videoId,
+        title: v.title,
+        artist: v.channelTitle || '',
+        channelTitle: v.channelTitle || '',
+        thumbnail: v.thumbnail || '',
+        publishedAt: v.publishedAt || null,
+        language: v.language || 'en',
       }));
-      setAlreadyAddedMap(checkMap);
+
+      setVideos(mapped.slice(0, 24));
+     
+       // Check which videos are already added by user
+       const checkMap: Record<string, boolean> = {};
+       await Promise.all(mapped.map(async (v) => {
+         try {
+           if (user) {
+             // Authenticated: use user-scoped endpoint so we only mark songs the current user added
+             const res = await songApi.getUserByVideoId(v.videoId);
+             checkMap[v.videoId] = !!(res?.song);
+           } else {
+             // Not authenticated: fall back to public existence check
+             const exists = await songApi.checkExists(v.videoId);
+             checkMap[v.videoId] = exists;
+           }
+         } catch {
+           checkMap[v.videoId] = false;
+         }
+       }));
+       setAlreadyAddedMap(checkMap);
 
     } catch (error) {
-      console.error('Discover load error:', error);
-    } finally {
-      setLoading(false);
+       console.error('Discover load error:', error);
+     } finally {
+       setLoading(false);
+     }
+   }, [userTargetLanguages, query, user?.preferredArtists, user]);
+
+  // Helper: decode basic HTML entities returned by the YouTube API (e.g., &#39; -> ')
+  const decodeHtml = (input: string | undefined) => {
+    if (!input) return '';
+    try {
+      const txt = document.createElement('textarea');
+      txt.innerHTML = input;
+      return txt.value;
+    } catch {
+      return input;
     }
-  }, [userTargetLanguages, query, user?.preferredArtists]);
+  };
 
   useEffect(() => { load(); }, [load]);
 
@@ -134,24 +110,24 @@ export const Discover = ({ onSongAdded }: Props) => {
   return (
     <div className="p-6">
       <div className="mb-6 flex items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Discover Music</h1>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">{t('pages.discover.title')}</h1>
         <div className="flex items-center gap-2">
           <form onSubmit={handleSearch} className="flex items-center gap-2">
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search songs, artists..."
+              placeholder={t('pages.discover.search_placeholder')}
               className="rounded-lg border-2 border-gray-200 px-3 py-2 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
             />
             <button className="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700">
-              Search
+              {t('common.search')}
             </button>
           </form>
           <button 
             onClick={handleRefresh} 
             className="rounded-lg border border-gray-300 px-3 py-2 hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-700"
           >
-            Refresh
+            {t('common.refresh')}
           </button>
         </div>
       </div>
@@ -159,7 +135,7 @@ export const Discover = ({ onSongAdded }: Props) => {
       {loading ? (
         <div className="text-center py-20">
           <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-primary-600 border-t-transparent"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading songs...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">{t('pages.discover.loading')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -171,7 +147,7 @@ export const Discover = ({ onSongAdded }: Props) => {
               <div className="relative">
                 <img
                   src={video.thumbnail}
-                  alt={video.title}
+                  alt={decodeHtml(video.title)}
                   className="w-full h-48 object-cover cursor-pointer hover:opacity-90 transition-opacity"
                   onClick={() => handleOpenAddSong(video)}
                 />
@@ -189,7 +165,7 @@ export const Discover = ({ onSongAdded }: Props) => {
 
               <div className="p-4">
                 <h2 className="font-semibold text-lg text-gray-900 dark:text-gray-100 line-clamp-2 mb-1">
-                  {video.title}
+                  {decodeHtml(video.title)}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-1">
                   {video.artist}
@@ -204,12 +180,12 @@ export const Discover = ({ onSongAdded }: Props) => {
                         : 'bg-primary-600 text-white hover:bg-primary-700'
                     }`}
                   >
-                    {alreadyAddedMap[video.videoId] ? 'View Song' : '+ Add Song'}
+                    {alreadyAddedMap[video.videoId] ? t('actions.view_song') : t('actions.add_song')}
                   </button>
 
                   {(video as any).viewCount && !alreadyAddedMap[video.videoId] && (
                     <span className="text-xs text-gray-500 dark:text-gray-400">
-                      {((video as any).viewCount as number).toLocaleString()} views
+                      {((video as any).viewCount as number).toLocaleString()} {t('common.views')}
                     </span>
                   )}
                 </div>
@@ -223,10 +199,10 @@ export const Discover = ({ onSongAdded }: Props) => {
         <div className="text-center py-20">
           <div className="mb-4 text-6xl">🎵</div>
           <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-            No songs found
+            {t('pages.discover.no_songs_found')}
           </h3>
           <p className="text-gray-600 dark:text-gray-400">
-            Try a different search or refresh to see more songs
+            {t('pages.discover.try_different_search')}
           </p>
         </div>
       )}

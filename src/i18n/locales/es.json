@@ -1,0 +1,1291 @@
+{
+  "app": {
+    "title": "Singuage"
+  },
+  "footer": {
+    "copyright": "© Singuage",
+    "copyright_full": "© {{year}} Singuage. Todos los derechos reservados.",
+    "links": {
+      "about": "Sobre nosotros",
+      "terms": "Términos de servicio",
+      "privacy": "Política de privacidad",
+      "cookie": "Política de cookies",
+      "contact": "Contacto"
+    }
+  },
+  "cookie": {
+    "title": "Respetamos tu privacidad.",
+    "message": "Usamos cookies para mejorar tu experiencia.",
+    "accept": "Aceptar todas las cookies",
+    "decline": "Rechazar cookies no esenciales"
+  },
+  "buttons": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "upgrade": "Mejorar",
+    "add": "Agregar",
+    "go_to_dashboard": "Ir al panel",
+    "back_to_upgrade": "Volver a Mejorar",
+    "return_to_upgrade": "Volver a Mejorar",
+    "return_to_library": "Volver a mi biblioteca",
+    "continue_to_payment": "Continuar al pago",
+    "keep_playing": "¡Seguir jugando!",
+    "congratulations": "¡Felicidades!",
+    "got_it": "¡Entendido!",
+    "change_difficulty": "Cambiar dificultad",
+    "continue": "Continuar",
+    "go_back": "Volver",
+    "take_a_break": "Tomar un descanso",
+    "redirecting": "Redirigiendo...",
+    "restore_purchase": "Restaurar compra",
+    "start_learning": "Empezar a aprender",
+    "mini_lessons": "Mini lecciones",
+    "remove": "Eliminar",
+    "removing": "Eliminando..."
+  },
+  "adbreak": {
+    "message": "Los anuncios ayudan a mantener Singuage gratuito para todos."
+  },
+  "modals": {
+    "select_difficulty": { "title": "Seleccionar dificultad" },
+    "change_difficulty_confirm": {
+      "title": "¿Cambiar dificultad?",
+      "message": "Cambiar la dificultad reiniciará tu progreso desde la primera línea. Tu progreso actual no se guardará.",
+      "cta_cancel": "Cancelar",
+      "cta_continue": "Continuar"
+    },
+    "premium_upgrade": {
+      "title": "Actualización a Premium",
+      "description": "¿Te está gustando? Pásate a Premium por solo {{price}} al mes!",
+      "keep_playing_cta": "¡Seguir jugando!",
+      "return_to_library": "Volver a mi biblioteca",
+      "helper_note": "Premium elimina los límites diarios gratuitos en canciones (excluyendo tu primera canción gratuita, que ya es ilimitada)."
+    },
+    "shortcuts": {
+      "title": "Atajos de teclado",
+      "open_translation": "Abrir modal de traducción",
+      "play_pause": "Reproducir/Pausar",
+      "rewind": "Retroceder 5 segundos",
+      "forward": "Adelantar 5 segundos",
+      "show_help": "Mostrar esta ayuda"
+    }
+  },
+  "word": {
+    "modal": {
+      "sentence": "Frase / Palabra",
+      "loading": "Cargando traducción...",
+      "original": "Original ({{lang}})",
+      "translation": "Traducción ({{lang}})",
+      "previous_original": "Línea anterior — Original ({{lang}})",
+      "previous_translation": "Línea anterior — Traducción ({{lang}})",
+      "example_usage": "Ejemplo de uso",
+      "error": {
+        "title": "Traducción no disponible",
+        "unavailable": "Traducción no disponible para esta palabra.",
+        "failed": "Error al obtener la traducción."
+      },
+      "error_try_again": "Intentar de nuevo",
+      "pro_tip_label": "Consejo profesional:",
+      "pro_tip": "Toca la palabra resaltada para añadirla a tu lista de práctica: {{word}}",
+      "powered_by": "Con tecnología de la API de traducción",
+      "definition": {
+        "title": "Añadir una definición",
+        "prompt": "Escribe una definición corta para",
+        "placeholder": "Escribe una definición corta (pulsa Enter para guardar)"
+      },
+      "open_wordreference": "Abrir en WordReference"
+    },
+    "vocab": {
+      "cta": "+ Palabras para practicar",
+      "adding": "Añadiendo...",
+      "added": "¡Añadido a tu lista de práctica!",
+      "already": "Esta palabra ya está en tu lista de vocabulario.",
+      "add_failed": "Error al añadir la palabra al vocabulario."
+    }
+  },
+  "grammar": {
+    "header": {
+      "title": "Conceptos de gramática",
+      "count": "{{count}} concepto encontrado",
+      "count_plural": "{{count}} conceptos encontrados",
+      "none": "No se detectaron patrones"
+    },
+    "item": {
+      "difficulty": {
+        "beginner": "principiante",
+        "intermediate": "intermedio",
+        "advanced": "avanzado"
+      },
+      "found_in_lines": "Encontrado en {{count}} línea",
+      "found_in_lines_plural": "Encontrado en {{count}} líneas"
+    },
+    "lesson": { "title": "Lección rápida" },
+    "items": {
+      "present-fr": { "name": "Présent de l'Indicatif (Presente de indicativo)", "description": "Usado para acciones actuales y verdades generales" },
+      "passe-compose-fr": { "name": "Passé Composé (Pasado compuesto)", "description": "Usado para acciones pasadas completadas" },
+      "imparfait-fr": { "name": "Imparfait (Imperfecto)", "description": "Usado para acciones pasadas habituales o en progreso" },
+      "future-fr": { "name": "Futur Simple (Futuro simple)", "description": "Usado para acciones futuras" },
+      "subjunctive-fr": { "name": "Subjonctif (Subjuntivo)", "description": "Usado para deseos, dudas y emociones" },
+      "pronouns-fr": { "name": "Pronoms Personnels (Pronombres personales)", "description": "Me, te, le, la, nous, vous, les" },
+      "reflexive-fr": { "name": "Verbes Pronominaux (Verbros reflexivos)", "description": "Acciones que el sujeto realiza sobre sí mismo" },
+      "negation-fr": { "name": "La Négation (Negación)", "description": "Cómo expresar la negación en francés" }
+    },
+    "lessons": {
+      "present-fr": "El presente de indicativo en francés se utiliza para:\n• Acciones actuales (Je chante = yo canto)\n• Acciones habituales (Je travaille tous les jours = trabajo todos los días)\n• Verdades generales\n\nTerminaciones regulares:\n-ER: -e, -es, -e, -ons, -ez, -ent\n-IR: -is, -is, -it, -issons, -issez, -issent\n-RE: -s, -s, -, -ons, -ez, -ent\n\nMuy común en canciones pop francesas.",
+      "passe-compose-fr": "El Passé Composé indica acciones pasadas completadas:\n\nFormación: verbo auxiliar (avoir o être) + participio pasado\n\nCon AVOIR (la mayoría de verbos):\n• J'ai chanté = canté/he cantado\n• Tu as dansé = bailaste\n\nCon ÊTRE (movimiento y verbos reflexivos):\n• Je suis allé(e) = fui\n• Il est parti = se fue\n\nComún en canciones sobre recuerdos.",
+      "imparfait-fr": "El Imparfait se usa para:\n• Acciones en progreso en el pasado (Je chantais = estaba cantando)\n• Descripciones en el pasado\n• Hábitos pasados\n\nTerminaciones comunes:\n-ais, -ais, -ait, -ions, -iez, -aient\n\nMuy útil en canciones nostálgicas.",
+      "future-fr": "El Futur Simple se usa para:\n• Acciones que ocurrirán\n• Predicciones y promesas\n\nTerminaciones comunes:\n-ai, -as, -a, -ons, -ez, -ont\n\nSuele añadirse al infinitivo.\n\nComún en canciones sobre sueños y planes.",
+      "subjunctive-fr": "El subjuntivo expresa:\n• Necesidad (Il faut que = es necesario que)\n• Deseos (Je veux que = quiero que)\n• Emociones (Je suis content que = me alegra que)\n• Duda (Je doute que = dudo que)\n\nSe activa por: que, il faut que, je veux que, bien que, etc.\n\nMuy frecuente en canciones emocionales francesas.",
+      "pronouns-fr": "Los pronombres objeto en francés:\n• me/te = me/te\n• le/la = lo/la\n• nous/vous = nos/os\n• les = los/las\n\nColocación: ¡ANTES del verbo!\n\n\"Je t'aime\" (Te quiero) es la frase clásica en canciones francesas.",
+      "reflexive-fr": "Los verbos reflexivos indican que el sujeto realiza la acción sobre sí mismo:\n• me, te, se, nous, vous, se\n\nVerbos reflexivos comunes:\n• se lever = levantarse\n• se sentir = sentirse\n• s'en aller = irse\n• s'appeler = llamarse\n\nMuy comunes en canciones francesas.",
+      "negation-fr": "La negación en francés usa dos partes:\n• ne ... pas = no\n• ne ... jamais = nunca\n• ne ... rien = nada\n• ne ... plus = ya no\n\nColocación: ne antes del verbo, pas/jamais/rien después\n\n\"Je ne regrette rien\" (No me arrepiento de nada) — Édith Piaf\n\nMuy importante en canciones francesas."
+    },
+    "examples": {
+      "title": "Encontrado en esta canción:",
+      "more": "...y {{count}} más",
+      "more_plural": "...y {{count}} más"
+    },
+    "learn_more": {
+      "title": "¿Quieres aprender más?",
+      "cta": "Leer la lección completa",
+      "note": "Se abre en una nueva pestaña • Recurso externo"
+    },
+    "lines_label": "Encontrado en las líneas: {{lines}}",
+    "none": {
+      "heading": "No se detectaron conceptos gramaticales",
+      "message": "Las letras de esta canción no contienen patrones gramaticales detectables para {{language}}.",
+      "this_language": "este idioma",
+      "normal_for": "Esto es normal para:",
+      "reasons": {
+        "1": "Canciones con letras muy simples o poéticas",
+        "2": "Canciones instrumentales o con texto mínimo",
+        "3": "Idiomas que aún no están totalmente soportados"
+      }
+    },
+    "tip_label": "Consejo:",
+    "tip": "El análisis gramatical funciona mejor con canciones en inglés, español, francés y alemán que tengan estructuras de oraciones completas."
+  },
+  "user": {
+    "dropdown": {
+      "account": "Información de la cuenta",
+      "achievements": "Logros",
+      "progress": "Progreso",
+      "settings": "Configuración",
+      "logout": "Cerrar sesión"
+    },
+    "default": "Usuario",
+    "premium": "Premium",
+    "xp": "{{count}} XP",
+    "streak": "racha de {{count}} día",
+    "streak_plural": "rachas de {{count}} días",
+    "streak_short": "{{count}} días"
+  },
+  "vocab": {
+    "loading": "Cargando vocabulario...",
+    "words_to_work_on": "{{count}} palabra para practicar",
+    "words_to_work_on_plural": "{{count}} palabras para practicar",
+    "empty_learning": "Aún no hay palabras. ¡Haz clic en palabras durante las sesiones de aprendizaje para añadirlas aquí!",
+    "placeholder": {
+      "enter_translation": "Introduce la traducción",
+      "type_answer": "Escribe la traducción..."
+    },
+    "no_translation": "No se ha establecido traducción",
+    "actions": {
+      "mark_learned": "Marcar como aprendido"
+    },
+    "learned_words": "{{count}} palabra aprendida",
+    "learned_words_plural": "{{count}} palabras aprendidas",
+    "empty_learned": "No hay palabras aprendidas todavía. ¡Sigue practicando!",
+    "test": {
+      "title": "Pon a prueba tus conocimientos",
+      "prompt": "¿Cuál es la traducción de:",
+      "hint": "Escribe tu respuesta en minúsculas. Se ignorarán los acentos.",
+      "correct": "✅ ¡Correcto! Moviendo a Palabras Aprendidas...",
+      "incorrect": "❌ No es correcto — ¡sigue practicando!",
+      "check": "Comprobar respuesta"
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "subtitle": "Gestiona tus preferencias y cuenta",
+    "appearance": {
+      "title": "Apariencia",
+      "theme_label": "Tema",
+      "current_theme": "Actualmente en modo {{theme}}",
+      "theme_values": {
+        "light": "Claro",
+        "dark": "Oscuro"
+      }
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "email": { "label": "Notificaciones por correo", "desc": "Recibe actualizaciones por correo electrónico" },
+      "push": { "label": "Notificaciones push", "desc": "Recibe notificaciones push" },
+      "streak": { "label": "Recordatorios de racha", "desc": "Recordatorio diario para mantener la racha" }
+    },
+    "cookie": { "title": "Preferencias de cookies" },
+    "actions": { "logout": "Cerrar sesión", "delete_account": "Eliminar cuenta" },
+    "confirm": { "logout": "¿Estás seguro de que quieres cerrar sesión?", "delete_confirm_1": "¿Estás seguro de que quieres eliminar tu cuenta? Esta acción no se puede deshacer.", "delete_confirm_2": "Esto eliminará permanentemente todos tus datos. ¿Estás absolutamente seguro?" },
+    "delete_failed": "No se pudo eliminar la cuenta. Por favor, inténtalo de nuevo.",
+    "subscription": {
+      "title": "Suscripción",
+      "premium_active": "Premium activo",
+      "premium_active_desc": "Tu suscripción está activa. Cancela al final del periodo abajo.",
+      "no_active": "No hay suscripción activa",
+      "no_active_desc": "Actualiza a Premium para eliminar límites diarios y apoyar el desarrollo.",
+      "cancel_confirm": "¿Cancelar suscripción al final del periodo?",
+      "cancel_placeholder_alert": "Esto es un marcador de posición — las cancelaciones de suscripción se procesan mediante Stripe y se actualizan vía webhook.",
+      "cancel_cta": "Cancelar suscripción",
+      "upgrade_cta": "Mejorar"
+    },
+    "account": { "title": "Cuenta" },
+    "app_info": { "title": "Acerca de", "version": "Versión", "build": "Build", "account_created": "Cuenta creada", "unknown": "Desconocido" }
+  },
+  "account": {
+    "title": "Información de la cuenta",
+    "subtitle": "Gestiona tu perfil y preferencias",
+    "display_name": "Nombre para mostrar",
+    "username": "Nombre de usuario",
+    "no_username": "No se ha establecido nombre de usuario",
+    "email": "Dirección de correo",
+    "no_email": "No se ha proporcionado correo",
+    "native_label": "Idioma nativo",
+    "native_unknown": "Desconocido",
+    "account_type": "Tipo de cuenta",
+    "member_since": "Miembro desde",
+    "target_languages": "Idiomas objetivo",
+    "preferred_artists": "Artistas preferidos",
+    "stats_title": "Estadísticas de la cuenta",
+    "total_xp": "XP total",
+    "current_streak": "Racha actual",
+    "no_target_languages": "No se han establecido idiomas objetivo",
+    "no_preferred_artists": "Aún no hay artistas preferidos",
+    "no_preferred_artists_set": "No se han establecido artistas preferidos",
+    "artists_desc": "Añade artistas que te gusten para personalizar tu página Descubrir",
+    "enter_artist_placeholder": "Introduce el nombre del artista...",
+    "placeholders": {
+      "username": "tu-nombre-de-usuario",
+      "email": "tucorreo@ejemplo.com"
+    },
+    "username_error_empty": "El nombre de usuario no puede estar vacío",
+    "username_error_spaces": "El nombre de usuario no puede contener espacios",
+    "username_update_failed": "No se pudo actualizar el nombre de usuario",
+    "email_error_invalid": "Por favor, introduce una dirección de correo válida",
+    "email_update_failed": "No se pudo actualizar el correo",
+    "native_update_failed": "No se pudo actualizar el idioma nativo",
+    "edit": "Editar",
+    "adult": "Adulto (18+)",
+    "minor": "Menor (Menor de 18)"
+  },
+  "languages": {
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés",
+    "de": "Alemán",
+    "it": "Italiano",
+    "pt": "Portugués",
+    "ja": "Japonés",
+    "ko": "Coreano",
+    "zh": "Chino",
+    "ar": "Árabe",
+    "ru": "Ruso",
+    "hi": "Hindi"
+  },
+  "common": {
+    "search": "Buscar",
+    "refresh": "Actualizar",
+    "views": "vistas",
+    "options": "Opciones",
+    "remove_song": "¿Eliminar canción?",
+    "close": "Cerrar"
+  },
+  "tabs": {
+    "library": "Mi Biblioteca",
+    "discover": "Descubrir",
+    "review_words": "Repasar palabras",
+    "premium": "Premium",
+    "upgrade": "Mejorar",
+    "how_to_play": "Cómo jugar"
+  },
+  "actions": {
+    "browse_songs": "Buscar canciones",
+    "add_song": "Añadir canción",
+    "view_song": "Ver canción"
+  },
+  "achievements": {
+    "loading": "Cargando logros...",
+    "retry": "Reintentar",
+    "title": "Logros",
+    "unlocked_of": "{{unlocked}} de {{total}} desbloqueados",
+    "stats": {
+      "unlocked": "Desbloqueados",
+      "completion": "Completado",
+      "remaining": "Restantes"
+    },
+    "categories": {
+      "All": "Todas",
+      "Learning": "Aprendizaje",
+      "Streak": "Racha",
+      "XP": "XP",
+      "Languages": "Idiomas",
+      "Mastery": "Dominio",
+      "Challenge": "Desafío"
+    },
+    "progress": "Progreso",
+    "unlocked_on": "Desbloqueado el {{date}}",
+    "error_loading": "Error al cargar los logros. Por favor, inténtalo de nuevo.",
+    "empty": {
+      "title": "Aún no hay logros",
+      "message": "Aún no has desbloqueado logros en esta categoría. ¡Sigue practicando para ganar insignias!"
+    },
+    "items": {
+      "first_song": { "name": "Primeros pasos", "description": "Completa tu primera canción" },
+      "song_enthusiast": { "name": "Entusiasta de canciones", "description": "Completa 10 canciones" },
+      "song_master": { "name": "Maestro de canciones", "description": "Completa 50 canciones" },
+      "library_builder": { "name": "Creador de biblioteca", "description": "Añade 5 canciones a tu biblioteca" },
+      "streak_starter": { "name": "Iniciador de racha", "description": "Mantén una racha de 3 días" },
+      "week_warrior": { "name": "Guerrero semanal", "description": "Mantén una racha de 7 días" },
+      "month_master": { "name": "Maestro del mes", "description": "Mantén una racha de 30 días" },
+      "xp_novice": { "name": "Novato de XP", "description": "Gana 100 XP en total" },
+      "xp_expert": { "name": "Experto en XP", "description": "Gana 500 XP en total" },
+      "xp_master": { "name": "Maestro de XP", "description": "Gana 1000 XP en total" },
+      "bilingual": { "name": "Bilingüe", "description": "Aprende canciones en 2 idiomas diferentes" },
+      "polyglot": { "name": "Políglota", "description": "Aprende canciones en 3 idiomas diferentes" },
+      "language_master": { "name": "Maestro de idiomas", "description": "Aprende canciones en 5 idiomas diferentes" },
+      "perfect_score": { "name": "Puntuación perfecta", "description": "Completa una canción con 100% de precisión" },
+      "perfectionist": { "name": "Perfeccionista", "description": "Completa 5 canciones con 100% de precisión" },
+      "hard_mode_hero": { "name": "Héroe del modo difícil", "description": "Completa una canción en modo difícil" },
+      "hard_mode_master": { "name": "Maestro del modo difícil", "description": "Completa 10 canciones en modo difícil" }
+    }
+  },
+  "pages": {
+    "discover": {
+      "title": "Descubrir música",
+      "search_placeholder": "Buscar canciones, artistas...",
+      "loading": "Cargando canciones...",
+      "no_songs_found": "No se encontraron canciones",
+      "try_different_search": "Prueba una búsqueda diferente o actualiza para ver más canciones",
+      "add_song": "+ Añadir canción",
+      "paragraphs": [
+        "**Qué es:** Navega y busca nuevas canciones para añadir a tu biblioteca.",
+        "",
+        "**Cómo usar:**",
+        "1. Haz clic en la pestaña **\"Discover\"** en el panel",
+        "2. Las canciones se muestran automáticamente según tus idiomas objetivo",
+        "3. Usa la barra de búsqueda para encontrar canciones o artistas",
+        "4. Haz clic en **\"Refresh\"** para cargar nuevas sugerencias",
+        "",
+        "**Las tarjetas de canción muestran:**",
+        "• Miniatura del vídeo",
+        "• Título y artista",
+        "• Insignia de idioma (por ejemplo, \"EN\", \"ES\", \"FR\")",
+        "• Insignia ✓ Añadido si ya añadiste la canción",
+        "• Recuento de reproducciones para canciones populares",
+        "",
+        "**Añadir canciones:**",
+        "• Haz clic en **\"+ Add Song\"** para ir a la página Añadir canción",
+        "• Si ya está añadida, haz clic en **\"View Song\"** para verla en tu biblioteca",
+        "• Necesitarás pegar las letras para que la canción pueda añadirse",
+        "",
+        "💡 **Consejo:** Descubrir usa tus idiomas objetivo - actualízalos en la Información de la cuenta para mejores recomendaciones."
+      ]
+    },
+    "dashboard": {
+      "no_songs_title": "Aún no hay canciones",
+      "no_songs_subtitle": "¡Añade tu primera canción desde la pestaña Descubrir!",
+      "my_songs": "Mis canciones",
+      "stats": { "total_xp": "XP total", "day_streak": "Racha diaria", "songs": "Canciones" },
+      "change_lyrics": "Cambiar letra",
+      "remove_song_title": "¿Eliminar canción?",
+      "remove_song_confirm": "¿Estás seguro de que quieres eliminar \"{{title}}\" de {{artist}} de tu biblioteca?",
+      "remove_song_note": "Esta canción se moverá de nuevo a la pestaña Descubrir. Tus datos de progreso se conservarán."
+    },
+    "about": {
+      "back_to_library": "Volver a mi biblioteca",
+      "title": "Acerca de Singuage",
+      "vision_heading": "Nuestra visión",
+      "vision_body": "Singuage tiene la misión de hacer que aprender idiomas sea alegre y accesible para todos. Combinamos música, lecciones interactivas y funciones comunitarias para ayudar a estudiantes de todos los niveles a practicar vocabulario y pronunciación con canciones que aman.",
+      "what_we_offer_heading": "Lo que ofrecemos",
+      "offers": {
+        "1": "Lecciones curadas basadas en canciones y práctica interactiva línea por línea",
+        "2": "Descubrimiento personalizado según tus metas de idioma y artistas preferidos",
+        "3": "Seguimiento de progreso, rachas y XP para mantener la motivación",
+        "4": "Nivel gratuito soportado por mejoras opcionales"
+      },
+      "contact_heading": "Contacto y comunidad",
+      "contact_body": "Agradecemos comentarios y contribuciones de usuarios de todo el mundo. Si tienes sugerencias o quieres involucrarte, visita nuestra página de Contacto."
+    },
+    "addsong": {
+      "save_failed": "Error al guardar la canción",
+      "title_add": "Añadir canción",
+      "title_edit": "Editar canción",
+      "subtitle_add": "Añade letras y detalles para empezar a aprender esta canción",
+      "subtitle_edit": "Actualiza la letra o los metadatos de esta canción",
+      "tips_title": "💡 Consejos para añadir canciones",
+      "tips": {
+        "paste_lines": "Pega las letras con una línea por cada frase para una mejor sincronización.",
+        "auto_detect": "El idioma se detectará automáticamente a partir de tus letras.",
+        "manual_set": "Marca \"Establecer idioma manualmente\" si la detección automática es incorrecta.",
+        "edit_anytime": "Puedes editar los detalles de la canción en cualquier momento después de añadirla."
+      },
+      "song_title_label": "Título de la canción",
+      "placeholder_song_title": "p. ej. Blinding Lights",
+      "artist_label": "Artista",
+      "placeholder_artist": "p. ej. The Weeknd",
+      "language_label": "Idioma",
+      "manual_set_label": "Establecer idioma manualmente",
+      "detect_note": "El idioma se detectará automáticamente a partir de las letras a menos que lo configures manualmente.",
+      "lyrics_label": "Letras",
+      "search_genius": "Buscar en Genius",
+      "placeholder_lyrics": "Pega las letras aquí (una línea por frase de letra)",
+      "required_note": "Las letras son obligatorias — no puedes añadir una canción sin ellas.",
+      "updating": "Actualizando...",
+      "adding": "Añadiendo...",
+      "update_and_learn": "Actualizar y empezar a aprender",
+      "add_and_start": "Añadir y empezar a aprender"
+    },
+    "review_words": {
+      "no_words": "No tienes palabras para revisar.",
+      "begin_review": "Comenzar repaso",
+      "good_job_title": "¡Buen trabajo!",
+      "correct_label": "Respuestas correctas",
+      "xp_earned": "XP ganada",
+      "day_streak": "Racha diaria",
+      "time_label": "Tiempo",
+      "back_to_library": "Volver a la biblioteca",
+      "question_prefix": "¿Cuál es la traducción de ",
+      "placeholder_type_answer": "Escribe la traducción...",
+      "hint": "Pista",
+      "submit": "Enviar",
+      "original_line": "Línea original",
+      "progress": "Palabra {{current}} de {{total}}",
+      "load_failed": "Error al cargar palabras. Por favor, inténtalo de nuevo.",
+      "correct_progress": "Correcto: {{correct}}/{{total}}",
+      "time_seconds": "{{s}}s",
+      "time_minutes_seconds": "{{m}}m {{s}}s"
+    },
+    "premium": {
+      "social_proof": "{{count}} otras personas están llevando su aprendizaje al siguiente nivel!",
+      "title": "Singuage Premium",
+      "subtitle": "Desbloquea práctica ilimitada y funciones premium",
+      "benefits_heading": "Lo que obtienes",
+      "benefits": {
+        "1": "Líneas ilimitadas en todas las canciones",
+        "2": "Lecciones de repaso de vocabulario ilimitadas",
+        "3": "Mejor experiencia de usuario, funciones premium y más"
+      },
+      "pricing_heading": "Precios",
+      "pricing_description": "Elige el plan que se adapte a tus necesidades. Planes mensuales y anuales disponibles; el anual te permite ahorrar más.",
+      "cta_upgrade": "Mejorar a Premium",
+      "cta_restore": "Restaurar compra",
+      "faq_heading": "Preguntas frecuentes",
+      "faq": {
+        "q1": "¿Qué pasa si cancelo?",
+        "a1": "Tus beneficios Premium permanecen activos hasta el final de tu periodo de facturación actual.",
+        "q2": "¿Ofrecen reembolsos?",
+        "a2": "Los reembolsos se gestionan según la política de la plataforma (App Store / Google Play / Stripe). Contacta con soporte para ayuda.",
+        "q3": "¿Puedo compartir mi suscripción?",
+        "a3": "Las suscripciones están vinculadas a cuentas individuales y no pueden compartirse."
+      },
+      "message_heading": "Un mensaje de Singuage:",
+      "message": "Soy Bassil, CEO de Singuage. ¡Felicidades por pasarte a Premium! Con ello nos ayudas a mejorar la experiencia de aprendizaje cada día, apoyas al equipo y contribuyes a mantener Singuage gratuito para todos. ¡Disfruta tu experiencia Premium, te la has ganado!",
+      "celebrate_button": "¡Felicidades!"
+    },
+    "upgrade": {
+      "title": "Premium por $2.99/mes",
+      "description": "Premium desbloquea más práctica al eliminar el límite diario de líneas gratuitas en canciones (tu primera canción sigue siendo ilimitada incluso en la versión gratuita).",
+      "payment_heading": "Pago",
+      "cta_continue": "Continuar al pago",
+      "cta_return": "Volver a mi biblioteca"
+    },
+    "upgrade_success": {
+      "title": "Gracias — tu pago fue recibido",
+      "processing": "Estamos procesando tu pago. El acceso a Premium se activará en breve — esto se gestiona automáticamente mediante webhooks de Stripe.",
+      "dont_update": "No intentes actualizar el estado de tu suscripción manualmente desde esta página.",
+      "cta_dashboard": "Ir al panel",
+      "cta_back_to_upgrade": "Volver a Mejorar"
+    },
+    "upgrade_cancel": {
+      "title": "Pago cancelado",
+      "message": "Tu pago fue cancelado. Puedes intentarlo de nuevo o volver a la biblioteca.",
+      "cta_return": "Volver a Mejorar",
+      "cta_dashboard": "Ir al panel"
+    },
+    "congratulations": {
+      "title": "¡Felicidades! 🎉",
+      "completed": "Completaste \"{{title}}\"!",
+      "message": "¡Buen trabajo! Cada sesión te acerca más a la fluidez. Sigue practicando y te sorprenderá cuánto puedes lograr. ¡Estamos orgullosos de tu dedicación!",
+      "stats": { "accuracy": "Precisión", "lines": "Líneas", "time": "Tiempo" },
+      "xp_earned": "+{{xp}} XP ganados",
+      "back_to_library": "Volver a mi biblioteca"
+    },
+    "terms": {
+      "title": "Términos de Servicio",
+      "last_updated": "Última actualización: {{date}}",
+      "sections": {
+        "acceptance": {
+          "title": "1. Aceptación de los Términos",
+          "p1": "Bienvenido a Singuage (\"Singuage\", \"nosotros\", \"nos\" o \"nuestro\"). Estos Términos de Servicio (\"Términos\") rigen su acceso y uso del sitio web ubicado en singuage.com (el \"Servicio\").",
+          "p2": "Al acceder o usar el Servicio, aceptas estar sujeto a estos Términos. Si no estás de acuerdo, no uses el Servicio."
+        },
+        "eligibility": {
+          "title": "2. Elegibilidad y cuentas para menores",
+          "p1": "Singuage es una plataforma educativa de público general y no está dirigida específicamente a niños, aunque los menores pueden usar el Servicio.",
+          "p2": "Ofrecemos cuentas opcionales para menores que filtran automáticamente contenido explícito. Al usar el Servicio, declaras que tienes permiso de un padre o tutor legal si la ley aplicable lo exige."
+        },
+        "accounts": {
+          "title": "3. Cuentas y registro",
+          "li1": "Se requiere una cuenta para usar Singuage.",
+          "li2": "Proporcionar una dirección de correo electrónico es opcional.",
+          "li3": "Eres responsable de proteger las credenciales de tu cuenta.",
+          "li4": "No puedes compartir tu cuenta con otras personas.",
+          "li5": "Nos reservamos el derecho de suspender o terminar cuentas que violen estos Términos."
+        },
+        "purpose": {
+          "title": "4. Propósito educativo y uso previsto",
+          "p1": "Singuage está destinado únicamente a propósitos personales, educativos y transformadores. El Servicio está diseñado para ayudar a los usuarios a aprender idiomas mediante análisis de música y herramientas de estudio interactivas.",
+          "p2": "No garantizamos resultados de aprendizaje específicos."
+        },
+        "user_content": {
+          "title": "5. Contenido del usuario y propiedad",
+          "user_submitted_title": "5.1 Contenido enviado por el usuario",
+          "user_submitted": {
+            "p1": "Los usuarios pueden enviar texto, notas, definiciones y letras (\"Contenido del Usuario\") para uso privado y personal dentro del Servicio.",
+            "p2": "Conservas la propiedad total de todo el Contenido del Usuario que envíes.",
+            "p3": "Singuage no reclama la propiedad del Contenido del Usuario, no lo muestra públicamente, no lo distribuye a otros usuarios y no vende ni licencia el Contenido del Usuario."
+          },
+          "lyrics_title": "5.2 Letras y descargo de responsabilidad de derechos de autor",
+          "lyrics": { "p1": "Las letras son proporcionadas por los usuarios, no por Singuage. Las letras no se comparten públicamente y se usan solo de forma transitoria para análisis privados. Singuage no aloja una base de datos pública de letras y actúa únicamente como una herramienta privada de análisis y aprendizaje. La responsabilidad por el contenido pegado recae en el usuario." },
+          "license_title": "5.3 Licencia para operar el Servicio",
+          "license": { "p1": "Concedes a Singuage una licencia limitada, no exclusiva y revocable para procesar el Contenido del Usuario solo según sea necesario para operar el Servicio para ti. Esta licencia termina cuando el contenido se elimina o ya no es necesario para la operación del servicio." }
+        },
+        "embedded": { "title": "6. Contenido de terceros integrado", "p1": "El Servicio integra contenido de plataformas de terceros como YouTube. Singuage no controla y no es responsable del contenido o servicios de terceros. El uso de servicios de terceros está sujeto a sus propios términos." },
+        "acceptable_use": { "title": "7. Uso aceptable", "p1": "Aceptas no: compartir cuentas; raspar, descargar o extraer contenido; descompilar o realizar ingeniería inversa del Servicio; usar automatización o bots; usar el Servicio con fines comerciales; ni eludir límites de uso o protecciones." },
+        "subscriptions": {
+          "title": "8. Suscripciones y pagos",
+          "plans_title": "8.1 Planes",
+          "plans": { "p1": "Singuage ofrece un nivel gratuito con limitaciones, una suscripción mensual de pago y una prueba gratuita de 5 días." },
+          "billing_title": "8.2 Facturación y renovación",
+          "billing": { "p1": "Las suscripciones se renuevan automáticamente mensualmente. Los pagos se procesan a través de Stripe. Puedes cancelar en cualquier momento." },
+          "refund_title": "8.3 Política de reembolso",
+          "refund": { "p1": "No se proporcionan reembolsos. Tras la cancelación, el acceso Premium permanecerá activo hasta el final del periodo pagado." }
+        },
+        "termination": { "title": "9. Terminación", "p1": "Podemos suspender o terminar el acceso a nuestra discreción, incluyendo por violaciones de estos Términos." },
+        "dmca": { "title": "10. Política de derechos de autor DMCA", "p1": "Singuage cumple con la Ley de Derechos de Autor del Milenio Digital (DMCA).", "takedown_title": "10.1 Solicitudes de eliminación", "takedown": { "p1": "Si crees que se está utilizando material protegido por derechos de autor de forma indebida, envía un aviso a:", "p2": "Incluye identificación de la obra con derechos de autor, identificación del material supuestamente infractor, tu información de contacto, una declaración de buena fe, una declaración bajo pena de perjurio y tu firma (física o electrónica)." } },
+        "disclaimer": { "title": "11. Renuncia de garantías", "p1": "EL SERVICIO SE PROPORCIONA \"TAL CUAL\" Y \"SEGÚN DISPONIBILIDAD\". RENUNCIAMOS A TODAS LAS GARANTÍAS, EXPRESAS O IMPLÍCITAS, INCLUIDA LA IDONEIDAD PARA UN PROPÓSITO PARTICULAR." },
+        "limitation": { "title": "12. Limitación de responsabilidad", "p1": "EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY, SINGUAGE NO SERÁ RESPONSABLE DE DAÑOS INDIRECTOS, INCIDENTALES O CONSECUENCIALES." },
+        "indemnification": { "title": "13. Indemnización", "p1": "Aceptas indemnizar y eximir de responsabilidad a Singuage por reclamaciones que surjan de tu uso del Servicio o del Contenido del Usuario." },
+        "arbitration": { "title": "14. Arbitraje y renuncia a acciones colectivas", "p1": "Todas las disputas se resolverán mediante arbitraje vinculante en Massachusetts, y renuncias al derecho a participar en acciones colectivas." },
+        "governing_law": { "title": "15. Ley aplicable", "p1": "Estos Términos se rigen por las leyes de la Commonwealth de Massachusetts, EE. UU." }
+      },
+      "contact": { "title": "16. Contacto", "email_label": "Correo electrónico:" }
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "last_updated": "Última actualización: {{date}}",
+      "sections": {
+        "introduction": {
+          "title": "1. Introducción",
+          "p1": "Singuage (\"Singuage\", \"nosotros\" o \"nuestro\") respeta tu privacidad y se compromete a proteger tu información personal. Esta Política de Privacidad explica cómo recopilamos, usamos, almacenamos y protegemos la información cuando utilizas singuage.com (el \"Servicio\").",
+          "p2": "Al usar el Servicio, aceptas esta Política de Privacidad."
+        },
+        "purpose": {
+          "title": "2. Propósito educativo y transformador",
+          "p1": "Singuage es una plataforma orientada al aprendizaje diseñada para ayudar a los usuarios a aprender idiomas mediante la música de forma personal, educativa y transformadora.",
+          "p2": "El contenido enviado por los usuarios —incluidas letras pegadas, notas y definiciones— se:",
+          "list": {
+            "li1": "Procesa únicamente para proporcionar las funciones de aprendizaje del Servicio",
+            "li2": "Se utiliza únicamente para análisis privados y personales",
+            "li3": "Nunca se muestra públicamente",
+            "li4": "Nunca se comparte con otros usuarios",
+            "li5": "Nunca se distribuye, vende ni licencia"
+          },
+          "p3": "Singuage no reclama la propiedad del contenido enviado por los usuarios."
+        },
+        "information": {
+          "title": "3. Información que recopilamos",
+          "you_provide": {
+            "title": "3.1 Información que proporcionas",
+            "li1": "Nombre de usuario",
+            "li2": "Dirección de correo electrónico (opcional)",
+            "li3": "Texto enviado por el usuario, notas y definiciones"
+          },
+          "automatic": {
+            "title": "3.2 Información recopilada automáticamente",
+            "li1": "Dirección IP",
+            "li2": "Información del dispositivo y del navegador",
+            "li3": "Datos de uso e interacción",
+            "li4": "Cookies y tecnologías similares"
+          },
+          "auth": {
+            "title": "3.3 Datos de autenticación",
+            "p1": "Las contraseñas se almacenan con hashing usando métodos estándar de la industria y nunca en texto plano."
+          }
+        },
+        "lyrics": {
+          "title": "4. Privacidad de letras y contenido enviado por el usuario",
+          "p1": "Las letras enviadas por los usuarios son aportadas íntegramente por el usuario, permanecen privadas en la cuenta del usuario, no se indexan, publican ni comparten, y no se usan para crear una base de datos pública de letras.",
+          "retention_title": "Retención de datos del contenido del usuario",
+          "retention_p1": "El contenido enviado por los usuarios se conserva solo durante el tiempo necesario para proporcionar el Servicio y se elimina posteriormente, o cuando el usuario elimina su cuenta o su contenido."
+        },
+        "use": {
+          "title": "5. Cómo utilizamos la información",
+          "p1": "Utilizamos la información recopilada para operar y mantener el Servicio, proporcionar funciones educativas, mejorar el rendimiento y la experiencia del usuario, procesar suscripciones y pagos, enviar comunicaciones transaccionales y enviar recordatorios u actualizaciones opcionales (solo si el usuario acepta). No utilizamos datos personales con fines publicitarios."
+        },
+        "third_party": {
+          "title": "6. Procesamiento y compartición con terceros",
+          "p1": "Compartimos datos limitados solo con proveedores de terceros de confianza necesarios para operar el Servicio:",
+          "payment_label": "Procesamiento de pagos:",
+          "payment_p1": "La información de pago se procesa directamente por Stripe. Singuage no almacena los datos completos de pago.",
+          "analytics_label": "Analítica:",
+          "analytics_p1": "Los datos de uso pueden ser procesados por Google Analytics en forma agregada o anonimizada.",
+          "infrastructure_label": "Infraestructura y alojamiento:",
+          "infrastructure_p1": "Los datos pueden ser almacenados o procesados por proveedores de alojamiento e infraestructura seguros.",
+          "p2": "Nunca vendemos datos personales."
+        },
+        "cookies": {
+          "title": "7. Cookies y analítica",
+          "p1": "Usamos cookies para mantener sesiones, mejorar la funcionalidad y analizar el uso. Los usuarios pueden optar por no participar en cookies y analítica no esenciales en cualquier momento. Las preferencias de cookies se pueden ajustar mediante la configuración del navegador o los controles del sitio (cuando estén disponibles)."
+        },
+        "email": {
+          "title": "8. Comunicaciones por correo electrónico",
+          "p1": "Enviamos correos transaccionales (cuenta, facturación, avisos del servicio) y recordatorios u actualizaciones importantes opcionales (solo si el usuario acepta). No enviamos publicidad ni spam."
+        },
+        "retention": {
+          "title": "9. Retención de datos",
+          "p1": "Conservamos los datos personales solo mientras sea necesario para prestar el Servicio, cumplir obligaciones legales, resolver disputas y hacer cumplir acuerdos. Los usuarios pueden solicitar la eliminación de sus datos en cualquier momento, sujeto a requisitos legales."
+        },
+        "security": {
+          "title": "10. Seguridad de los datos",
+          "p1": "Implementamos salvaguardas técnicas y organizativas razonables para proteger la información personal. Aunque usamos medidas de seguridad estándar en la industria, ningún sistema es completamente seguro y no podemos garantizar la seguridad absoluta de tu información."
+        },
+        "rights": {
+          "title": "11. Tus derechos de privacidad",
+          "p1": "GDPR (usuarios de la Unión Europea): Puedes tener derecho a acceder, corregir, solicitar la eliminación, restringir u oponerte al procesamiento y presentar una reclamación ante la autoridad de protección de datos local.",
+          "p2": "CCPA / CPRA (residentes de California): Puedes tener derecho a solicitar la divulgación de los datos personales recopilados, solicitar la eliminación de los datos personales y oponerte a la venta de datos personales. Singuage no vende datos personales, pero respetamos los derechos de transparencia y acceso aplicables. Las solicitudes se pueden realizar por correo electrónico."
+        },
+        "international": {
+          "title": "12. Usuarios internacionales",
+          "p1": "Tu información puede ser procesada en los Estados Unidos. Al usar el Servicio, das tu consentimiento a dicho procesamiento cuando la ley lo permita."
+        },
+        "changes": {
+          "title": "13. Cambios en esta política",
+          "p1": "Podemos actualizar esta Política de Privacidad periódicamente. El uso continuado del Servicio después de los cambios constituye la aceptación de la política actualizada."
+        },
+        "contact": { "title": "14. Información de contacto", "email_label": "Correo electrónico:" }
+      },
+      "contact": { "title": "14. Contacto", "email_label": "Correo electrónico:" }
+    },
+    "learning_session": {
+      "stats_box": { "title": "Estadísticas de la sesión", "accuracy": "Precisión", "lines": "Líneas", "mode": "Modo" },
+      "placeholder_type_lyrics": "Escribe las letras aquí...",
+      "modes": { "easy": "Fácil", "medium": "Medio", "hard": "Difícil" },
+      "difficulty_modal": {
+        "title": "¿Cambiar dificultad?",
+        "message": "Cambiar la dificultad reiniciará tu progreso desde la primera línea. Tu progreso actual no se guardará.",
+        "cta_cancel": "Cancelar",
+        "cta_continue": "Continuar",
+        "options": { "easy": "Fácil", "medium": "Medio", "hard": "Difícil" }
+      },
+      "loading_song": "Cargando canción...",
+      "no_lyrics": "No hay letras disponibles para esta canción",
+      "artist_label": "Artista:",
+      "language_label": "Idioma:",
+      "press_shortcuts": "Pulsa ? para atajos"
+    },
+    "progress": {
+      "title": "Progreso",
+      "subtitle": "Sigue tu progreso de aprendizaje, rachas y vocabulario",
+      "overview_tab": "Resumen",
+      "vocabulary_tab": "Vocabulario",
+      "bars": {
+        "xp": "XP total",
+        "streak": "Racha actual"
+      },
+      "languages_label": "Idiomas objetivo",
+      "days_active": "Días activos",
+      "xp_progress_heading": "Progreso de XP y Nivel",
+      "current_level": "Nivel actual",
+      "level_label": "Nivel {{level}}",
+      "current_xp_short": "{{xp}} XP",
+      "next_level_label": "Siguiente nivel en {{xp}} XP",
+      "xp_values": { "easy": "+10 XP", "medium": "+20 XP", "hard": "+30 XP" },
+      "streak_history": "Historial de racha",
+      "weekdays": { "sun": "Dom", "mon": "Lun", "tue": "Mar", "wed": "Mié", "thu": "Jue", "fri": "Vie", "sat": "Sáb" },
+      "practiced_on": "Practicado el {{date}}",
+      "current_streak_label": "Racha actual",
+      "current_streak_display": "{{count}} días de racha",
+      "last_practice_label": "Última práctica",
+      "languages_progress_heading": "Progreso por idioma",
+      "language_header": "{{code}} — Nivel {{level}}",
+      "levels": { "beginner": "Principiante", "intermediate": "Intermedio", "advanced": "Avanzado" },
+      "total_xp": "{{xp}} XP",
+      "xp_to_next": "{{xp}} XP para el siguiente",
+      "xp_summary": "{{xp}} XP — siguiente a {{cumNext}} XP",
+      "no_target_languages_msg": "No hay idiomas objetivo establecidos",
+      "add_languages_cta": "Añadir idiomas objetivo",
+      "no_target_languages_help": "Configura tus idiomas objetivo en Cuenta → Idiomas objetivo para ver el progreso y el vocabulario por idioma."
+    },
+    "how_to_play": {
+      "title": "Cómo jugar",
+      "subtitle": "Aprende con canciones — paso a paso",
+      "no_description": "Descripción no disponible para este tema.",
+      "overview": "Singuage convierte canciones en lecciones interactivas de idiomas. Sigue los pasos a continuación para aprovechar al máximo cada canción.",
+      "steps": {
+        "1": { "title": "Descubrir una canción", "desc": "Encuentra canciones en Descubrir o añade tus favoritas a tu biblioteca." },
+        "2": { "title": "Analizar las letras", "desc": "Singuage resalta conceptos gramaticales y vocabulario en cada línea." },
+        "3": { "title": "Practicar vocabulario", "desc": "Toca palabras para añadirlas a tu lista de práctica y repasarlas más tarde." },
+        "4": { "title": "Tomar lecciones rápidas", "desc": "Abre las lecciones cortas para aprender gramática y ejemplos de uso relacionados con la canción." },
+        "5": { "title": "Seguimiento del progreso", "desc": "Gana XP, desbloquea logros y mantiene las rachas mientras practicas." }
+      },
+      "tips_heading": "Consejos",
+      "tips": { "1": "Comienza con canciones que tengan letras claras para obtener el mejor análisis gramatical.", "2": "Usa la función de prueba para comprobar tus traducciones y mover palabras a Palabras Aprendidas.", "3": "Activa Premium para práctica ilimitada y acceso sin conexión." },
+      "guide_topics_heading": "Temas de la guía",
+      "topics": {
+        "account-info": "Información de la cuenta",
+        "achievements": "Logros",
+        "add-songs": "Añadir canciones",
+        "change-difficulty": "Cambiar dificultad",
+        "difficulties": "Dificultades",
+        "discover": "Descubrir",
+        "learned-words": "Palabras aprendidas",
+        "learning-session": "Sesión de aprendizaje",
+        "my-library": "Mi biblioteca",
+        "progress-tracking": "Seguimiento del progreso",
+        "settings": "Configuración",
+        "vocabulary": "Vocabulario",
+        "words-to-work-on": "Palabras para practicar"
+      },
+      "content": {
+        "account-info": {
+          "title": "Información de la cuenta",
+          "paragraphs": [
+            "**Qué es:** Tu página de perfil personal donde puedes ver y editar los detalles de tu cuenta.",
+            "",
+            "**Cómo acceder:** Haz clic en tu foto de perfil en la esquina superior derecha y selecciona \"Información de la cuenta\".",
+            "",
+            "**Qué puedes hacer:**",
+            "• **Editar nombre para mostrar:** Haz clic en el icono de editar junto a tu nombre para cambiar cómo apareces en Singuage",
+            "• **Ver correo electrónico:** Tu dirección de correo registrada (no se puede cambiar)",
+            "• **Ver idioma nativo:** El idioma que hablas de forma nativa",
+            "• **Tipo de cuenta:** Muestra si eres Adulto (18+) o Menor",
+            "• **Miembro desde:** Cuándo creaste la cuenta",
+            "• **Editar idiomas objetivo:** Haz clic en \"Editar\" para seleccionar qué idiomas quieres aprender",
+            "• **Ver estadísticas:** Ve tu XP total y racha actual de un vistazo",
+            "",
+            "💡 **Consejo profesional:** Mantén tus idiomas objetivo actualizados para que Descubrir muestre canciones relevantes!"
+          ]
+        },
+        "achievements": {
+          "title": "Logros",
+          "paragraphs": [
+            "**Qué es:** Una colección de insignias que puedes desbloquear al completar varios desafíos.",
+            "",
+            "**Cómo acceder:** Haz clic en tu foto de perfil → \"Logros\".",
+            "",
+            "**Categorías de logros:**",
+            "• **Aprendizaje:** Completa canciones y practica con regularidad",
+            "• **Racha:** Mantén días consecutivos de práctica",
+            "• **XP:** Gana puntos de experiencia mediante el aprendizaje",
+            "• **Idiomas:** Aprende canciones en varios idiomas",
+            "• **Dominio:** Obtén puntuaciones perfectas",
+            "• **Desafío:** Completa tareas difíciles",
+            "",
+            "**Cómo funciona:**",
+            "• Los logros bloqueados muestran tu progreso con una barra de progreso",
+            "• Los logros desbloqueados se muestran en dorado con la fecha en que los obtuviste",
+            "• Haz clic en los filtros de categoría para ver tipos específicos de logros",
+            "",
+            "💡 **Consejo profesional:** Revisa los logros regularmente para ver qué metas estás cerca de completar!"
+          ]
+        },
+        "add-songs": {
+          "title": "Añadir canciones",
+          "paragraphs": [
+            "**Qué es:** Añade nuevas canciones a tu biblioteca pegando sus letras.",
+            "",
+            "**Cómo añadir una canción:**",
+            "1. Ve a la pestaña **Descubrir**",
+            "2. Busca o navega canciones",
+            "3. Haz clic en **\"+ Add Song\"** en cualquier vídeo",
+            "4. Serás llevado a la página Añadir canción con el vídeo cargado",
+            "5. Rellena: Título, Artista, Idioma (opcional - detectado automáticamente) y **Letras** (obligatorio)",
+            "6. Haz clic en **\"Add & Start Learning\"**",
+            "",
+            "**Importante:**",
+            "• **Las letras son OBLIGATORIAS** - no puedes añadir una canción sin ellas",
+            "• El idioma se detecta automáticamente a partir de las letras",
+            "• Marca \"Establecer idioma manualmente\" si la detección es incorrecta",
+            "• Pega las letras con una línea por frase para una mejor sincronización",
+            "",
+            "**Editar canciones:**",
+            "• En Mi Biblioteca, haz clic en el menú de tres puntos (⋮) en cualquier canción",
+            "• Selecciona \"Cambiar letra\" para actualizar la canción",
+            "",
+            "💡 **Consejo:** Copia letras de fuentes fiables como Genius o AZLyrics para mayor precisión!"
+          ],
+          "tips_title": "💡 Consejos para añadir canciones",
+          "tips": {
+            "paste_lines": "Pega las letras con una línea por cada frase para una mejor sincronización.",
+            "auto_detect": "El idioma se detectará automáticamente a partir de tus letras.",
+            "manual_set": "Marca \"Establecer idioma manualmente\" si la detección automática es incorrecta.",
+            "edit_anytime": "Puedes editar los detalles de la canción en cualquier momento después de añadirla."
+          }
+        },
+        "change-difficulty": {
+          "title": "Cambiar dificultad",
+          "paragraphs": [
+            "**Qué es:** Cambia entre los modos Fácil, Medio y Difícil durante una sesión de aprendizaje.",
+            "",
+            "**Cómo cambiar:**",
+            "1. Durante una sesión de aprendizaje, desplázate hacia abajo en el lado derecho",
+            "2. Haz clic en el botón **\"Cambiar dificultad\"**",
+            "3. Si tienes progreso, confirma que deseas reiniciar",
+            "4. Selecciona tu nuevo nivel de dificultad",
+            "",
+            "**Importante:**",
+            "• Cambiar la dificultad **reinicia tu progreso** desde la primera línea",
+            "• Tus datos de sesión actuales no se guardarán",
+            "• El reproductor de vídeo se reinicia desde el principio",
+            "• Esto asegura recompensas de XP justas para la dificultad elegida",
+            "",
+            "💡 **Consejo:** Elige tu dificultad al inicio para evitar perder progreso!"
+          ]
+        },
+        "difficulties": {
+          "title": "Dificultades",
+          "paragraphs": [
+            "**Tres niveles de dificultad para adaptar a tu nivel:**",
+            "",
+            "**MODO FÁCIL** (+10 XP por línea)",
+            "• Todas las letras son completamente visibles",
+            "• Toca cualquier palabra para ver su traducción",
+            "• Perfecto para principiantes o para aprender canciones nuevas",
+            "• Ve la oración completa con la palabra resaltada",
+            "",
+            "**MODO MEDIO** (+20 XP por línea)",
+            "• Las vocales están ocultas (reemplazadas por _ )",
+            "• Ejemplo: \"Hello World\" → \"H_ll_ W_rld\"",
+            "• Toca palabras para ver la traducción (las vocales siguen ocultas en el original)",
+            "• Genial para estudiantes intermedios que conocen vocabulario básico",
+            "",
+            "**MODO DIFÍCIL** (+30 XP por línea)",
+            "• Todas las letras están ocultas (reemplazadas por • )",
+            "• Toca palabras para ver la traducción de la **LÍNEA ANTERIOR**",
+            "• En la primera línea, al tocar se mostrará en blanco (no hay línea anterior)",
+            "• Las etiquetas cambian a \"LÍNEA ANTERIOR: ORIGINAL\" y \"LÍNEA ANTERIOR: TRADUCCIÓN\"",
+            "• ¡El reto definitivo para estudiantes avanzados!",
+            "",
+            "💡 **Consejo:** Los modos Medio y Difícil te ayudan a memorizar las letras en lugar de copiarlas."
+          ]
+        },
+        "discover": {
+          "title": "Descubrir",
+          "paragraphs": [
+            "**Qué es:** Navega y busca nuevas canciones para añadir a tu biblioteca.",
+            "",
+            "**Cómo usar:**",
+            "1. Haz clic en la pestaña **\"Descubrir\"** en el panel",
+            "2. Las canciones se muestran automáticamente según tus idiomas objetivo",
+            "3. Usa la barra de búsqueda para encontrar canciones o artistas",
+            "4. Haz clic en **\"Refresh\"** para cargar nuevas sugerencias",
+            "",
+            "**Las tarjetas de canción muestran:**",
+            "• Miniatura del vídeo",
+            "• Título y artista",
+            "• Insignia de idioma (por ejemplo, \"EN\", \"ES\", \"FR\")",
+            "• Etiqueta ✓ Añadido si ya añadiste la canción",
+            "• Recuento de reproducciones para canciones populares",
+            "",
+            "**Añadir canciones:**",
+            "• Haz clic en **\"+ Add Song\"** para ir a la página Añadir canción",
+            "• Si ya está añadida, haz clic en **\"View Song\"** para verla en tu biblioteca",
+            "• Necesitarás pegar las letras para que la canción pueda añadirse",
+            "",
+            "💡 **Consejo:** Descubrir usa tus idiomas objetivo - actualízalos en la Información de la cuenta para mejores recomendaciones."
+          ]
+        },
+        "learned-words": {
+          "title": "Palabras aprendidas",
+          "paragraphs": [
+            "**Qué es:** Palabras que has probado con éxito y dominado.",
+            "",
+            "**Cómo acceder:** Progreso → Pestaña Vocabulario → Desplázate a \"Palabras aprendidas\".",
+            "",
+            "**Cómo las palabras se vuelven 'aprendidas':**",
+            "1. Añade palabras a \"Palabras para practicar\" durante las sesiones de aprendizaje",
+            "2. En la sección Vocabulario, haz clic en **\"Marcar como aprendido\"** en cualquier palabra",
+            "3. Escribe la traducción correcta en minúsculas",
+            "4. Si es correcta, la palabra se mueve a Palabras aprendidas!",
+            "",
+            "**Funciones:**",
+            "• Las palabras se muestran en una cuadrícula con una marca verde",
+            "• Muestran la palabra y su traducción",
+            "• Organizadas por idioma",
+            "• Permanecen en tu colección aprendida de forma permanente",
+            "",
+            "💡 **Consejo:** Revisa tus palabras aprendidas ocasionalmente para mantenerlas frescas en la memoria!"
+          ]
+        },
+        "learning-session": {
+          "title": "Sesión de aprendizaje",
+          "paragraphs": [
+            "**Qué es:** La interfaz principal de aprendizaje donde practicas escribiendo las letras de canciones.",
+            "",
+            "**Cómo funciona:**",
+            "1. Selecciona una canción de Mi Biblioteca y haz clic en **\"Empezar a aprender\"**",
+            "2. Elige tu dificultad (Fácil, Medio o Difícil)",
+            "3. Mira el vídeo y escribe las letras a medida que aparecen",
+            "4. Completa todas las líneas para terminar la sesión y ganar XP",
+            "",
+            "**Elementos de la interfaz:**",
+            "• **Reproductor de vídeo:** Muestra el videoclip (arriba a la izquierda)",
+            "• **Línea actual:** Muestra la línea de letra que debes escribir",
+            "• **Campo de entrada:** Donde escribes las letras",
+            "• **Progreso:** Muestra líneas completadas y porcentaje de precisión",
+            "• **Desplegable de gramática:** Conceptos gramaticales educativos encontrados en la canción",
+            "",
+            "**Mecánica de tipeo:**",
+            "• Las letras se vuelven **verdes** cuando se escriben correctamente",
+            "• Las letras se vuelven **rojas** si se escriben incorrectamente",
+            "• Los espacios y la puntuación se manejan automáticamente",
+            "• La línea avanza cuando has escrito suficientes caracteres correctos",
+            "",
+            "**Atajos de teclado:**",
+            "• **↑** - Reproducir/Pausar vídeo",
+            "• **↓** - Abrir modal de traducción",
+            "• **←** - Retroceder 5 segundos",
+            "• **→** - Adelantar 5 segundos",
+            "• **?** - Mostrar atajos de teclado",
+            "",
+            "**Tomar un descanso:**",
+            "• Haz clic en el botón **\"Tomar un descanso\"** (arriba a la izquierda)",
+            "• Tu progreso se guarda automáticamente",
+            "• Reanuda en cualquier momento dentro de 7 días",
+            "",
+            "💡 **Consejo profesional:** ¡Toca cualquier palabra para ver su traducción sin salir de la sesión!"
+          ]
+        },
+        "my-library": {
+          "title": "Mi biblioteca",
+          "paragraphs": [
+            "**Qué es:** Tu colección personal de canciones guardadas.",
+            "",
+            "**Cómo acceder:** Panel → Pestaña \"Mi biblioteca\" (vista predeterminada).",
+            "",
+            "**Qué ves:**",
+            "• **Tarjetas de estadísticas:** XP total, racha diaria y número de canciones",
+            "• **Cuadrícula de canciones:** Todas tus canciones añadidas con miniaturas",
+            "• **Insignias de idioma:** Vista rápida del idioma de cada canción",
+            "",
+            "**Acciones en la tarjeta de canción:**",
+            "• **Empezar a aprender:** Inicia una sesión de aprendizaje con esta canción",
+            "• **Menú de tres puntos (⋮):**",
+            "  - \"Cambiar letra\" - Edita la letra o los detalles de la canción",
+            "  - \"Eliminar\" - Quita la canción de tu biblioteca (con confirmación)",
+            "",
+            "**Entendiendo las estadísticas:**",
+            "• **XP total:** Suma de todos los puntos de experiencia ganados",
+            "• **Racha diaria:** Días consecutivos que has practicado",
+            "• **Canciones:** Número total de canciones en tu biblioteca",
+            "",
+            "**Biblioteca vacía:**",
+            "• Si no tienes canciones, verás un mensaje para visitar Descubrir",
+            "• Haz clic en \"Buscar canciones\" para encontrar tu primera canción",
+            "",
+            "💡 **Consejo:** Mantén tu biblioteca organizada eliminando canciones que ya hayas dominado o que ya no quieras practicar!"
+          ]
+        },
+        "progress-tracking": {
+          "title": "Seguimiento del progreso",
+          "paragraphs": [
+            "**Qué es:** Realiza un seguimiento de tus estadísticas de aprendizaje, rachas y progreso de vocabulario.",
+            "",
+            "**Cómo acceder:** Haz clic en tu foto de perfil → \"Progreso\".",
+            "",
+            "**Dos pestañas principales:**",
+            "",
+            "**1. PESTAÑA RESUMEN:**",
+            "• **Estadísticas totales:** XP ganada, nivel actual, días desde que te uniste",
+            "• **Calendario de rachas:** Calendario visual que muestra los días practicados",
+            "• **Racha actual:** Cuántos días consecutivos has practicado",
+            "• **Racha más larga:** Tu mejor racha alcanzada",
+            "",
+            "**2. PESTAÑA VOCABULARIO:**",
+            "• Cambia entre idiomas con el desplegable",
+            "• Ve \"Palabras para practicar\" (estado de aprendizaje)",
+            "• Ve \"Palabras aprendidas\" (vocabulario dominado)",
+            "• Edita traducciones o pruébate a ti mismo con palabras",
+            "",
+            "**Rachas:**",
+            "• Practica al menos una vez al día para mantener tu racha",
+            "• Las rachas se reinician a 0 si falta un día",
+            "• El calendario resalta los días que has practicado",
+            "",
+            "**XP y niveles:**",
+            "• Gana XP completando sesiones de aprendizaje",
+            "• Modo Fácil: +10 XP por línea",
+            "• Modo Medio: +20 XP por línea",
+            "• Modo Difícil: +30 XP por línea",
+            "• Los bonos de precisión pueden aumentar el XP ganado",
+            "",
+            "💡 **Consejo:** Consulta tu progreso a diario para mantener la motivación y conservar tu racha!"
+          ]
+        },
+        "settings": {
+          "title": "Configuración",
+          "paragraphs": [
+            "**Qué es:** Personaliza tu experiencia Singuage y gestiona tu cuenta.",
+            "",
+            "**Cómo acceder:** Haz clic en tu foto de perfil → \"Configuración\".",
+            "",
+            "**Apariencia:**",
+            "• **Tema:** Alterna entre modo Claro y Oscuro",
+            "• Los cambios se aplican inmediatamente en todo el sitio",
+            "",
+            "**Notificaciones:**",
+            "• **Notificaciones por correo:** Actualizaciones enviadas a tu correo",
+            "• **Notificaciones push:** Notificaciones del navegador (cuando estén activadas)",
+            "• **Recordatorios de racha:** Recordatorio diario para mantener tu racha",
+            "",
+            "**Acciones de cuenta:**",
+            "• **Cerrar sesión:** Cierra tu sesión",
+            "• **Eliminar cuenta:** Elimina permanentemente tu cuenta y todos los datos (requiere confirmación)",
+            "",
+            "**Información de la aplicación:**",
+            "• Número de versión",
+            "• Información de compilación",
+            "• Fecha de creación de la cuenta",
+            "",
+            "💡 **Consejo:** Activa los recordatorios de racha si quieres ayuda para mantener la práctica diaria!"
+          ]
+        },
+        "vocabulary": {
+          "title": "Vocabulario",
+          "paragraphs": [
+            "**Qué es:** Tu lista personal de vocabulario con palabras que estás aprendiendo y que has dominado.",
+            "",
+            "**Cómo acceder:** Progreso → Pestaña \"Vocabulario\".",
+            "",
+            "**Añadir palabras:**",
+            "1. Durante una sesión de aprendizaje, haz clic en cualquier palabra",
+            "2. Aparecerá un modal de traducción",
+            "3. Haz clic en **\"+ Palabras para practicar\"** en la parte inferior",
+            "4. La palabra se guarda con su traducción y contexto",
+            "",
+            "**Dos secciones:**",
+            "1. Palabras para practicar (Aprendizaje):",
+            "• Palabras que estás aprendiendo",
+            "• Muestra palabra, traducción y frase de contexto",
+            "• Acciones disponibles:",
+            "  - Editar (icono de lápiz): Cambiar la traducción si es necesario",
+            "  - Marcar como aprendido: Pruébate a ti mismo",
+            "  - Eliminar (icono de papelera): Eliminar de tu lista",
+            "",
+            "2. Palabras aprendidas (Dominadas):",
+            "• Palabras que has superado con éxito",
+            "• Mostradas en una cuadrícula con marcas de verificación",
+            "• Muestran palabra y traducción",
+            "• Guardadas permanentemente en tu colección aprendida",
+            "",
+            "**Probarte a ti mismo:**",
+            "1. Haz clic en \"Marcar como aprendido\" en cualquier palabra",
+            "2. Aparecerá un modal que muestra la palabra",
+            "3. Escribe la traducción en minúsculas",
+            "4. Se ignorarán los acentos automáticamente",
+            "5. Correcto → La palabra se mueve a Palabras aprendidas",
+            "6. Incorrecto → Sigue practicando!",
+            "",
+            "💡 **Consejo:** Añade palabras que te resulten difíciles durante las canciones: ¡es la mejor manera de construir vocabulario!"
+          ]
+        },
+        "words-to-work-on": {
+          "title": "Palabras para practicar",
+          "paragraphs": [
+            "**Qué es:** Tu lista activa de vocabulario: palabras que estás aprendiendo actualmente.",
+            "",
+            "**Cómo acceder:** Progreso → Pestaña Vocabulario → Sección superior.",
+            "",
+            "**Cómo se añaden las palabras:**",
+            "• Haz clic en cualquier palabra durante una sesión de aprendizaje",
+            "• Haz clic en **\"+ Palabras para practicar\"** en el modal de traducción",
+            "• La palabra se guarda con su traducción y contexto",
+            "",
+            "**Características de la tarjeta de palabra:**",
+            "• **Palabra:** La palabra en el idioma objetivo",
+            "• **Traducción:** Inglés (o idioma nativo) de la palabra",
+            "• **Contexto:** La frase donde encontraste la palabra",
+            "• **Insignia de idioma:** Muestra el idioma de la palabra (p. ej., \"ES\", \"FR\")",
+            "",
+            "**Acciones que puedes realizar:**",
+            "• **Editar (icono de lápiz):** Cambiar la traducción si es necesario",
+            "• **Marcar como aprendido:** Pruébate a ti mismo",
+            "• **Eliminar (icono de papelera):** Eliminar de tu lista",
+            "",
+            "**Proceso de prueba:**",
+            "1. Haz clic en el botón \"Marcar como aprendido\"",
+            "2. Aparecerá un modal mostrando la palabra",
+            "3. Escribe la traducción en minúsculas",
+            "4. Los acentos se ignorarán automáticamente",
+            "5. Correcto → La palabra se mueve a Palabras aprendidas",
+            "6. Incorrecto → ¡Sigue practicando!",
+            "",
+            "💡 **Consejo:** Repasa esta sección antes de cada sesión para refrescar las palabras que estás aprendiendo!"
+          ]
+        }
+      }
+    },
+    "cookie": {
+      "title": "Política de cookies",
+      "last_updated": "Última actualización: {{date}}",
+      "sections": {
+        "introduction": {
+          "title": "1. Introducción",
+          "p1": "Esta Política de cookies explica cómo Singuage (\"Singuage\", \"nosotros\" o \"nuestro\") utiliza cookies y tecnologías similares en singuage.com (el \"Servicio\").",
+          "p2": "Esta política debe leerse junto con nuestra Política de privacidad y los Términos de servicio."
+        },
+        "what_are_cookies": {
+          "title": "2. ¿Qué son las cookies?",
+          "p1": "Las cookies son pequeños archivos de texto colocados en su dispositivo cuando visita un sitio web. Se usan comúnmente para habilitar funcionalidades básicas, recordar preferencias, mejorar la experiencia del usuario y entender cómo se usa un servicio.",
+          "p2": "Las cookies pueden ser:",
+          "list": {
+            "session": "Cookies de sesión, que expiran cuando cierra el navegador",
+            "persistent": "Cookies persistentes, que permanecen en su dispositivo por un periodo definido o hasta que se eliminan"
+          }
+        },
+        "commitment": {
+          "title": "3. Nuestro compromiso con la privacidad",
+          "p1": "Singuage es una plataforma centrada en el aprendizaje construida con la privacidad como principio fundamental.",
+          "list": {
+            "1": "No usamos cookies publicitarias",
+            "2": "No rastreamos a los usuarios con fines de marketing",
+            "3": "No vendemos datos personales",
+            "4": "Usamos cookies solo para operar, asegurar y mejorar el Servicio",
+            "5": "Las cookies nunca se usan para perfilar a los usuarios, servir anuncios dirigidos o rastrear actividad en sitios no relacionados."
+          }
+        },
+        "types": {
+          "title": "4. Tipos de cookies que usamos",
+          "necessary": {
+            "title": "4.1 Cookies estrictamente necesarias",
+            "p1": "Estas cookies son esenciales para el funcionamiento y la seguridad del Servicio y no pueden deshabilitarse. Se usan para mantener sesiones autenticadas, habilitar funcionalidades principales del sitio y prevenir actividades fraudulentas o abusivas.",
+            "retention_label": "Retención:",
+            "retention": "Las cookies estrictamente necesarias suelen durar la sesión o lo que exijan las configuraciones de seguridad del sistema."
+          },
+          "functional": {
+            "title": "4.2 Cookies funcionales",
+            "p1": "Las cookies funcionales permiten al Servicio recordar preferencias y ajustes del usuario, como preferencias de interfaz o idioma, filtros menores de contenido de la cuenta y ajustes de accesibilidad. Mejoran la usabilidad pero no se usan para rastreo o publicidad.",
+            "retention_label": "Retención:",
+            "retention": "Las cookies funcionales pueden persistir más allá de la sesión para recordar preferencias del usuario, a menos que el usuario las deshabilite."
+          },
+          "analytics": {
+            "title": "4.3 Cookies de analítica (solo con consentimiento)",
+            "p1": "Con su consentimiento explícito, Singuage puede usar cookies de analítica para entender cómo se usa el Servicio y mejorar el rendimiento. Actualmente usamos Google Analytics para este propósito. Las cookies de analítica recopilan datos de uso de forma agregada, se anonimizan cuando es posible y nunca se usan para publicidad o rastreo entre sitios.",
+            "retention_label": "Retención:",
+            "retention": "Las cookies de analítica se conservan hasta 12 meses, tras lo cual expiran o se eliminan. Están deshabilitadas por defecto y solo se usan si usted opta por activarlas."
+          },
+          "advertising": {
+            "title": "4.4 Cookies de publicidad y rastreo",
+            "p1": "Singuage no usa cookies publicitarias, cookies de rastreo de comportamiento ni rastreadores de marketing de terceros. No realizamos publicidad dirigida ni monetización de datos."
+          }
+        },
+        "third_party": {
+          "title": "5. Cookies de terceros",
+          "p1": "Algunas cookies pueden ser colocadas por proveedores de servicios de terceros de confianza estrictamente necesarios para operar el Servicio:",
+          "list": {
+            "google_analytics": "Google Analytics — recopila datos de uso anonimizados o agregados para ayudarnos a entender el rendimiento del sitio y mejorar funciones.",
+            "stripe": "Stripe — puede usar cookies temporales durante el pago para procesar pagos de forma segura y prevenir fraude."
+          },
+          "p2": "Estos terceros procesan datos de acuerdo con sus propias políticas de privacidad y la ley aplicable. Singuage no permite el uso de cookies de terceros para fines no relacionados o publicitarios."
+        },
+        "consent": {
+          "title": "6. Consentimiento y gestión de cookies",
+          "p1": "Cuando visite el Servicio por primera vez, se le mostrará un banner de consentimiento de cookies que le permite aceptar o rechazar cookies no esenciales y personalizar sus preferencias. Puede gestionar o actualizar sus preferencias de cookies en cualquier momento desde la configuración de cookies del Servicio o desde los controles de su navegador. Desactivar cookies de analítica o funcionales no impedirá el acceso a las funciones principales del Servicio."
+        },
+        "browser": {
+          "title": "7. Controles del navegador",
+          "p1": "También puede gestionar o desactivar las cookies directamente a través de la configuración de su navegador. Las instrucciones para gestionar cookies están disponibles en la ayuda o soporte de su navegador. Tenga en cuenta que desactivar cookies estrictamente necesarias puede afectar la funcionalidad del Servicio."
+        },
+        "legal_basis": {
+          "title": "8. Base legal para el procesamiento (GDPR)",
+          "p1": "Para usuarios del Área Económica Europea (AEE): las cookies estrictamente necesarias se procesan basadas en intereses legítimos. Las cookies funcionales y de analítica se procesan basadas en el consentimiento del usuario. Puede retirar su consentimiento en cualquier momento sin penalización."
+        },
+        "california": {
+          "title": "9. Derechos de privacidad en California (CCPA / CPRA)",
+          "p1": "Para residentes de California: puede solicitar información sobre los datos personales recogidos mediante cookies, solicitar la eliminación de datos personales y optar por no vender datos personales. Singuage no vende datos personales, incluidos los recogidos por cookies."
+        },
+        "data_security": {
+          "title": "10. Seguridad de los datos",
+          "p1": "Implementamos salvaguardas técnicas y organizativas razonables para proteger la información recopilada mediante cookies. Sin embargo, ningún sistema es completamente seguro y no podemos garantizar seguridad absoluta."
+        },
+        "changes": {
+          "title": "11. Cambios en esta Política de cookies",
+          "p1": "Podemos actualizar esta Política de cookies periódicamente para reflejar cambios en la ley, la tecnología o nuestras prácticas. El uso continuado del Servicio después de las actualizaciones constituye aceptación de la política revisada."
+        },
+        "contact": {
+          "title": "12. Información de contacto",
+          "email_label": "Correo electrónico:",
+          "email": "singuage.contact@gmail.com"
+        }
+      }
+    },
+    "contact": {
+      "title": "Contacto",
+      "intro": "Nos encantaría saber de ti. Usa el formulario a continuación para contactar al equipo de Singuage.",
+      "form": {
+        "email_label": "Tu correo",
+        "email_placeholder": "tucorreo@ejemplo.com",
+        "message_label": "Mensaje",
+        "message_placeholder": "¿Cómo podemos ayudar?",
+        "send_button": "Enviar mensaje"
+      }
+    },
+    "login": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Continúa tu aprendizaje de idiomas",
+      "username_label": "Usuario o correo",
+      "username_placeholder": "tu-usuario o tu@ejemplo.com",
+      "password_label": "Contraseña",
+      "password_placeholder": "Introduce tu contraseña",
+      "remember_me": "Recordarme",
+      "forgot_password": "¿Olvidaste tu contraseña?",
+      "sign_in": "Iniciar sesión",
+      "no_account": "¿No tienes cuenta?",
+      "sign_up": "Regístrate",
+      "error_username_required": "El nombre de usuario es obligatorio",
+      "error_password_required": "La contraseña es obligatoria"
+    },
+    "register": {
+      "title": "Crear cuenta",
+      "subtitle": "Empieza a aprender idiomas a través de la música",
+      "age_verification_label": "Verificación de edad",
+      "adult_label": "Adulto (18+)",
+      "adult_note": "Todo el contenido disponible",
+      "minor_label": "Menor (Menores de 18)",
+      "minor_note": "Contenido explícito filtrado",
+      "confirm_adult": "✓ Confirmas que tienes 18 años o más",
+      "confirm_minor": "✓ Las canciones con contenido explícito se ocultarán automáticamente",
+      "email_label": "Dirección de correo (opcional)",
+      "email_helper": "Solo lo usaremos para contactarte",
+      "email_placeholder": "tu@ejemplo.com",
+      "email_later_note": "Proporcionar un correo es opcional y puede añadirse más tarde.",
+      "username_label": "Nombre de usuario",
+      "username_placeholder": "tu-nombre-de-usuario",
+      "display_name_label": "Nombre para mostrar",
+      "display_name_placeholder": "¿Cómo debemos llamarte?",
+      "password_label": "Contraseña",
+      "password_placeholder": "Mín. 8 caracteres",
+      "confirm_password_label": "Confirmar contraseña",
+      "confirm_password_placeholder": "Confirma la contraseña",
+      "native_language_label": "Idioma nativo",
+      "select_native_language": "Selecciona tu idioma nativo",
+      "target_languages_label": "Idiomas objetivo",
+      "selected_count": "Seleccionados: {{count}} idioma(s)",
+      "creating_account": "Creando cuenta...",
+      "create_account": "Crear cuenta",
+      "already_have_account": "¿Ya tienes una cuenta?",
+      "sign_in": "Iniciar sesión"
+    }
+  }
+}

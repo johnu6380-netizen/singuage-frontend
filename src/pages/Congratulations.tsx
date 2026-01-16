@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Trophy, CheckCircle, Clock, Target } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { useTranslation } from 'react-i18next';
 
 interface SessionStats {
   accuracy: number;
@@ -21,6 +22,7 @@ export const Congratulations = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const stats = location.state?.stats as SessionStats;
+  const { t } = useTranslation();
 
   // Redirect to dashboard if no stats provided
   useEffect(() => {
@@ -71,13 +73,13 @@ export const Congratulations = () => {
             className="mb-6 text-center"
           >
             <h1 className="mb-3 text-4xl font-bold text-gray-900 dark:text-gray-100">
-              Congratulations! 🎉
+              {t('pages.congratulations.title')}
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-400">
-              You completed <span className="font-semibold text-primary-600 dark:text-primary-400">"{stats.songTitle}"</span>!
+              {t('pages.congratulations.completed', { title: stats.songTitle })}
             </p>
             <p className="mt-3 text-base text-gray-500 dark:text-gray-500">
-              Great work! Every session brings you closer to fluency. Keep practicing, and you'll be amazed at how much you can achieve. We're proud of your dedication!
+              {t('pages.congratulations.message')}
             </p>
           </motion.div>
 
@@ -95,7 +97,7 @@ export const Congratulations = () => {
                 {stats.accuracy}%
               </div>
               <div className="text-xs font-medium text-green-700 dark:text-green-300">
-                Accuracy
+                {t('pages.congratulations.stats.accuracy')}
               </div>
             </div>
 
@@ -106,7 +108,7 @@ export const Congratulations = () => {
                 {stats.linesCompleted}/{stats.totalLines}
               </div>
               <div className="text-xs font-medium text-blue-700 dark:text-blue-300">
-                Lines
+                {t('pages.congratulations.stats.lines')}
               </div>
             </div>
 
@@ -117,7 +119,7 @@ export const Congratulations = () => {
                 {formatDuration(stats.durationSeconds)}
               </div>
               <div className="text-xs font-medium text-purple-700 dark:text-purple-300">
-                Time
+                {t('pages.congratulations.stats.time')}
               </div>
             </div>
           </motion.div>
@@ -132,7 +134,7 @@ export const Congratulations = () => {
             <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-3 shadow-lg">
               <span className="text-2xl">✨</span>
               <span className="text-lg font-bold text-white">
-                +{stats.xpEarned} XP Earned
+                {t('pages.congratulations.xp_earned', { xp: stats.xpEarned })}
               </span>
             </div>
           </motion.div>
@@ -148,7 +150,7 @@ export const Congratulations = () => {
               onClick={() => navigate('/dashboard')}
               className="w-full rounded-xl py-4 text-lg font-semibold shadow-lg transition-all hover:shadow-xl"
             >
-              Back to My Library
+              {t('pages.congratulations.back_to_library')}
             </Button>
           </motion.div>
         </div>

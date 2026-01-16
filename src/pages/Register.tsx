@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { authApi, handleApiError } from '@/lib/api';
 import { useAuthStore } from '@/store/useStore';
+import { useTranslation } from 'react-i18next';
 
 const LANGUAGES = [
   { code: 'en', name: 'English' },
@@ -25,11 +26,20 @@ const LANGUAGES = [
   { code: 'hi', name: 'Hindi (हिन्दी)' },
 ];
 
+// Only allow these languages for the native language field on registration
+const NATIVE_LANGUAGES = [
+  { code: 'en', name: 'English' },
+  { code: 'es', name: 'Spanish (Español)' },
+  { code: 'pt', name: 'Portuguese (Português)' },
+];
+
 export const Register = () => {
   const navigate = useNavigate();
   const { login } = useAuthStore();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -49,7 +59,9 @@ export const Register = () => {
 
     // Validation
     const newErrors: Record<string, string> = {};
-    if (!formData.email) newErrors.email = 'Email is required';
+    if (!formData.username) newErrors.username = 'Username is required';
+    // basic username format: no spaces
+    if (formData.username && /\s/.test(formData.username)) newErrors.username = 'Username cannot contain spaces';
     if (!formData.password) newErrors.password = 'Password is required';
     if (formData.password.length < 8)
       newErrors.password = 'Password must be at least 8 characters';
@@ -70,7 +82,9 @@ export const Register = () => {
 
     try {
       const response = await authApi.register({
-        email: formData.email,
+        username: formData.username,
+        // only send email when provided to avoid storing empty string
+        ...(formData.email ? { email: formData.email } : {}),
         password: formData.password,
         displayName: formData.displayName,
         nativeLanguage: formData.nativeLanguage,
@@ -78,6 +92,12 @@ export const Register = () => {
         isAdult: formData.isAdult, // FEATURE 1: Send age verification
       });
 
+      // Show cookie consent banner on first successful login after account creation
+      try {
+        localStorage.setItem('show_cookie_consent_on_first_login', '1');
+      } catch (e) {
+        // ignore localStorage failures
+      }
       login(response.accessToken, response.refreshToken, response.user);
       navigate('/dashboard');
     } catch (error) {
@@ -111,11 +131,9 @@ export const Register = () => {
             <Music2 className="h-8 w-8 text-white" />
           </div>
           <h1 className="mb-2 font-display text-4xl font-bold text-gray-900 dark:text-gray-100">
-            Create Account
+            {t('pages.register.title')}
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Start learning languages through music
-          </p>
+          <p className="text-gray-600 dark:text-gray-400">{t('pages.register.subtitle')}</p>
         </div>
 
         {/* Form */}
@@ -125,7 +143,7 @@ export const Register = () => {
             <div>
               <label className="mb-3 block text-sm font-semibold text-gray-900 dark:text-gray-100">
                 <Shield className="mr-2 inline h-4 w-4" />
-                Age Verification *
+                {t('pages.register.age_verification_label')}
               </label>
               <div className="grid grid-cols-2 gap-3">
                 <button
@@ -139,10 +157,10 @@ export const Register = () => {
                 >
                   <div className="mb-2 text-2xl">👤</div>
                   <div className="mb-1 text-lg font-bold text-gray-900 dark:text-gray-100">
-                    Adult (18+)
+                    {t('pages.register.adult_label')}
                   </div>
                   <div className="text-xs text-gray-600 dark:text-gray-400">
-                    All content available
+                    {t('pages.register.adult_note')}
                   </div>
                 </button>
 
@@ -157,24 +175,23 @@ export const Register = () => {
                 >
                   <div className="mb-2 text-2xl">🛡️</div>
                   <div className="mb-1 text-lg font-bold text-gray-900 dark:text-gray-100">
-                    Minor (Under 18)
+                    {t('pages.register.minor_label')}
                   </div>
                   <div className="text-xs text-gray-600 dark:text-gray-400">
-                    Explicit content filtered
+                    {t('pages.register.minor_note')}
                   </div>
                 </button>
               </div>
               <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-                {formData.isAdult
-                  ? '✓ You confirm that you are 18 years or older'
-                  : '✓ Songs with explicit content will be automatically hidden'}
+                {formData.isAdult ? t('pages.register.confirm_adult') : t('pages.register.confirm_minor')}
               </p>
             </div>
 
-            {/* Email */}
+            {/* Email (optional) */}
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                Email Address *
+              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100 flex items-baseline gap-2">
+                <span>{t('pages.register.email_label')}</span>
+                <span className="text-xs font-normal text-gray-500 dark:text-gray-400">{t('pages.register.email_helper')}</span>
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -183,19 +200,37 @@ export const Register = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="pl-10"
-                  placeholder="your@email.com"
+                  placeholder={t('pages.register.email_placeholder')}
                   error={errors.email}
                 />
               </div>
-              {errors.email && (
-                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              <p className="mt-1 text-xs text-gray-500">{t('pages.register.email_later_note')}</p>
+            </div>
+            {/* Username */}
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100">
+                {t('pages.register.username_label')}
+              </label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                <Input
+                  type="text"
+                  value={formData.username}
+                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                  className="pl-10"
+                  placeholder={t('pages.register.username_placeholder')}
+                  error={errors.username}
+                />
+              </div>
+              {errors.username && (
+                <p className="mt-1 text-sm text-red-600">{errors.username}</p>
               )}
             </div>
 
             {/* Display Name */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                Display Name *
+                {t('pages.register.display_name_label')}
               </label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -204,7 +239,7 @@ export const Register = () => {
                   value={formData.displayName}
                   onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
                   className="pl-10"
-                  placeholder="How should we call you?"
+                  placeholder={t('pages.register.display_name_placeholder')}
                   error={errors.displayName}
                 />
               </div>
@@ -217,7 +252,7 @@ export const Register = () => {
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                  Password *
+                  {t('pages.register.password_label')}
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -226,7 +261,7 @@ export const Register = () => {
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     className="pl-10"
-                    placeholder="Min. 8 characters"
+                    placeholder={t('pages.register.password_placeholder')}
                     error={errors.password}
                   />
                 </div>
@@ -237,7 +272,7 @@ export const Register = () => {
 
               <div>
                 <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                  Confirm Password *
+                  {t('pages.register.confirm_password_label')}
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -248,7 +283,7 @@ export const Register = () => {
                       setFormData({ ...formData, confirmPassword: e.target.value })
                     }
                     className="pl-10"
-                    placeholder="Confirm password"
+                    placeholder={t('pages.register.confirm_password_placeholder')}
                     error={errors.confirmPassword}
                   />
                 </div>
@@ -262,15 +297,15 @@ export const Register = () => {
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-100">
                 <Globe className="mr-2 inline h-4 w-4" />
-                Native Language * (Your first language)
+                {t('pages.register.native_language_label')}
               </label>
               <select
                 value={formData.nativeLanguage}
                 onChange={(e) => setFormData({ ...formData, nativeLanguage: e.target.value })}
                 className="input w-full"
               >
-                <option value="">Select your native language</option>
-                {LANGUAGES.map((lang) => (
+                <option value="">{t('pages.register.select_native_language')}</option>
+                {NATIVE_LANGUAGES.map((lang) => (
                   <option key={lang.code} value={lang.code}>
                     {lang.name}
                   </option>
@@ -284,7 +319,7 @@ export const Register = () => {
             {/* Target Languages */}
             <div>
               <label className="mb-3 block text-sm font-semibold text-gray-900 dark:text-gray-100">
-                Target Languages * (Languages you want to learn)
+                {t('pages.register.target_languages_label')}
               </label>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 {LANGUAGES.filter(l => l.code !== formData.nativeLanguage).map((lang) => (
@@ -307,7 +342,7 @@ export const Register = () => {
                 <p className="mt-2 text-sm text-red-600">{errors.targetLanguages}</p>
               )}
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                Selected: {formData.targetLanguages.length} language(s)
+                {t('pages.register.selected_count', { count: formData.targetLanguages.length })}
               </p>
             </div>
 
@@ -329,22 +364,22 @@ export const Register = () => {
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">
                   <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                  Creating Account...
+                  {t('pages.register.creating_account')}
                 </div>
               ) : (
-                'Create Account'
+                t('pages.register.create_account')
               )}
             </Button>
           </form>
 
           {/* Login Link */}
           <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-            Already have an account?{' '}
+            {t('pages.register.already_have_account')}{' '}
             <Link
               to="/login"
               className="font-semibold text-primary-600 hover:text-primary-700 dark:text-primary-400"
             >
-              Sign in
+              {t('pages.register.sign_in')}
             </Link>
           </p>
         </div>

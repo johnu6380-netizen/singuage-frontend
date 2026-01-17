@@ -537,6 +537,7 @@
     "upgrade_cancel": {
       "title": "Payment Cancelled",
       "message": "Your payment was cancelled. You can try again or return to the library.",
+      "try_again": "If you'd like to try again, click \"Continue to Payment\" on the Upgrade page.",
       "cta_return": "Back to Upgrade",
       "cta_dashboard": "Go to Dashboard"
     },

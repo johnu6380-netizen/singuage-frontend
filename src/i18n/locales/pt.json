@@ -624,6 +624,7 @@
     "upgrade_cancel": {
       "title": "Pagamento Cancelado",
       "message": "Seu pagamento foi cancelado. Você pode tentar novamente ou retornar à biblioteca.",
+      "try_again": "Se desejar tentar novamente, clique em \"Continuar para Pagamento\" na página de Upgrade.",
       "cta_return": "Voltar para Upgrade",
       "cta_dashboard": "Ir para o Painel"
     },

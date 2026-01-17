@@ -125,7 +125,7 @@ export const PremiumUpgradeModal = ({ isOpen, onClose, returnTo = '/dashboard', 
                   id="premium-upgrade-description"
                   className="mt-2 text-sm text-gray-600 dark:text-gray-300"
                 >
-                  {t('modals.premium_upgrade.description', { price: '<strong>$2.50 per month</strong>' })}
+                  {t('modals.premium_upgrade.description', { price: '<strong>$2.99</strong>' })}
                 </p>
               </div>
 

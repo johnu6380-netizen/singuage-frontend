@@ -306,9 +306,6 @@
   "premium": {
     "social_proof": "{{count}} outras pessoas estão levando seu aprendizado ao próximo nível!"
   },
-  "features": {
-    "unlimited_vocab_reviews": "Revisões de vocabulário ilimitadas"
-  },
 
   "common": {
     "search": "Buscar",

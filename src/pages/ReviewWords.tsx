@@ -282,7 +282,6 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
           <PremiumUpgradeModal
             isOpen={showUpgradeModal}
             onClose={() => setShowUpgradeModal(false)}
-            feature={t('features.unlimited_vocab_reviews')}
           />
         )}
       </div>
@@ -487,7 +486,6 @@ export const ReviewWords = ({ onBackToLibrary }: { onBackToLibrary: () => void }
         <PremiumUpgradeModal
           isOpen={showUpgradeModal}
           onClose={() => setShowUpgradeModal(false)}
-          feature={t('features.unlimited_vocab_reviews')}
         />
       )}
     </div>

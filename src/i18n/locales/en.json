@@ -311,6 +311,10 @@
     "how_to_play": "How to Play"
   },
 
+  "features": {
+    "unlimited_vocab_reviews": "Unlimited vocabulary reviews"
+  },
+
   "actions": {
     "browse_songs": "Browse Songs",
     "add_song": "Add Song",

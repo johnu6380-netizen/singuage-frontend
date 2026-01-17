@@ -308,6 +308,11 @@
     "upgrade": "Mejorar",
     "how_to_play": "Cómo jugar"
   },
+
+  "features": {
+    "unlimited_vocab_reviews": "Revisiones de vocabulario ilimitadas"
+  },
+
   "actions": {
     "browse_songs": "Buscar canciones",
     "add_song": "Añadir canción",

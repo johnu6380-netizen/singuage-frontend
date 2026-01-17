@@ -1,0 +1,1406 @@
+{
+  "app": {
+    "title": "Singuage"
+  },
+  "footer": {
+    "copyright": "© Singuage",
+    "copyright_full": "© {{year}} Singuage. All rights reserved.",
+    "links": {
+      "about": "About Us",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "cookie": "Cookie Policy",
+      "contact": "Contact"
+    }
+  },
+  "cookie": {
+    "title": "We respect your privacy.",
+    "message": "We use cookies to improve your experience.",
+    "accept": "Accept all cookies",
+    "decline": "Reject non-essential cookies"
+  },
+  "buttons": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "upgrade": "Upgrade",
+    "add": "Add",
+    "go_to_dashboard": "Go to Dashboard",
+    "back_to_upgrade": "Back to Upgrade",
+    "return_to_upgrade": "Return to Upgrade",
+    "return_to_library": "Return to My Library",
+    "continue_to_payment": "Continue to Payment",
+    "keep_playing": "Keep Playing!",
+    "congratulations": "Congratulations!",
+    "got_it": "Got it!",
+    "change_difficulty": "Change Difficulty",
+    "continue": "Continue",
+    "go_back": "Go Back",
+    "take_a_break": "Take a Break",
+    "redirecting": "Redirecting...",
+    "restore_purchase": "Restore Purchase",
+    "start_learning": "Start Learning",
+    "mini_lessons": "Mini Lessons",
+    "remove": "Remove",
+    "removing": "Removing..."
+  },
+  "adbreak": {
+    "message": "Ads help keep Singuage free for everyone."
+  },
+  "modals": {
+    "select_difficulty": { "title": "Select Difficulty" },
+    "change_difficulty_confirm": {
+      "title": "Change Difficulty?",
+      "message": "Changing difficulty will restart your progress from the first line. Your current progress will not be saved.",
+      "cta_cancel": "Cancel",
+      "cta_continue": "Continue"
+    },
+    "premium_upgrade": {
+      "title": "Premium Upgrade",
+      "description": "Having fun? Upgrade to Premium for only {{price}} per month!",
+      "keep_playing_cta": "Keep Playing!",
+      "return_to_library": "Return to My Library",
+      "helper_note": "Premium removes daily free song limits (excluding your first free song which is already unlimited)."
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts",
+      "open_translation": "Open translation modal",
+      "play_pause": "Play/Pause",
+      "rewind": "Rewind 5 seconds",
+      "forward": "Forward 5 seconds",
+      "show_help": "Show this help"
+    }
+  },
+  "word": {
+    "modal": {
+      "sentence": "Sentence / Word",
+      "loading": "Loading translation...",
+      "original": "Original ({{lang}})",
+      "translation": "Translation ({{lang}})",
+      "previous_original": "Previous line — Original ({{lang}})",
+      "previous_translation": "Previous line — Translation ({{lang}})",
+      "example_usage": "Example usage",
+      "error": {
+        "title": "Translation unavailable",
+        "unavailable": "Translation not available for this word.",
+        "failed": "Failed to fetch translation."
+      },
+      "error_try_again": "Try again",
+      "pro_tip_label": "Pro tip:",
+      "pro_tip": "Tap the highlighted word to add it to your practice list: {{word}}",
+      "powered_by": "Powered by translation API",
+      "definition": {
+        "title": "Add a definition",
+        "prompt": "Write a short definition for",
+        "placeholder": "Type a short definition (press Enter to save)"
+      },
+      "open_wordreference": "Open in WordReference"
+    },
+    "vocab": {
+      "cta": "+ Words to Work on",
+      "adding": "Adding...",
+      "added": "Added to your practice list!",
+      "already": "This word is already in your vocabulary list.",
+      "add_failed": "Failed to add word to vocabulary."
+    }
+  },
+  "grammar": {
+    "header": {
+      "title": "Grammar Concepts",
+      "count": "{{count}} concept found",
+      "count_plural": "{{count}} concepts found",
+      "none": "No patterns detected"
+    },
+    "item": {
+      "difficulty": {
+        "beginner": "beginner",
+        "intermediate": "intermediate",
+        "advanced": "advanced"
+      },
+      "found_in_lines": "Found in {{count}} line",
+      "found_in_lines_plural": "Found in {{count}} lines"
+    },
+    "lesson": { "title": "Quick Lesson" },
+    "items": {
+      "present-fr": { "name": "Présent de l'Indicatif (Present Tense)", "description": "Used for current actions and general truths" },
+      "passe-compose-fr": { "name": "Passé Composé (Past Tense)", "description": "Used for completed past actions" },
+      "imparfait-fr": { "name": "Imparfait (Imperfect)", "description": "Used for ongoing or habitual past actions" },
+      "future-fr": { "name": "Futur Simple (Future Tense)", "description": "Used for future actions" },
+      "subjunctive-fr": { "name": "Subjonctif (Subjunctive)", "description": "Used for wishes, doubts, and emotions" },
+      "pronouns-fr": { "name": "Pronoms Personnels (Personal Pronouns)", "description": "Me, te, le, la, nous, vous, les" },
+      "reflexive-fr": { "name": "Verbes Pronominaux (Reflexive Verbs)", "description": "Actions done to oneself" },
+      "negation-fr": { "name": "La Négation (Negation)", "description": "How to say 'not' in French" }
+    },
+    "lessons": {
+      "present-fr": "The Present Indicative in French is used for:\n• Current actions (Je chante = I sing)\n• Habitual actions (Je travaille tous les jours = I work every day)\n• General truths\n\nRegular verb endings:\n-ER verbs: -e, -es, -e, -ons, -ez, -ent\n-IR verbs: -is, -is, -it, -issons, -issez, -issent\n-RE verbs: -s, -s, -, -ons, -ez, -ent\n\nVery common in French pop songs!",
+      "passe-compose-fr": "The Passé Composé indicates completed past actions:\n\nFormation: auxiliary verb (avoir or être) + past participle\n\nWith AVOIR (most verbs):\n• J'ai chanté = I sang/have sung\n• Tu as dansé = You danced\n\nWith ÊTRE (movement & reflexive verbs):\n• Je suis allé(e) = I went\n• Il est parti = He left\n\nCommon in songs about memories!",
+      "imparfait-fr": "The Imparfait is used for:\n• Ongoing past actions (Je chantais = I was singing)\n• Descriptions in the past\n• Habitual actions\n\nAll verbs use the same endings:\n-ais, -ais, -ait, -ions, -iez, -aient\n\nAdded to the nous form stem!\n\nPerfect for nostalgic French songs.",
+      "future-fr": "The Future tense is used for:\n• Actions that will happen\n• Predictions and promises\n\nAll verbs use the same endings:\n-ai, -as, -a, -ons, -ez, -ont\n\nUsually added to the infinitive!\n\nCommon in songs about dreams and plans.",
+      "subjunctive-fr": "The Subjunctive expresses:\n• Necessity (Il faut que = It's necessary that)\n• Wishes (Je veux que = I want that)\n• Emotions (Je suis content que = I'm happy that)\n• Doubt (Je doute que = I doubt that)\n\nTriggered by: que, il faut que, je veux que, bien que, etc.\n\nCommon in emotional French songs!",
+      "pronouns-fr": "Object pronouns in French:\n• me/te = me/you\n• le/la = him/her/it\n• nous/vous = us/you\n• les = them\n\nPlacement: BEFORE the verb!\n\n\"Je t'aime\" (I love you) is THE classic French phrase in songs!",
+      "reflexive-fr": "Reflexive verbs indicate the subject does the action to themselves:\n• me, te, se, nous, vous, se\n\nCommon reflexive verbs:\n• se lever = to get up\n• se sentir = to feel\n• s'en aller = to go away\n• s'appeler = to be called\n\nVery common in French songs!",
+      "negation-fr": "Negation in French uses two parts:\n• ne ... pas = not\n• ne ... jamais = never\n• ne ... rien = nothing\n• ne ... plus = no longer\n\nPlacement: ne before verb, pas/jamais/rien after\n\n\"Je ne regrette rien\" (I regret nothing) - Édith Piaf\n\nVery important for French songs!"
+    },
+    "examples": {
+      "title": "Found in This Song:",
+      "more": "...and {{count}} more",
+      "more_plural": "...and {{count}} more"
+    },
+    "learn_more": {
+      "title": "Want to Learn More?",
+      "cta": "Read Full Lesson",
+      "note": "Opens in new tab • External resource"
+    },
+    "lines_label": "Found on lines: {{lines}}",
+    "none": {
+      "heading": "No Grammar Concepts Detected",
+      "message": "This song's lyrics don't contain detectable grammar patterns for {{language}}.",
+      "this_language": "this language",
+      "normal_for": "This is normal for:",
+      "reasons": {
+        "1": "Songs with very simple or poetic lyrics",
+        "2": "Instrumental songs or songs with minimal text",
+        "3": "Languages not fully supported yet"
+      }
+    },
+    "tip_label": "Tip:",
+    "tip": "Grammar analysis works best with English, Spanish, French, and German songs that have complete sentence structures."
+  },
+  "user": {
+    "dropdown": {
+      "account": "Account Info",
+      "achievements": "Achievements",
+      "progress": "Progress",
+      "settings": "Settings",
+      "logout": "Log Out"
+    },
+    "default": "User",
+    "premium": "Premium",
+    "xp": "{{count}} XP",
+    "streak": "{{count}} day streak",
+    "streak_plural": "{{count}} day streaks",
+    "streak_short": "{{count}} days"
+  },
+  "vocab": {
+    "loading": "Loading vocabulary...",
+    "words_to_work_on": "{{count}} Word to Work on",
+    "words_to_work_on_plural": "{{count}} Words to Work on",
+    "empty_learning": "No words yet. Click on words during learning sessions to add them here!",
+    "placeholder": {
+      "enter_translation": "Enter translation",
+      "type_answer": "Type translation..."
+    },
+    "no_translation": "No translation set",
+    "actions": {
+      "mark_learned": "Mark as Learned"
+    },
+    "learned_words": "{{count}} Learned Word",
+    "learned_words_plural": "{{count}} Learned Words",
+    "empty_learned": "No learned words yet. Keep practicing!",
+    "test": {
+      "title": "Test Your Knowledge",
+      "prompt": "What is the translation of:",
+      "hint": "Type your answer in lowercase. Accent marks will be ignored.",
+      "correct": "✅ Correct! Moving to Learned Words...",
+      "incorrect": "❌ Not quite — keep practicing!",
+      "check": "Check Answer"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your preferences and account",
+    "appearance": {
+      "title": "Appearance",
+      "theme_label": "Theme",
+      "current_theme": "Currently using {{theme}} mode",
+      "theme_values": {
+        "light": "Light",
+        "dark": "Dark"
+      }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "email": { "label": "Email Notifications", "desc": "Receive updates via email" },
+      "push": { "label": "Push Notifications", "desc": "Receive push notifications" },
+      "streak": { "label": "Streak Reminders", "desc": "Daily reminder to maintain streak" }
+    },
+    "cookie": { "title": "Cookie Preferences" },
+    "actions": { "logout": "Log Out", "delete_account": "Delete Account" },
+    "confirm": { "logout": "Are you sure you want to log out?", "delete_confirm_1": "Are you sure you want to delete your account? This action cannot be undone.", "delete_confirm_2": "This will permanently delete all your data. Are you absolutely sure?" },
+    "delete_failed": "Failed to delete account. Please try again.",
+    "subscription": {
+      "title": "Subscription",
+      "premium_active": "Premium Active",
+      "premium_active_desc": "Your subscription is active. Cancel at period end below.",
+      "no_active": "No active subscription",
+      "no_active_desc": "Upgrade to Premium to remove daily limits and support development.",
+      "cancel_confirm": "Cancel subscription at period end?",
+      "cancel_placeholder_alert": "This is a placeholder — subscription cancellations are processed by Stripe and updated via webhook.",
+      "cancel_cta": "Cancel Subscription",
+      "upgrade_cta": "Upgrade"
+    },
+    "account": { "title": "Account" },
+    "app_info": { "title": "About", "version": "Version", "build": "Build", "account_created": "Account Created", "unknown": "Unknown" }
+  },
+  "account": {
+    "title": "Account Information",
+    "subtitle": "Manage your profile and preferences",
+    "display_name": "Display Name",
+    "username": "Username",
+    "no_username": "No username set",
+    "email": "Email Address",
+    "no_email": "No email provided",
+    "native_label": "Native Language",
+    "native_unknown": "Unknown",
+    "account_type": "Account Type",
+    "member_since": "Member Since",
+    "target_languages": "Target Languages",
+    "preferred_artists": "Preferred Artists",
+    "stats_title": "Account Stats",
+    "total_xp": "Total XP",
+    "current_streak": "Current Streak",
+    "no_target_languages": "No target languages set",
+    "no_preferred_artists": "No preferred artists yet",
+    "no_preferred_artists_set": "No preferred artists set",
+    "artists_desc": "Add artists you enjoy to personalize your Discover page",
+    "enter_artist_placeholder": "Enter artist name...",
+    "placeholders": {
+      "username": "your-username",
+      "email": "you@example.com"
+    },
+    "username_error_empty": "Username cannot be empty",
+    "username_error_spaces": "Username cannot contain spaces",
+    "username_update_failed": "Failed to update username",
+    "email_error_invalid": "Please enter a valid email address",
+    "email_update_failed": "Failed to update email",
+    "native_update_failed": "Failed to update native language",
+    "edit": "Edit",
+    "adult": "Adult (18+)",
+    "minor": "Minor (Under 18)"
+  },
+  "languages": {
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "de": "German",
+    "it": "Italian",
+    "pt": "Portuguese",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "zh": "Chinese",
+    "ar": "Arabic",
+    "ru": "Russian",
+    "hi": "Hindi"
+  },
+
+  "common": {
+    "search": "Search",
+    "refresh": "Refresh",
+    "views": "views",
+    "options": "Options",
+    "remove_song": "Remove Song?",
+    "close": "Close"
+  },
+
+  "tabs": {
+    "library": "My Library",
+    "discover": "Discover",
+    "review_words": "Review Words",
+    "premium": "Premium",
+    "upgrade": "Upgrade",
+    "how_to_play": "How to Play"
+  },
+
+  "actions": {
+    "browse_songs": "Browse Songs",
+    "add_song": "Add Song",
+    "view_song": "View Song"
+  },
+
+  "achievements": {
+    "loading": "Loading achievements...",
+    "retry": "Retry",
+    "title": "Achievements",
+    "unlocked_of": "{{unlocked}} of {{total}} unlocked",
+    "stats": {
+      "unlocked": "Unlocked",
+      "completion": "Completion",
+      "remaining": "Remaining"
+    },
+    "categories": {
+      "All": "All",
+      "Learning": "Learning",
+      "Streak": "Streak",
+      "XP": "XP",
+      "Languages": "Languages",
+      "Mastery": "Mastery",
+      "Challenge": "Challenge"
+    },
+    "progress": "Progress",
+    "unlocked_on": "Unlocked on {{date}}",
+    "error_loading": "Failed to load achievements. Please try again.",
+    "empty": {
+      "title": "No achievements yet",
+      "message": "You haven't unlocked any achievements in this category yet. Keep practicing to earn badges!"
+    },
+    "items": {
+      "first_song": {
+        "name": "First Steps",
+        "description": "Complete your first song"
+      },
+      "song_enthusiast": {
+        "name": "Song Enthusiast",
+        "description": "Complete 10 songs"
+      },
+      "song_master": {
+        "name": "Song Master",
+        "description": "Complete 50 songs"
+      },
+      "library_builder": {
+        "name": "Library Builder",
+        "description": "Add 5 songs to your library"
+      },
+      "streak_starter": {
+        "name": "Streak Starter",
+        "description": "Maintain a 3-day streak"
+      },
+      "week_warrior": {
+        "name": "Week Warrior",
+        "description": "Maintain a 7-day streak"
+      },
+      "month_master": {
+        "name": "Month Master",
+        "description": "Maintain a 30-day streak"
+      },
+      "xp_novice": {
+        "name": "XP Novice",
+        "description": "Earn 100 total XP"
+      },
+      "xp_expert": {
+        "name": "XP Expert",
+        "description": "Earn 500 total XP"
+      },
+      "xp_master": {
+        "name": "XP Master",
+        "description": "Earn 1000 total XP"
+      },
+      "bilingual": {
+        "name": "Bilingual",
+        "description": "Learn songs in 2 different languages"
+      },
+      "polyglot": {
+        "name": "Polyglot",
+        "description": "Learn songs in 3 different languages"
+      },
+      "language_master": {
+        "name": "Language Master",
+        "description": "Learn songs in 5 different languages"
+      },
+      "perfect_score": {
+        "name": "Perfect Score",
+        "description": "Complete a song with 100% accuracy"
+      },
+      "perfectionist": {
+        "name": "Perfectionist",
+        "description": "Complete 5 songs with 100% accuracy"
+      },
+      "hard_mode_hero": {
+        "name": "Hard Mode Hero",
+        "description": "Complete a song in hard mode"
+      },
+      "hard_mode_master": {
+        "name": "Hard Mode Master",
+        "description": "Complete 10 songs in hard mode"
+      }
+    }
+  },
+
+  "pages": {
+    "discover": {
+      "title": "Discover Music",
+      "search_placeholder": "Search songs, artists...",
+      "loading": "Loading songs...",
+      "no_songs_found": "No songs found",
+      "try_different_search": "Try a different search or refresh to see more songs",
+      "add_song": "+ Add Song",
+      "paragraphs": [
+        "**What it is:** Browse and search for new songs to add to your library.",
+        "",
+        "**How to use:**",
+        "1. Click the **\"Discover\"** tab on the dashboard",
+        "2. Songs are automatically shown based on your target languages",
+        "3. Use the search bar to find specific songs or artists",
+        "4. Click **\"Refresh\"** to load new song suggestions",
+        "",
+        "**Song cards show:**",
+        "• Video thumbnail",
+        "• Song title and artist",
+        "• Language badge (e.g., \"EN\", \"ES\", \"FR\")",
+        "• ✓ Added badge if you've already added the song",
+        "• View count for popular songs",
+        "",
+        "**Adding songs:**",
+        "• Click **\"+ Add Song\"** to go to the Add Song page",
+        "• If already added, click **\"View Song\"** to see it in your library",
+        "• You'll need to paste lyrics before the song can be added",
+        "",
+        "💡 **Pro Tip:** Discover uses your target languages - update them in Account Info for better recommendations."
+      ]
+    },
+    "premium": {
+      "social_proof": "{{count}} other people are taking their learning to the next level!"
+    },
+    "addsong": {
+      "save_failed": "Failed to save song",
+      "title_add": "Add Song",
+      "title_edit": "Edit Song",
+      "subtitle_add": "Add lyrics and details to start learning this song",
+      "subtitle_edit": "Update the lyrics or metadata for this song",
+      "tips_title": "💡 Tips for Adding Songs",
+      "tips": {
+        "paste_lines": "Paste lyrics with one line per lyric phrase for best synchronization.",
+        "auto_detect": "Language will be automatically detected from your lyrics.",
+        "manual_set": "Check \"Manually set language\" if auto-detection is incorrect.",
+        "edit_anytime": "You can edit the song details anytime after adding it."
+      },
+      "song_title_label": "Song Title",
+      "placeholder_song_title": "e.g. Blinding Lights",
+      "artist_label": "Artist",
+      "placeholder_artist": "e.g. The Weeknd",
+      "language_label": "Language",
+      "manual_set_label": "Manually set language",
+      "detect_note": "Language will be detected automatically from the lyrics unless you set it manually.",
+      "lyrics_label": "Lyrics",
+      "search_genius": "Search on Genius",
+      "placeholder_lyrics": "Paste lyrics here (one line per lyric phrase)",
+      "required_note": "Lyrics are required — you cannot add a song without them.",
+      "updating": "Updating...",
+      "adding": "Adding...",
+      "update_and_learn": "Update & Start Learning",
+      "add_and_start": "Add & Start Learning"
+    },
+    "dashboard": {
+      "my_songs": "My Songs",
+      "stats": {
+        "total_xp": "Total XP",
+        "day_streak": "Day Streak",
+        "songs": "Songs"
+      },
+      "change_lyrics": "Change Lyrics",
+      "remove_song_title": "Remove Song?",
+      "remove_song_confirm": "Are you sure you want to remove \"{{title}}\" by {{artist}} from your library?",
+      "remove_song_note": "This song will be moved back to the Discover tab. Your progress data will be kept.",
+      "no_songs_title": "No songs yet",
+      "no_songs_subtitle": "Add your first song from the Discover tab!"
+    },
+    "about": {
+      "back_to_library": "Back to My Library",
+      "title": "About Singuage",
+      "vision_heading": "Our Vision",
+      "vision_body": "Singuage is on a mission to make language learning joyful and accessible to everyone. We combine music, interactive lessons, and community features to help learners of all levels practice vocabulary and pronunciation using songs they love.",
+      "what_we_offer_heading": "What we offer",
+      "offers": {
+        "1": "Curated song-based lessons and interactive line-by-line practice",
+        "2": "Personalized discovery based on your language goals and preferred artists",
+        "3": "Progress tracking, streaks, and XP to keep you motivated",
+        "4": "Free tier supported by optional upgrades"
+      },
+      "contact_heading": "Contact & Community",
+      "contact_body": "We welcome feedback and contributions from users around the world. If you have suggestions or want to get involved, visit our Contact page."
+    },
+    "review_words": {
+      "no_words": "You don't have any words to review.",
+      "begin_review": "Begin Review",
+      "good_job_title": "Good job!",
+      "correct_label": "Correct Answers",
+      "xp_earned": "XP Earned",
+      "day_streak": "Day streak",
+      "time_label": "Time",
+      "back_to_library": "Back to Library",
+      "question_prefix": "What's the translation of ",
+      "placeholder_type_answer": "Type the translation...",
+      "hint": "Hint",
+      "submit": "Submit",
+      "original_line": "Original line",
+      "progress": "Word {{current}} of {{total}}",
+      "load_failed": "Failed to load words. Please try again.",
+      "correct_progress": "Correct: {{correct}}/{{total}}",
+      "time_seconds": "{{s}}s",
+      "time_minutes_seconds": "{{m}}m {{s}}s"
+    },
+    "upgrade_success": {
+      "title": "Thanks — your payment was received",
+      "processing": "We're processing your payment. Premium access will activate shortly — this is handled automatically via Stripe webhooks.",
+      "cta_dashboard": "Go to Dashboard",
+      "cta_back_to_upgrade": "Back to Upgrade"
+    },
+    "upgrade_cancel": {
+      "title": "Payment Cancelled",
+      "message": "Your payment was cancelled. You can try again or return to the library.",
+      "cta_return": "Back to Upgrade",
+      "cta_dashboard": "Go to Dashboard"
+    },
+    "how_to_play": {
+      "title": "How to Play",
+      "subtitle": "Learn with songs — step by step",
+      "no_description": "Description not available for this topic.",
+      "overview": "Singuage turns songs into interactive language lessons. Follow the steps below to get the most out of each song.",
+      "steps": {
+        "1": {
+          "title": "Discover a song",
+          "desc": "Find songs in Discover or add your favorites to your library."
+        },
+        "2": {
+          "title": "Analyze lyrics",
+          "desc": "Singuage highlights grammar concepts and vocabulary in each line."
+        },
+        "3": {
+          "title": "Practice vocabulary",
+          "desc": "Tap words to add them to your practice list and review them later."
+        },
+        "4": {
+          "title": "Take quick lessons",
+          "desc": "Open the short lessons to learn grammar and usage examples related to the song."
+        },
+        "5": {
+          "title": "Track progress",
+          "desc": "Earn XP, unlock achievements, and maintain streaks as you practice."
+        }
+      },
+      "tips_heading": "Tips",
+      "tips": {
+        "1": "Start with songs that have clear lyrics for the best grammar analysis.",
+        "2": "Use the test feature to check your translations and move words to Learned Words.",
+        "3": "Enable Premium for unlimited practice and offline access."
+      },
+      "guide_topics_heading": "Guide Topics",
+      "topics": {
+        "account-info": "Account Information",
+        "achievements": "Achievements",
+        "add-songs": "Add Songs",
+        "change-difficulty": "Change Difficulty",
+        "difficulties": "Difficulties",
+        "discover": "Discover",
+        "learned-words": "Learned Words",
+        "learning-session": "Learning Session",
+        "my-library": "My Library",
+        "progress-tracking": "Progress Tracking",
+        "settings": "Settings",
+        "vocabulary": "Vocabulary",
+        "words-to-work-on": "Words to Work On"
+      },
+      "content": {
+        "account-info": {
+          "title": "Account Info",
+          "paragraphs": [
+            "**What it is:** Your personal profile page where you can view and edit your account details.",
+            "",
+            "**How to access:** Click your profile picture in the top right corner, then select \"Account Info\".",
+            "",
+            "**What you can do:**",
+            "• **Edit Display Name:** Click the edit icon next to your name to change how you appear on Singuage",
+            "• **View Email:** Your registered email address (cannot be changed)",
+            "• **See Native Language:** The language you speak natively",
+            "• **Account Type:** Shows whether you're an Adult (18+) or Minor",
+            "• **Member Since:** When you created your account",
+            "• **Edit Target Languages:** Click \"Edit\" to select which languages you want to learn",
+            "• **View Stats:** See your Total XP and Current Streak at a glance",
+            "",
+            "💡 **Pro Tip:** Keep your target languages updated so Discover shows relevant songs!"
+          ]
+        },
+        "achievements": {
+          "title": "Achievements",
+          "paragraphs": [
+            "**What it is:** A collection of badges you can unlock by completing various challenges.",
+            "",
+            "**How to access:** Click your profile picture → \"Achievements\".",
+            "",
+            "**Achievement Categories:**",
+            "• **Learning:** Complete songs and practice regularly",
+            "• **Streak:** Maintain consecutive days of practice",
+            "• **XP:** Earn experience points through learning",
+            "• **Languages:** Learn songs in multiple languages",
+            "• **Mastery:** Achieve perfect accuracy scores",
+            "• **Challenge:** Complete difficult tasks",
+            "",
+            "**How it works:**",
+            "• Locked achievements show your progress with a progress bar",
+            "• Unlocked achievements display in gold with the date you earned them",
+            "• Click category filters to view specific achievement types",
+            "",
+            "💡 **Pro Tip:** Check achievements regularly to see what goals you're close to completing!"
+          ]
+        },
+        "add-songs": {
+          "title": "Add Songs",
+          "paragraphs": [
+            "**What it is:** Add new songs to your library by pasting their lyrics.",
+            "",
+            "**How to add a song:**",
+            "1. Go to the **Discover** tab",
+            "2. Search for or browse songs",
+            "3. Click **\"+ Add Song\"** on any video",
+            "4. You'll be taken to the Add Song page with the video loaded",
+            "5. Fill in: Title, Artist, Language (optional - auto-detected), and **Lyrics** (required)",
+            "6. Click **\"Add & Start Learning\"**",
+            "",
+            "**Important:**",
+            "• **Lyrics are REQUIRED** - you cannot add a song without them",
+            "• Language is automatically detected from the lyrics",
+            "• Check \"Manually set language\" if the detection is incorrect",
+            "• Paste lyrics with one line per phrase for best timing",
+            "",
+            "**Editing songs:**",
+            "• In My Library, click the three-dot menu (⋮) on any song",
+            "• Select \"Change Lyrics\" to update the song",
+            "",
+            "💡 **Pro Tip:** Copy lyrics from reliable sources like Genius or AZLyrics for accuracy!"
+          ],
+          "tips_title": "💡 Tips for Adding Songs",
+          "tips": {
+            "paste_lines": "Paste lyrics with one line per lyric phrase for best synchronization.",
+            "auto_detect": "Language will be automatically detected from your lyrics.",
+            "manual_set": "Check \"Manually set language\" if auto-detection is incorrect.",
+            "edit_anytime": "You can edit the song details anytime after adding it."
+          }
+        },
+        "change-difficulty": {
+          "title": "Change Difficulty",
+          "paragraphs": [
+            "**What it is:** Switch between Easy, Medium, and Hard modes during a learning session.",
+            "",
+            "**How to change:**",
+            "1. During a learning session, scroll down on the right side",
+            "2. Click the **\"Change Difficulty\"** button",
+            "3. If you have progress, confirm that you want to restart",
+            "4. Select your new difficulty level",
+            "",
+            "**Important:**",
+            "• Changing difficulty **restarts your progress** from the first line",
+            "• Your current session data will not be saved",
+            "• The video player restarts from the beginning",
+            "• This ensures fair XP rewards for the chosen difficulty",
+            "",
+            "💡 **Pro Tip:** Choose your difficulty at the start to avoid losing progress!"
+          ]
+        },
+        "difficulties": {
+          "title": "Difficulties",
+          "paragraphs": [
+            "**Three difficulty levels to match your skill:**",
+            "",
+            "**EASY MODE** (+10 XP per line)",
+            "• All lyrics are fully visible",
+            "• Click any word to see its translation",
+            "• Perfect for beginners or learning new songs",
+            "• See the full sentence context with word highlighted",
+            "",
+            "**MEDIUM MODE** (+20 XP per line)",
+            "• Vowels are hidden (replaced with _ )",
+            "• Example: \"Hello World\" → \"H_ll_ W_rld\"",
+            "• Click words to see translation (vowels still hidden in original)",
+            "• Great for intermediate learners who know basic vocabulary",
+            "",
+            "**HARD MODE** (+30 XP per line)",
+            "• All letters are hidden (replaced with • )",
+            "• Click words to see translation of the **PREVIOUS line**",
+            "• On the first line, clicking shows blank (no previous line)",
+            "• Labels change to \"PREVIOUS LINE: ORIGINAL\" and \"PREVIOUS LINE: TRANSLATION\"",
+            "• Ultimate challenge for advanced learners!",
+            "",
+            "💡 **Pro Tip:** Medium and Hard modes help you actually memorize the lyrics rather than just copying them!"
+          ]
+        },
+        "discover": {
+          "title": "Discover",
+          "paragraphs": [
+            "**What it is:** Browse and search for new songs to add to your library.",
+            "",
+            "**How to use:**",
+            "1. Click the **\"Discover\"** tab on the dashboard",
+            "2. Songs are automatically shown based on your target languages",
+            "3. Use the search bar to find specific songs or artists",
+            "4. Click **\"Refresh\"** to load new song suggestions",
+            "",
+            "**Song cards show:**",
+            "• Video thumbnail",
+            "• Song title and artist",
+            "• Language badge (e.g., \"EN\", \"ES\", \"FR\")",
+            "• ✓ Added badge if you've already added the song",
+            "• View count for popular songs",
+            "",
+            "**Adding songs:**",
+            "• Click **\"+ Add Song\"** to go to the Add Song page",
+            "• If already added, click **\"View Song\"** to see it in your library",
+            "• You'll need to paste lyrics before the song can be added",
+            "",
+            "💡 **Pro Tip:** Discover uses your target languages - update them in Account Info for better recommendations!"
+          ]
+        },
+        "learned-words": {
+          "title": "Learned Words",
+          "paragraphs": [
+            "**What it is:** Words you've successfully tested and mastered.",
+            "",
+            "**How to access:** Progress → Vocabulary tab → Scroll to \"Learned Words\" section.",
+            "",
+            "**How words become \"learned\":**",
+            "1. Add words to \"Words to Work on\" during learning sessions",
+            "2. In the Vocabulary section, click **\"Mark as Learned\"** on any word",
+            "3. Type the correct translation in lowercase",
+            "4. If correct, the word moves to Learned Words!",
+            "",
+            "**Features:**",
+            "• Words display in a grid with a green checkmark",
+            "• Shows the word and its translation",
+            "• Organized by language",
+            "• Stays in your learned collection permanently",
+            "",
+            "💡 **Pro Tip:** Review your learned words occasionally to keep them fresh in memory!"
+          ]
+        },
+        "learning-session": {
+          "title": "Learning Session",
+          "paragraphs": [
+            "**What it is:** The main learning interface where you practice typing song lyrics.",
+            "",
+            "**How it works:**",
+            "1. Select a song from My Library and click **\"Start Learning\"**",
+            "2. Choose your difficulty (Easy, Medium, or Hard)",
+            "3. Watch the video and type the lyrics as they appear",
+            "4. Complete all lines to finish the session and earn XP",
+            "",
+            "**Interface elements:**",
+            "• **Video Player:** Shows the music video (top left)",
+            "• **Current Line:** Displays the lyric line you need to type",
+            "• **Input Field:** Where you type the lyrics",
+            "• **Progress:** Shows lines completed and accuracy percentage",
+            "• **Grammar Dropdown:** Educational grammar concepts found in the song",
+            "",
+            "**Typing mechanics:**",
+            "• Letters turn **green** when typed correctly",
+            "• Letters turn **red** if typed incorrectly",
+            "• Spaces and punctuation are automatically handled",
+            "• Line advances when you've typed enough correct characters",
+            "",
+            "**Keyboard shortcuts:**",
+            "• **↑** - Play/Pause video",
+            "• **↓** - Open translation modal",
+            "• **←** - Seek backward 5 seconds",
+            "• **→** - Seek forward 5 seconds",
+            "• **?** - Show keyboard shortcuts",
+            "",
+            "**Take a Break:**",
+            "• Click the **\"Take a Break\"** button (top-left corner)",
+            "• Your progress is automatically saved",
+            "• Resume anytime within 7 days",
+            "",
+            "💡 **Pro Tip:** Click on any word to see its translation without leaving the session!"
+          ],
+          "stats_box": { "title": "Session Stats", "accuracy": "Accuracy", "lines": "Lines", "mode": "Mode" },
+          "placeholder_type_lyrics": "Type the lyrics here...",
+          "modes": { "easy": "Easy", "medium": "Medium", "hard": "Hard" },
+          "difficulty_modal": {
+            "title": "Change Difficulty?",
+            "message": "Changing difficulty will restart your progress from the first line. Your current progress will not be saved.",
+            "cta_cancel": "Cancel",
+            "cta_continue": "Continue",
+            "options": { "easy": "Easy", "medium": "Medium", "hard": "Hard" }
+          },
+          "loading_song": "Loading song...",
+          "no_lyrics": "No lyrics available for this song",
+          "artist_label": "Artist:",
+          "language_label": "Language:",
+          "press_shortcuts": "Press ? for shortcuts"
+        },
+        "my-library": {
+          "title": "My Library",
+          "paragraphs": [
+            "**What it is:** Your personal collection of saved songs.",
+            "",
+            "**How to access:** Dashboard → \"My Library\" tab (default view).",
+            "",
+            "**What you see:**",
+            "• **Stats cards:** Total XP, Day Streak, and Song count",
+            "• **Song grid:** All your added songs with thumbnails",
+            "• **Language badges:** Quick view of each song's language",
+            "",
+            "**Song card actions:**",
+            "• **Start Learning:** Begin a learning session with this song",
+            "• **Three-dot menu (⋮):**",
+            "  - \"Change Lyrics\" - Edit the song's lyrics or details",
+            "  - \"Remove\" - Delete the song from your library (with confirmation)",
+            "",
+            "**Understanding stats:**",
+            "• **Total XP:** Sum of all experience points earned",
+            "• **Day Streak:** Consecutive days you've practiced",
+            "• **Songs:** Total number of songs in your library",
+            "",
+            "**Empty library:**",
+            "• If you have no songs, you'll see a prompt to visit Discover",
+            "• Click \"Browse Songs\" to find your first song",
+            "",
+            "💡 **Pro Tip:** Keep your library organized by removing songs you've mastered or no longer want to practice!"
+          ]
+        },
+        "progress-tracking": {
+          "title": "Progress Tracking",
+          "paragraphs": [
+            "**What it is:** Track your learning statistics, streaks, and vocabulary progress.",
+            "",
+            "**How to access:** Click your profile picture → \"Progress\".",
+            "",
+            "**Two main tabs:**",
+            "",
+            "**1. OVERVIEW TAB:**",
+            "• **Total Stats:** XP earned, current level, days since joining",
+            "• **Streak Calendar:** Visual calendar showing practice days",
+            "• **Current Streak:** How many consecutive days you've practiced",
+            "• **Longest Streak:** Your best streak achievement",
+            "",
+            "**2. VOCABULARY TAB:**",
+            "• Switch between languages with the dropdown",
+            "• See \"Words to Work on\" (learning status)",
+            "• See \"Learned Words\" (mastered vocabulary)",
+            "• Edit translations or test yourself on words",
+            "",
+            "**Streaks:**",
+            "• Practice at least once per day to maintain your streak",
+            "• Streaks reset to 0 if you miss a day",
+            "• The calendar highlights days you've practiced",
+            "",
+            "**XP & Levels:**",
+            "• Earn XP by completing learning sessions",
+            "• Easy mode: +10 XP per line",
+            "• Medium mode: +20 XP per line",
+            "• Hard mode: +30 XP per line",
+            "• Accuracy bonuses can increase XP earned",
+            "",
+            "💡 **Pro Tip:** Check your progress daily to stay motivated and maintain your streak!"
+          ]
+        },
+        "settings": {
+          "title": "Settings",
+          "paragraphs": [
+            "**What it is:** Customize your Singuage experience and manage your account.",
+            "",
+            "**How to access:** Click your profile picture → \"Settings\".",
+            "",
+            "**Appearance:**",
+            "• **Theme:** Toggle between Light and Dark mode",
+            "• Changes apply immediately across the entire site",
+            "",
+            "**Notifications:**",
+            "• **Email Notifications:** Updates sent to your email",
+            "• **Push Notifications:** Browser notifications (when enabled)",
+            "• **Streak Reminders:** Daily reminder to maintain your streak",
+            "",
+            "**Account Actions:**",
+            "• **Log Out:** Sign out of your account",
+            "• **Delete Account:** Permanently remove your account and all data (requires confirmation)",
+            "",
+            "**App Info:**",
+            "• Version number",
+            "• Build information",
+            "• Account creation date",
+            "",
+            "💡 **Pro Tip:** Enable streak reminders if you want help maintaining your daily practice!"
+          ]
+        },
+        "vocabulary": {
+          "title": "Vocabulary",
+          "paragraphs": [
+            "**What it is:** Your personal vocabulary list with words you're learning and have mastered.",
+            "",
+            "**How to access:** Progress → \"Vocabulary\" tab.",
+            "",
+            "**Adding words:**",
+            "1. During a learning session, click any word",
+            "2. A translation modal appears",
+            "3. Click **\"+ Words to Work on\"** at the bottom",
+            "4. The word is added to your vocabulary list",
+            "",
+            "**Two sections:**",
+            "",
+            "**1. Words to Work on (Learning):**",
+            "• Words you're currently learning",
+            "• Shows word, translation, and context sentence",
+            "• Actions available:",
+            "  - Edit translation (pencil icon)",
+            "  - Mark as Learned (test yourself)",
+            "  - Delete word (trash icon)",
+            "",
+            "**2. Learned Words (Mastered):**",
+            "• Words you've successfully tested",
+            "• Displayed in a grid with a green checkmark",
+            "• Shows word and translation",
+            "• Permanently saved in your learned collection",
+            "",
+            "**Testing yourself:**",
+            "1. Click \"Mark as Learned\" on any word",
+            "2. Type the translation in lowercase",
+            "3. Accent marks are automatically ignored",
+            "4. If correct, word moves to Learned Words",
+            "5. If incorrect, try again",
+            "",
+            "Multi-language support:",
+            "• Switch languages using the dropdown",
+            "• Each language has separate word lists",
+            "• Statistics show words per language",
+            "",
+            "💡 **Pro Tip:** Add words you find challenging during songs - it's the best way to build vocabulary!"
+          ]
+        },
+        "words-to-work-on": {
+          "title": "Words to Work on",
+          "paragraphs": [
+            "**What it is:** Your active vocabulary list - words you're currently learning.",
+            "",
+            "**How words get added:**",
+            "• Click any word during a learning session",
+            "• Click **\"+ Words to Work on\"** in the translation modal",
+            "• Word is saved with its translation and context",
+            "",
+            "**Word card features:**",
+            "• **Word:** The vocabulary word in the target language",
+            "• **Translation:** English (or native language) translation",
+            "• **Context:** The sentence where you found the word",
+            "• **Language badge:** Shows the word's language (e.g., \"ES\", \"FR\")",
+            "",
+            "**Actions you can take:**",
+            "• **Edit (pencil icon):** Change the translation if needed",
+            "• **Mark as Learned:** Test yourself on the word",
+            "• **Delete (trash icon):** Remove from your list",
+            "",
+            "**Testing process:**",
+            "1. Click the button \"Mark as Learned\"",
+            "2. A modal appears showing the word",
+            "3. Type the translation in lowercase",
+            "4. Accent marks are automatically ignored",
+            "5. Correct → Word moves to Learned Words",
+            "6. Incorrect → Keep practicing!",
+            "",
+            "💡 **Pro Tip:** Review this section before each session to refresh words you're learning!"
+          ]
+        }
+      }
+    },
+    "congratulations": {
+      "title": "Congratulations! 🎉",
+      "completed": "You completed \"{{title}}\"!",
+      "message": "Great work! Every session brings you closer to fluency. Keep practicing, and you'll be amazed at how much you can achieve. We're proud of your dedication!",
+      "stats": {
+        "accuracy": "Accuracy",
+        "lines": "Lines",
+        "time": "Time"
+      },
+      "xp_earned": "+{{xp}} XP Earned",
+      "back_to_library": "Back to My Library"
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "last_updated": "Last Updated: {{date}}",
+      "sections": {
+        "acceptance": {
+          "title": "1. Acceptance of Terms",
+          "p1": "Welcome to Singuage (\"Singuage,\" \"we,\" \"us,\" or \"our\"). These Terms of Service (\"Terms\") govern your access to and use of the website located at singuage.com (the \"Service\").",
+          "p2": "By accessing or using the Service, you agree to be bound by these Terms. If you do not agree, do not use the Service."
+        },
+        "eligibility": {
+          "title": "2. Eligibility & Minor Accounts",
+          "p1": "Singuage is a general-audience educational platform and is not specifically targeted at children, but minors may use the Service.",
+          "p2": "We offer optional minor accounts that automatically filter explicit content. By using the Service, you represent that you have permission from a parent or legal guardian if required by applicable law."
+        },
+        "accounts": {
+          "title": "3. Accounts & Registration",
+          "li1": "An account is required to use Singuage.",
+          "li2": "Providing an email address is optional.",
+          "li3": "You are responsible for safeguarding your account credentials.",
+          "li4": "You may not share your account with others.",
+          "li5": "We reserve the right to suspend or terminate accounts that violate these Terms."
+        },
+        "purpose": {
+          "title": "4. Educational Purpose & Intended Use",
+          "p1": "Singuage is intended solely for personal, educational, and transformative learning purposes. The Service is designed to help users learn languages through music analysis and interactive study tools.",
+          "p2": "We do not guarantee any specific learning outcomes."
+        },
+        "user_content": {
+          "title": "5. User Content & Ownership",
+          "user_submitted_title": "5.1 User-Submitted Content",
+          "user_submitted": {
+            "p1": "Users may submit text, notes, definitions, and lyrics (\"User Content\") for private, personal use within the Service.",
+            "p2": "You retain full ownership of all User Content you submit.",
+            "p3": "Singuage does not claim ownership of User Content, does not publicly display User Content, does not distribute User Content to other users, and does not sell or license User Content."
+          },
+          "lyrics_title": "5.2 Lyrics & Copyright Disclaimer",
+          "lyrics": { "p1": "Lyrics are provided by users, not by Singuage. Lyrics are not shared publicly and are used only transiently for private analysis. Singuage does not host a public lyrics database and acts solely as a private analysis and learning tool. Responsibility for pasted content remains with the user." },
+          "license_title": "5.3 License to Operate the Service",
+          "license": { "p1": "You grant Singuage a limited, non-exclusive, revocable license to process User Content only as necessary to operate the Service for you. This license terminates when the content is deleted or no longer needed for service operation." }
+        },
+        "embedded": { "title": "6. Embedded Third-Party Content", "p1": "The Service embeds content from third-party platforms such as YouTube. Singuage does not control and is not responsible for third-party content or services. Use of third-party services is subject to their own terms." },
+        "acceptable_use": { "title": "7. Acceptable Use", "p1": "You agree not to: share accounts; scrape, download, or extract content; reverse engineer the Service; use automation or bots; use the Service for commercial purposes; or circumvent usage limits or safeguards." },
+        "subscriptions": {
+          "title": "8. Subscriptions & Payments",
+          "plans_title": "8.1 Plans",
+          "plans": { "p1": "Singuage offers a free tier with limitations, a paid monthly subscription, and a 5-day free trial." },
+          "billing_title": "8.2 Billing & Renewal",
+          "billing": { "p1": "Subscriptions auto-renew monthly. Payments are processed via Stripe. You may cancel at any time." },
+          "refund_title": "8.3 Refund Policy",
+          "refund": { "p1": "No refunds are provided. Upon cancellation, premium access remains active until the end of the paid period." }
+        },
+        "termination": { "title": "9. Termination", "p1": "We may suspend or terminate access at our discretion, including for violations of these Terms." },
+        "dmca": {
+          "title": "10. DMCA Copyright Policy",
+          "p1": "Singuage complies with the Digital Millennium Copyright Act (DMCA).",
+          "takedown_title": "10.1 Takedown Requests",
+          "takedown": {
+            "p1": "If you believe copyrighted material is improperly used, send a notice to:",
+            "p2": "Include identification of the copyrighted work, identification of the allegedly infringing material, your contact information, a statement of good-faith belief, a statement under penalty of perjury, and your signature (physical or electronic)."
+          }
+        },
+        "disclaimer": { "title": "11. Disclaimer of Warranties", "p1": "THE SERVICE IS PROVIDED \"AS IS\" AND \"AS AVAILABLE.\" WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING FITNESS FOR A PARTICULAR PURPOSE." },
+        "limitation": { "title": "12. Limitation of Liability", "p1": "TO THE MAXIMUM EXTENT PERMITTED BY LAW, SINGUAGE SHALL NOT BE LIABLE FOR INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES." },
+        "indemnification": { "title": "13. Indemnification", "p1": "You agree to indemnify and hold harmless Singuage from claims arising from your use of the Service or User Content." },
+        "arbitration": { "title": "14. Arbitration & Class Action Waiver", "p1": "All disputes shall be resolved through binding arbitration in Massachusetts, and you waive the right to participate in class actions." },
+        "governing_law": { "title": "15. Governing Law", "p1": "These Terms are governed by the laws of the Commonwealth of Massachusetts, USA." }
+      },
+      "contact": { "title": "16. Contact", "email_label": "Email:" }
+    },
+    "cookie": {
+      "title": "Cookie Policy",
+      "last_updated": "Last Updated: {{date}}",
+      "sections": {
+        "introduction": {
+          "title": "1. Introduction",
+          "p1": "This Cookie Policy explains how Singuage (\"Singuage,\" \"we,\" \"us,\" or \"our\") uses cookies and similar technologies on singuage.com (the \"Service\").",
+          "p2": "This policy should be read together with our Privacy Policy and Terms of Service."
+        },
+        "what_are_cookies": {
+          "title": "2. What Are Cookies?",
+          "p1": "Cookies are small text files placed on your device when you visit a website. They are commonly used to enable core functionality, remember preferences, enhance user experience, and understand how a service is used.",
+          "p2": "Cookies may be:",
+          "list": {
+            "session": "Session cookies, which expire when you close your browser",
+            "persistent": "Persistent cookies, which remain on your device for a defined period or until deleted"
+          }
+        },
+        "commitment": {
+          "title": "3. Our Commitment to Privacy",
+          "p1": "Singuage is a learning-focused platform built with privacy as a foundational principle.",
+          "list": {
+            "1": "We do not use advertising cookies",
+            "2": "We do not track users for marketing purposes",
+            "3": "We do not sell personal data",
+            "4": "We use cookies only to operate, secure, and improve the Service",
+            "5": "Cookies are never used to profile users, serve targeted ads, or track activity across unrelated websites."
+          }
+        },
+        "types": {
+          "title": "4. Types of Cookies We Use",
+          "necessary": {
+            "title": "4.1 Strictly Necessary Cookies",
+            "p1": "These cookies are essential for the operation and security of the Service and cannot be disabled. They are used to maintain authenticated sessions, enable core site functionality, and prevent fraudulent or abusive activity.",
+            "retention_label": "Retention:",
+            "retention": "Strictly necessary cookies typically last for the duration of the session or as required by system security settings."
+          },
+          "functional": {
+            "title": "4.2 Functional Cookies",
+            "p1": "Functional cookies allow the Service to remember user preferences and settings, such as interface or language preferences, minor account content filters, and accessibility settings. These cookies improve usability but are not used for tracking or advertising.",
+            "retention_label": "Retention:",
+            "retention": "Functional cookies may persist beyond a session to remember user preferences, unless disabled by the user."
+          },
+          "analytics": {
+            "title": "4.3 Analytics Cookies (Opt-In Only)",
+            "p1": "With your explicit consent, Singuage may use analytics cookies to understand how the Service is used and to improve performance. We currently use Google Analytics for this purpose. Analytics cookies collect usage data in aggregated form, are anonymized where possible, and are never used for advertising or cross-site tracking.",
+            "retention_label": "Retention:",
+            "retention": "Analytics cookies are retained for up to 12 months, after which they expire or are deleted. Analytics cookies are disabled by default and are used only if you opt in."
+          },
+          "advertising": {
+            "title": "4.4 Advertising & Tracking Cookies",
+            "p1": "Singuage does not use advertising cookies, behavioral tracking cookies, or third-party marketing trackers. We do not engage in targeted advertising or data monetization."
+          }
+        },
+        "third_party": {
+          "title": "5. Third-Party Cookies",
+          "p1": "Some cookies may be placed by trusted third-party service providers strictly necessary to operate the Service:",
+          "list": {
+            "google_analytics": "Google Analytics — collects anonymized or aggregated usage data to help us understand site performance and improve features.",
+            "stripe": "Stripe — may use temporary cookies during checkout to process payments securely and prevent fraud."
+          },
+          "p2": "These third parties process data in accordance with their own privacy policies and applicable law. Singuage does not permit third-party cookie use for unrelated or advertising purposes."
+        },
+        "consent": {
+          "title": "6. Consent & Cookie Management",
+          "p1": "When you first visit the Service, you will be presented with a cookie consent banner that allows you to accept or decline non-essential cookies and customize cookie preferences. You may manage or update your cookie preferences at any time through cookie settings within the Service or your browser’s cookie controls. Disabling analytics or functional cookies will not prevent access to core features of the Service."
+        },
+        "browser": {
+          "title": "7. Browser Controls",
+          "p1": "You may also manage or disable cookies directly through your browser settings. Instructions for managing cookies are available in your browser’s help or support section. Please note that disabling strictly necessary cookies may affect the functionality of the Service."
+        },
+        "legal_basis": {
+          "title": "8. Legal Basis for Processing (GDPR)",
+          "p1": "For users in the European Economic Area (EEA): strictly necessary cookies are processed based on legitimate interest. Functional and analytics cookies are processed based on user consent. You may withdraw consent at any time without penalty."
+        },
+        "california": {
+          "title": "9. California Privacy Rights (CCPA / CPRA)",
+          "p1": "For California residents: you may request information about personal data collected through cookies, request deletion of personal data, and opt out of the sale of personal data. Singuage does not sell personal data, including data collected via cookies."
+        },
+        "data_security": {
+          "title": "10. Data Security",
+          "p1": "We implement reasonable technical and organizational safeguards to protect information collected through cookies. However, no system is completely secure, and we cannot guarantee absolute security."
+        },
+        "changes": {
+          "title": "11. Changes to This Cookie Policy",
+          "p1": "We may update this Cookie Policy periodically to reflect changes in law, technology, or our practices. Continued use of the Service after updates constitutes acceptance of the revised policy."
+        },
+        "contact": {
+          "title": "12. Contact Information",
+          "email_label": "Email:",
+          "email": "singuage.contact@gmail.com"
+        }
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "last_updated": "Last Updated: {{date}}",
+      "sections": {
+        "introduction": {
+          "title": "1. Introduction",
+          "p1": "Singuage (\"Singuage\", \"we\", \"us\", or \"our\") respects your privacy and is committed to protecting your personal information.",
+          "p2": "This Privacy Policy explains how we collect, use, store, and protect information when you use singuage.com (the \"Service\"). By using the Service, you agree to this Privacy Policy."
+        },
+        "purpose": {
+          "title": "2. Educational & Transformative Purpose",
+          "p1": "Singuage is a learning-focused platform designed to help users learn languages through music in a personal, educational, and transformative manner.",
+          "p2": "User-submitted content — including pasted lyrics, notes, and definitions — is handled with privacy in mind:",
+          "list": {
+            "li1": "Processed only to provide the learning features of the Service",
+            "li2": "Used solely for private, personal analysis",
+            "li3": "Never publicly displayed",
+            "li4": "Never shared with other users",
+            "li5": "Never distributed, sold, or licensed"
+          },
+          "p3": "Singuage does not claim ownership of user-submitted content."
+        },
+        "information": {
+          "title": "3. Information We Collect",
+          "you_provide": {
+            "title": "3.1 Information You Provide",
+            "li1": "Username",
+            "li2": "Optional email address",
+            "li3": "User-submitted text, notes, and definitions"
+          },
+          "automatic": {
+            "title": "3.2 Information Collected Automatically",
+            "li1": "IP address",
+            "li2": "Device and browser information",
+            "li3": "Usage and interaction data",
+            "li4": "Cookies and similar technologies"
+          },
+          "auth": {
+            "title": "3.3 Authentication Data",
+            "p1": "Passwords are hashed using industry-standard methods and are never stored in plain text."
+          }
+        },
+        "lyrics": {
+          "title": "4. Lyrics & User-Submitted Content Privacy",
+          "p1": "User-submitted lyrics are provided entirely by the user, remain private to the user’s account, are not indexed, published, or shared, and are not used to build a public lyrics database.",
+          "retention_title": "Data Retention for User Content",
+          "retention_p1": "User-submitted content is retained only for the duration necessary to provide the Service and is deleted thereafter, or when the user deletes their account or content."
+        },
+        "use": {
+          "title": "5. How We Use Information",
+          "p1": "We use collected information to operate and maintain the Service, provide educational features, improve performance and user experience, process subscriptions and payments, and send transactional communications. Optional reminders or updates are sent only if you opt in. We do not use personal data for advertising purposes."
+        },
+        "third_party": {
+          "title": "6. Third-Party Processing & Sharing",
+          "p1": "We share limited data only with trusted third-party providers necessary to operate the Service:",
+          "payment_label": "Payment Processing:",
+          "payment_p1": "Payment information is processed directly by Stripe. Singuage does not store full payment details.",
+          "analytics_label": "Analytics:",
+          "analytics_p1": "Usage data may be processed by Google Analytics, typically in aggregated or anonymized form, to understand how the Service is used.",
+          "infrastructure_label": "Infrastructure & Hosting:",
+          "infrastructure_p1": "Data may be stored or processed by secure hosting and infrastructure providers.",
+          "p2": "We never sell personal data."
+        },
+        "cookies": {
+          "title": "7. Cookies & Analytics",
+          "p1": "We use cookies to maintain sessions, improve functionality, and analyze usage. Users may opt out of non-essential cookies and analytics at any time. Cookie preferences can be adjusted via browser settings or site controls where available."
+        },
+        "email": {
+          "title": "8. Email Communications",
+          "p1": "We send transactional emails (account, billing, service notices) and optional streak reminders or important updates only if you opt in. We do not send advertisements or spam."
+        },
+        "retention": {
+          "title": "9. Data Retention",
+          "p1": "We retain personal data only as long as necessary to provide the Service, comply with legal obligations, resolve disputes, and enforce agreements. Users may request deletion of their data at any time, subject to legal requirements."
+        },
+        "security": {
+          "title": "10. Data Security",
+          "p1": "We implement reasonable technical and organizational safeguards to protect personal information. While we use industry-standard security measures, no system is completely secure and we cannot guarantee absolute security of your information."
+        },
+        "rights": {
+          "title": "11. Your Privacy Rights",
+          "p1": "GDPR (European Union Users): You may have the right to access, correct, request deletion of, or restrict processing of your personal data, and to lodge a complaint with your local data protection authority.",
+          "p2": "CCPA / CPRA (California Residents): You may request disclosure of personal data collected, request deletion, and opt out of the sale of personal data. Singuage does not sell personal data, but we honor applicable transparency and access rights. Requests can be made via email."
+        },
+        "international": {
+          "title": "12. International Users",
+          "p1": "Your information may be processed in the United States. By using the Service, you consent to such processing where legally permitted."
+        },
+        "changes": {
+          "title": "13. Changes to This Policy",
+          "p1": "We may update this Privacy Policy periodically. Continued use of the Service after changes constitutes acceptance of the updated policy."
+        },
+        "contact": {
+          "title": "14. Contact Information",
+          "email_label": "Email:",
+          "email": "singuage.contact@gmail.com"
+        }
+      },
+      "contact": { "title": "14. Contact", "email_label": "Email:" }
+    },
+    "learning_session": {
+      "stats_box": { "title": "Session Stats", "accuracy": "Accuracy", "lines": "Lines", "mode": "Mode" },
+      "placeholder_type_lyrics": "Type the lyrics here...",
+      "modes": { "easy": "Easy", "medium": "Medium", "hard": "Hard" },
+      "difficulty_modal": {
+        "title": "Change Difficulty?",
+        "message": "Changing difficulty will restart your progress from the first line. Your current progress will not be saved.",
+        "cta_cancel": "Cancel",
+        "cta_continue": "Continue",
+        "options": { "easy": "Easy", "medium": "Medium", "hard": "Hard" }
+      },
+      "loading_song": "Loading song...",
+      "no_lyrics": "No lyrics available for this song",
+      "artist_label": "Artist:",
+      "language_label": "Language:",
+      "press_shortcuts": "Press ? for shortcuts"
+    },
+    "progress": {
+      "title": "Progress",
+      "subtitle": "Track your learning progress, streaks, and vocabulary",
+      "overview_tab": "Overview",
+      "vocabulary_tab": "Vocabulary",
+      "bars": {
+        "xp": "Total XP",
+        "streak": "Current Streak"
+      },
+      "languages_label": "Target Languages",
+      "days_active": "Days Active",
+      "xp_progress_heading": "XP & Level Progress",
+      "current_level": "Current Level",
+      "level_label": "Level {{level}}",
+      "current_xp_short": "{{xp}} XP",
+      "next_level_label": "Next level at {{xp}} XP",
+      "xp_values": { "easy": "+10 XP", "medium": "+20 XP", "hard": "+30 XP" },
+      "streak_history": "Streak History",
+      "weekdays": { "sun": "Sun", "mon": "Mon", "tue": "Tue", "wed": "Wed", "thu": "Thu", "fri": "Fri", "sat": "Sat" },
+      "practiced_on": "Practiced on {{date}}",
+      "current_streak_label": "Current Streak",
+      "current_streak_display": "{{count}} day streak",
+      "last_practice_label": "Last Practice",
+      "languages_progress_heading": "Language Progress",
+      "language_header": "{{code}} — Level {{level}}",
+      "levels": { "beginner": "Beginner", "intermediate": "Intermediate", "advanced": "Advanced" },
+      "total_xp": "{{xp}} XP",
+      "xp_to_next": "{{xp}} XP to next",
+      "xp_summary": "{{xp}} XP — next at {{cumNext}} XP",
+      "no_target_languages_msg": "No target languages set",
+      "add_languages_cta": "Add Target Languages",
+      "no_target_languages_help": "Set your target languages in Account → Target Languages to track progress and vocabulary per language."
+    },
+    "premium": {
+      "title": "Singuage Premium",
+      "subtitle": "Unlock unlimited practice and premium features",
+      "benefits_heading": "What you get",
+      "benefits": {
+        "1": "Unlimited lines on all songs",
+        "2": "Unlimited vocabulary review lessons",
+        "3": "Better user experience, premium features, and more!"
+      },
+      "pricing_heading": "Pricing",
+      "pricing_description": "Choose a plan that fits your needs. Monthly and yearly plans available; yearly saves you more.",
+      "cta_upgrade": "Upgrade to Premium",
+      "cta_restore": "Restore Purchase",
+      "faq_heading": "Frequently Asked Questions",
+      "faq": {
+        "q1": "What happens when I cancel?",
+        "a1": "Your Premium benefits remain active until the end of your current billing period.",
+        "q2": "Do you offer refunds?",
+        "a2": "Refunds are handled according to the platform's policy (App Store / Google Play / Stripe). Contact support for help.",
+        "q3": "Can I share my subscription?",
+        "a3": "Subscriptions are tied to individual accounts and cannot be shared."
+      },
+      "message_heading": "A message from Singuage:",
+      "message": "I'm Bassil, the CEO of Singuage. I'd like to congratulate you on upgrading to Premium! In doing so, you're allowing us to improve the learning experience every day, supporting the Singuage team, and helping keep Singuage free for everyone. Enjoy your Premium experience - you've earned it!",
+      "celebrate_button": "Congratulations!"
+    },
+    "upgrade": {
+      "title": "Premium for $2.99/month",
+      "description": "Premium unlocks more practice by removing the daily free line limit on songs (your first song remains unlimited even on free).",
+      "payment_heading": "Payment",
+      "cta_continue": "Continue to Payment",
+      "cta_return": "Return to My Library",
+      "checkout_failed": "Failed to start checkout. Please try again or contact support."
+    },
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Continue your language learning",
+      "username_label": "User or email",
+      "username_placeholder": "your-username or you@example.com",
+      "password_label": "Password",
+      "password_placeholder": "Enter your password",
+      "remember_me": "Remember me",
+      "forgot_password": "Forgot your password?",
+      "sign_in": "Sign In",
+      "no_account": "Don't have an account?",
+      "sign_up": "Sign Up",
+      "error_username_required": "Username is required",
+      "error_password_required": "Password is required"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start learning languages through music",
+      "age_verification_label": "Age verification",
+      "adult_label": "Adult (18+)",
+      "adult_note": "All content available",
+      "minor_label": "Minor (Under 18)",
+      "minor_note": "Explicit content will be filtered",
+      "confirm_adult": "✓ You confirm you are 18 or older",
+      "confirm_minor": "✓ Explicit songs will be hidden automatically",
+      "email_label": "Email address (optional)",
+      "email_helper": "We'll only use it to contact you",
+      "email_placeholder": "you@example.com",
+      "email_later_note": "Providing an email is optional and can be added later.",
+      "username_label": "Username",
+      "username_placeholder": "your-username",
+      "display_name_label": "Display Name",
+      "display_name_placeholder": "What should we call you?",
+      "password_label": "Password",
+      "password_placeholder": "Min. 8 characters",
+      "confirm_password_label": "Confirm Password",
+      "confirm_password_placeholder": "Confirm the password",
+      "native_language_label": "Native Language",
+      "select_native_language": "Select your native language",
+      "target_languages_label": "Target Languages",
+      "selected_count": "Selected: {{count}} language(s)",
+      "creating_account": "Creating account...",
+      "create_account": "Create Account",
+      "already_have_account": "Already have an account?",
+      "sign_in": "Sign In"
+    },
+    "contact": {
+      "title": "Contact",
+      "intro": "We'd love to hear from you. Use the form below to contact the Singuage team.",
+      "form": {
+        "email_label": "Your email",
+        "email_placeholder": "you@example.com",
+        "message_label": "Message",
+        "message_placeholder": "How can we help?",
+        "send_button": "Send message"
+      }
+    }
+  }
+}

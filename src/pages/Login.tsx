@@ -9,13 +9,15 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { authApi, handleApiError } from '@/lib/api';
 import { useAuthStore } from '@/store/useStore';
+import { useTranslation } from 'react-i18next';
 
 export const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuthStore();
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -29,8 +31,8 @@ export const Login = () => {
 
     // Basic validation
     const newErrors: Record<string, string> = {};
-    if (!formData.email) newErrors.email = 'Email is required';
-    if (!formData.password) newErrors.password = 'Password is required';
+    if (!formData.username) newErrors.username = t('pages.login.error_username_required');
+    if (!formData.password) newErrors.password = t('pages.login.error_password_required');
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -40,6 +42,7 @@ export const Login = () => {
     setIsLoading(true);
 
     try {
+      // send username + password to login endpoint
       const response = await authApi.login(formData);
       login(response.accessToken, response.refreshToken, response.user);
       navigate('/dashboard');
@@ -69,11 +72,9 @@ export const Login = () => {
             <Music2 className="h-8 w-8 text-white" />
           </motion.div>
           <h1 className="mb-2 font-display text-3xl font-bold text-gray-900 dark:text-white">
-            Welcome Back
+            {t('pages.login.title')}
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Continue your language learning journey
-          </p>
+          <p className="text-gray-600 dark:text-gray-400">{t('pages.login.subtitle')}</p>
         </div>
 
         {/* Login Form */}
@@ -93,12 +94,12 @@ export const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <Input
-                type="email"
-                label="Email"
-                placeholder="your@email.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                error={errors.email}
+                type="text"
+                label={t('pages.login.username_label')}
+                placeholder={t('pages.login.username_placeholder')}
+                value={formData.username}
+                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                error={errors.username}
                 required
               />
             </div>
@@ -106,8 +107,8 @@ export const Login = () => {
             <div>
               <Input
                 type="password"
-                label="Password"
-                placeholder="••••••••"
+                label={t('pages.login.password_label')}
+                placeholder={t('pages.login.password_placeholder')}
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 error={errors.password}
@@ -121,49 +122,31 @@ export const Login = () => {
                   type="checkbox"
                   className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                 />
-                <span className="text-gray-700 dark:text-gray-300">Remember me</span>
+                <span className="text-gray-700 dark:text-gray-300">{t('pages.login.remember_me')}</span>
               </label>
               <Link
                 to="/forgot-password"
                 className="font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400"
               >
-                Forgot password?
+                {t('pages.login.forgot_password')}
               </Link>
             </div>
 
             <Button type="submit" variant="primary" size="lg" fullWidth isLoading={isLoading}>
-              Sign In
+              {t('pages.login.sign_in')}
             </Button>
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-            Don't have an account?{' '}
+            {t('pages.login.no_account')}{' '}
             <Link
               to="/register"
               className="font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400"
             >
-              Sign up
+              {t('pages.login.sign_up')}
             </Link>
           </div>
         </motion.div>
-
-        {/* Demo Credentials (Development only) */}
-        {import.meta.env.DEV && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-4 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20"
-          >
-            <p className="mb-2 text-xs font-medium text-blue-800 dark:text-blue-300">
-              Demo Credentials:
-            </p>
-            <p className="text-xs text-blue-700 dark:text-blue-400">
-              Email: demo@singuage.com<br />
-              Password: Demo123!@#
-            </p>
-          </motion.div>
-        )}
       </motion.div>
     </div>
   );

@@ -11,11 +11,13 @@ export interface TargetLanguage {
 
 export interface User {
   id: string;
-  email: string;
+  email?: string | null; // made optional and nullable to match backend nullable email
+  username?: string; // optional username field
   displayName: string;
   nativeLanguage: string;
   targetLanguages: TargetLanguage[] | string[];
   preferredArtists?: string[]; // List of favorite/preferred artist names
+  hasPremium?: boolean;
   totalXp?: number;
   currentStreak?: number;
   longestStreak?: number;

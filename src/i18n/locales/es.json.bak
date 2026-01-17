@@ -1,0 +1,50 @@
+{
+  "app": {
+    "title": "Singuage"
+  },
+  "footer": {
+    "copyright": "© Singuage"
+  },
+  "cookie": {
+    "message": "Usamos cookies para mejorar tu experiencia.",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
+  },
+  "buttons": {
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "upgrade": "Mejorar"
+  },
+  "achievements": {
+    "loading": "Cargando logros...",
+    "retry": "Reintentar",
+    "load_failed": "No se pudieron cargar los logros. Por favor, inténtalo de nuevo.",
+    "title": "Logros",
+    "unlocked_of": "{{unlocked}} de {{total}} desbloqueados",
+    "stats": { "unlocked": "Desbloqueados", "completion": "Completado", "remaining": "Restantes" },
+    "categories": { "All": "Todos", "Learning": "Aprendizaje", "Streak": "Racha", "XP": "XP", "Languages": "Idiomas", "Mastery": "Dominio", "Challenge": "Desafío" },
+    "progress": "Progreso",
+    "unlocked_on": "Desbloqueado el {{date}}",
+    "empty": { "title": "No se encontraron logros", "message": "Aún no has desbloqueado logros. ¡Sigue practicando!" },
+    "items": {
+      "first_song": { "name": "Primeros pasos", "description": "Completa tu primera canción" },
+      "song_enthusiast": { "name": "Entusiasta de las canciones", "description": "Completa 10 canciones" },
+      "song_master": { "name": "Maestro de canciones", "description": "Completa 50 canciones" },
+      "library_builder": { "name": "Constructor de biblioteca", "description": "Añade 5 canciones a tu biblioteca" },
+      "streak_starter": { "name": "Inicio de racha", "description": "Mantén una racha de 3 días" },
+      "week_warrior": { "name": "Guerrero de la semana", "description": "Mantén una racha de 7 días" },
+      "month_master": { "name": "Maestro del mes", "description": "Mantén una racha de 30 días" },
+      "xp_novice": { "name": "Novato de XP", "description": "Gana 100 XP en total" },
+      "xp_expert": { "name": "Experto en XP", "description": "Gana 500 XP en total" },
+      "xp_master": { "name": "Maestro de XP", "description": "Gana 1000 XP en total" },
+      "bilingual": { "name": "Bilingüe", "description": "Aprende canciones en 2 idiomas diferentes" },
+      "polyglot": { "name": "Políglota", "description": "Aprende canciones en 3 idiomas diferentes" },
+      "language_master": { "name": "Maestro de idiomas", "description": "Aprende canciones en 5 idiomas diferentes" },
+      "perfect_score": { "name": "Puntuación perfecta", "description": "Completa una canción con 100% de precisión" },
+      "perfectionist": { "name": "Perfeccionista", "description": "Completa 5 canciones con 100% de precisión" },
+      "hard_mode_hero": { "name": "Héroe del modo difícil", "description": "Completa una canción en modo difícil" },
+      "hard_mode_master": { "name": "Maestro del modo difícil", "description": "Completa 10 canciones en modo difícil" }
+    }
+  }
+}

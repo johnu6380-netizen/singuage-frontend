@@ -125,7 +125,7 @@ export const PremiumUpgradeModal = ({ isOpen, onClose, returnTo = '/dashboard', 
                   id="premium-upgrade-description"
                   className="mt-2 text-sm text-gray-600 dark:text-gray-300"
                   // Render the description as HTML so the interpolated <strong> tag is applied.
-                  dangerouslySetInnerHTML={{ __html: t('modals.premium_upgrade.description', { price: '<strong>$2.99</strong>', interpolation: { escapeValue: false } }) }}
+                  dangerouslySetInnerHTML={{ __html: t('modals.premium_upgrade.description', { price: '$2.99', interpolation: { escapeValue: false } }) }}
                 />
               </div>
 

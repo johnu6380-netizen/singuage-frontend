@@ -57,7 +57,7 @@
     },
     "premium_upgrade": {
       "title": "Premium Upgrade",
-      "description": "Having fun? Upgrade to Premium for only {{price}} per month!",
+      "description": "Having fun? Upgrade to Premium for <strong>only</strong> {{price}} per month!",
       "keep_playing_cta": "Keep Playing!",
       "return_to_library": "Return to My Library",
       "helper_note": "Premium removes daily free song limits (excluding your first free song which is already unlimited)."

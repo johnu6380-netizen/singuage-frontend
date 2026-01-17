@@ -57,7 +57,7 @@
     },
     "premium_upgrade": {
       "title": "Upgrade Premium",
-      "description": "Está se divertindo? Faça upgrade para Premium por apenas {{price}} por mês!",
+      "description": "Está se divertindo? Faça upgrade para Premium por <strong>apenas</strong> {{price}} por mês!",
       "keep_playing_cta": "Continuar Jogando!",
       "return_to_library": "Retornar para Minha Biblioteca",
       "helper_note": "Premium remove os limites diários de músicas gratuitas (excluindo sua primeira música gratuita que já é ilimitada)."

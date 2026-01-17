@@ -57,7 +57,7 @@
     },
     "premium_upgrade": {
       "title": "Actualización a Premium",
-      "description": "¿Te está gustando? Pásate a Premium por solo {{price}} al mes!",
+      "description": "¿Te está gustando? Pásate a Premium por <strong>solo</strong> {{price}} al mes!",
       "keep_playing_cta": "¡Seguir jugando!",
       "return_to_library": "Volver a mi biblioteca",
       "helper_note": "Premium elimina los límites diarios gratuitos en canciones (excluyendo tu primera canción gratuita, que ya es ilimitada)."

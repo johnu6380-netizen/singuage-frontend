@@ -31,25 +31,31 @@ api.interceptors.response.use(
   (response) => response,
   async (error: AxiosError) => {
     const originalRequest = error.config as any;
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      console.warn('401 error encountered. Attempting to refresh token...');
-      originalRequest._retry = true;
-      try {
-        const refreshToken = localStorage.getItem('refreshToken');
-        const response = await api.post('/auth/refresh', { refreshToken });
-        const { accessToken } = response.data;
-        localStorage.setItem('accessToken', accessToken);
-        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-        return api(originalRequest);
-      } catch (refreshError) {
-        console.error('Token refresh failed:', refreshError);
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        window.location.href = '/login';
-        return Promise.reject(refreshError);
-      }
+
+    if (error.response?.status !== 401) {
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
+
+    // Never refresh for auth endpoints
+    if (originalRequest.url?.includes('/auth')) {
+      return Promise.reject(error);
+    }
+
+    // Prevent infinite loops
+    if (originalRequest._retry) {
+      return Promise.reject(error);
+    }
+    originalRequest._retry = true;
+
+    try {
+      // Rely on HttpOnly refresh cookie being sent automatically (withCredentials=true)
+      await api.post('/auth/refresh');
+      return api(originalRequest);
+    } catch (err) {
+      localStorage.removeItem('accessToken');
+      window.location.href = '/login';
+      return Promise.reject(err);
+    }
   }
 );
 
@@ -60,8 +66,8 @@ export const authApi = {
   getCurrentUser: async () => (await api.get('/auth/me')).data,
   updateProfile: async (data: any) => (await api.put('/auth/profile', data)).data,
   logout: async () => {
-    const refreshToken = localStorage.getItem('refreshToken');
-    await api.post('/auth/logout', { refreshToken });
+    // Rely on cookie for refresh token; backend will clear cookie
+    await api.post('/auth/logout');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
   },

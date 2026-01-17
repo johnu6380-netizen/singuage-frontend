@@ -14,7 +14,8 @@ interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (accessToken: string, refreshToken: string, user: User) => void;
+  // refreshToken is optional because we rely on HttpOnly cookie in production
+  login: (accessToken: string, refreshToken?: string | null, user: User) => void;
   logout: () => void;
   setUser: (user: User) => void;
   setUserLocal: (user: User) => void; // Added setUserLocal
@@ -27,9 +28,9 @@ export const useAuthStore = create<AuthState>((set) => ({
   isAuthenticated: false,
   isLoading: true,
 
-  login: (accessToken, refreshToken, user) => {
+  // Note: _refreshToken is intentionally unused because refresh tokens are stored in HttpOnly cookies.
+  login: (accessToken, _refreshToken, user) => {
     localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refreshToken', refreshToken);
     set({ user, isAuthenticated: true, isLoading: false });
     // If the user has a native language preference saved on their profile, apply it
     const lang = (user as any)?.nativeLanguage || (user as any)?.preferredLanguage || (user as any)?.native_language || (user as any)?.preferred_language;
@@ -46,7 +47,6 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   logout: () => {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
     set({ user: null, isAuthenticated: false });
   },
 
@@ -116,7 +116,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     } catch (error) {
       console.error('Auth check failed:', error);
       localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
       set({ user: null, isAuthenticated: false, isLoading: false });
     }
   },

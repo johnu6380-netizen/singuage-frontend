@@ -81,7 +81,9 @@ function App() {
 
   // Check authentication status on mount
   useEffect(() => {
-    checkAuth();
+    if (localStorage.getItem('accessToken')) {
+      checkAuth();
+    }
     loadPreferences();
   }, [checkAuth, loadPreferences]);
 

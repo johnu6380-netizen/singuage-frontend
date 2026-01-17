@@ -81,9 +81,11 @@ function App() {
 
   // Check authentication status on mount
   useEffect(() => {
-    if (localStorage.getItem('accessToken')) {
-      checkAuth();
-    }
+    // Always call checkAuth so the store can update isLoading=false even when
+    // there is no access token. Previously we only called checkAuth when an
+    // access token existed which left isLoading=true indefinitely for new or
+    // logged-out users and caused the UI to show a permanent spinner.
+    checkAuth();
     loadPreferences();
   }, [checkAuth, loadPreferences]);
 

@@ -44,7 +44,8 @@ export const Login = () => {
     try {
       // send username + password to login endpoint
       const response = await authApi.login(formData);
-      login(response.accessToken, response.refreshToken, response.user);
+      // login signature: (accessToken, user, refreshToken?)
+      login(response.accessToken, response.user, response.refreshToken);
       navigate('/dashboard');
     } catch (error) {
       setApiError(handleApiError(error));

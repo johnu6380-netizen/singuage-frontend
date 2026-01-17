@@ -15,7 +15,8 @@ interface AuthState {
   isAuthenticated: boolean;
   isLoading: boolean;
   // refreshToken is optional because we rely on HttpOnly cookie in production
-  login: (accessToken: string, refreshToken?: string | null, user: User) => void;
+  // place optional parameter last to satisfy TS function signature rules
+  login: (accessToken: string, user: User, refreshToken?: string | null) => void;
   logout: () => void;
   setUser: (user: User) => void;
   setUserLocal: (user: User) => void; // Added setUserLocal
@@ -29,7 +30,8 @@ export const useAuthStore = create<AuthState>((set) => ({
   isLoading: true,
 
   // Note: _refreshToken is intentionally unused because refresh tokens are stored in HttpOnly cookies.
-  login: (accessToken, _refreshToken, user) => {
+  // order: accessToken, user, refreshToken (optional)
+  login: (accessToken, user, _refreshToken) => {
     localStorage.setItem('accessToken', accessToken);
     set({ user, isAuthenticated: true, isLoading: false });
     // If the user has a native language preference saved on their profile, apply it

@@ -98,7 +98,8 @@ export const Register = () => {
       } catch (e) {
         // ignore localStorage failures
       }
-      login(response.accessToken, response.refreshToken, response.user);
+      // login signature: (accessToken, user, refreshToken?)
+      login(response.accessToken, response.user, response.refreshToken);
       navigate('/dashboard');
     } catch (error) {
       setApiError(handleApiError(error));

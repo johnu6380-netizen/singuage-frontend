@@ -38,7 +38,7 @@ export const AdBreak = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('modals.premium_upgrade.title') || 'Singuage Premium'}</h3>
-                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{t('modals.premium_upgrade.description', { price: PREMIUM_MONTHLY_DISPLAY })}</p>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-300" dangerouslySetInnerHTML={{ __html: t('modals.premium_upgrade.description', { price: PREMIUM_MONTHLY_DISPLAY, interpolation: { escapeValue: false } }) }} />
                 </div>
               </div>
 

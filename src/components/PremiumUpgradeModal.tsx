@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { Button } from '@/components/ui/Button';
 import { useTranslation } from 'react-i18next';
+import { PREMIUM_MONTHLY_DISPLAY } from '@/lib/pricing';
 
 interface Props {
   isOpen: boolean;
@@ -125,7 +126,7 @@ export const PremiumUpgradeModal = ({ isOpen, onClose, returnTo = '/dashboard', 
                   id="premium-upgrade-description"
                   className="mt-2 text-sm text-gray-600 dark:text-gray-300"
                   // Render the description as HTML so the interpolated <strong> tag is applied.
-                  dangerouslySetInnerHTML={{ __html: t('modals.premium_upgrade.description', { price: '$2.99', interpolation: { escapeValue: false } }) }}
+                  dangerouslySetInnerHTML={{ __html: t('modals.premium_upgrade.description', { price: PREMIUM_MONTHLY_DISPLAY, interpolation: { escapeValue: false } }) }}
                 />
               </div>
 

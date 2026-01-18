@@ -3,6 +3,7 @@ import { Music2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/store/useStore';
 import { useTranslation } from 'react-i18next';
+import { PREMIUM_MONTHLY_DISPLAY } from '@/lib/pricing';
 
 export const AdBreak = () => {
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ export const AdBreak = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('modals.premium_upgrade.title') || 'Singuage Premium'}</h3>
-                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{t('modals.premium_upgrade.description', { price: '$2.99' })}</p>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{t('modals.premium_upgrade.description', { price: PREMIUM_MONTHLY_DISPLAY })}</p>
                 </div>
               </div>
 

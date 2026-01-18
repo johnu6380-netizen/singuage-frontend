@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { Unlock } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PREMIUM_MONTHLY_DISPLAY } from '@/lib/pricing';
 
 import { Button } from '@/components/ui/Button';
 import { paymentsApi } from '@/lib/api';
@@ -28,7 +29,7 @@ export const Upgrade = () => {
         className="card"
       >
         <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          {t('pages.upgrade.title')}
+          {t('pages.upgrade.title', { price: PREMIUM_MONTHLY_DISPLAY })}
         </h2>
 
         <p className="mt-3 text-gray-700 dark:text-gray-300">

@@ -608,7 +608,7 @@
       "celebrate_button": "Parabéns!"
     },
     "upgrade": {
-      "title": "Premium por $2,50/mês",
+      "title": "Premium por {{price}}/mês",
       "description": "Premium desbloqueia mais prática removendo o limite diário de linhas gratuitas em músicas (sua primeira música permanece ilimitada mesmo no plano gratuito).",
       "payment_heading": "Pagamento",
       "cta_continue": "Continuar para Pagamento",

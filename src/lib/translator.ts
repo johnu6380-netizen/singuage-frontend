@@ -165,7 +165,8 @@ const translateSentence = async (
     if (response.ok) {
       const data = await response.json();
       console.log('✅ LibreTranslate success:', data.translatedText);
-      return data.translatedText;
+      // Decode any HTML entities returned by the API (e.g., numeric newline references)
+      return decodeHtmlEntities(data.translatedText);
     }
 
     // If rate limited (429) or other non-ok, log and continue to fallback
@@ -184,13 +185,13 @@ const translateSentence = async (
 
     if (data.responseData && data.responseData.translatedText) {
       console.log('✅ MyMemory success:', data.responseData.translatedText);
-      return data.responseData.translatedText;
+      return decodeHtmlEntities(data.responseData.translatedText);
     }
 
     // MyMemory sometimes returns a match in the 'matches' array
     if (Array.isArray(data.matches) && data.matches[0]?.translation) {
       console.log('✅ MyMemory matches fallback:', data.matches[0].translation);
-      return data.matches[0].translation;
+      return decodeHtmlEntities(data.matches[0].translation);
     }
 
     console.warn('⚠️ MyMemory did not return a valid translation');
@@ -406,3 +407,19 @@ export const getSupportedLanguages = (): string[] => {
 
 // Export detectLanguage so other parts of the app can deduce a song's language
 export { detectLanguage };
+
+// Helper: decode HTML entities such as &#x0A; or &amp; into actual characters.
+const decodeHtmlEntities = (input: string): string => {
+  if (!input) return input;
+  try {
+    // Runs in browser environment — use a textarea to decode safely
+    const txt = document.createElement('textarea');
+    txt.innerHTML = input;
+    return txt.value;
+  } catch (e) {
+    // Fallback: decode numeric entities manually
+    return input
+      .replace(/&#x([0-9A-Fa-f]+);/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+      .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)));
+  }
+};

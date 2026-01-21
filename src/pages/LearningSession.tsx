@@ -301,7 +301,16 @@ export const LearningSession = () => {
 
   const currentLyricLine = lines[currentLine] || lines[0];
 
-  const onPlayerReady = (event: { target: YouTubePlayer }) => setPlayer(event.target);
+  const onPlayerReady = (event: { target: YouTubePlayer }) => {
+    setPlayer(event.target);
+    try {
+      // Attempt to start playback automatically. Browsers may block autoplay with sound;
+      // this is a best-effort attempt — policies may require user interaction or muted playback.
+      event.target.playVideo();
+    } catch (e) {
+      console.warn('Autoplay attempt failed (ignored):', e);
+    }
+  };
   const onPlayerStateChange = (event: { data: number }) => setIsPlaying(event.data === 1);
 
   // Safely call YouTube player methods (protects against cross-origin iframe timing issues)
@@ -757,7 +766,7 @@ export const LearningSession = () => {
                   videoId={song.youtubeVideoId}
                   onReady={onPlayerReady}
                   onStateChange={onPlayerStateChange}
-                  opts={{ width: '100%', height: '100%', playerVars: { autoplay: 0, controls: 1, modestbranding: 1, rel: 0, enablejsapi: 1, iv_load_policy: 3 } }}
+                  opts={{ width: '100%', height: '100%', playerVars: { autoplay: 1, controls: 1, modestbranding: 1, rel: 0, enablejsapi: 1, iv_load_policy: 3 } }}
                   className="absolute top-0 left-0 w-full h-full"
                   iframeClassName="w-full h-full"
                 />
